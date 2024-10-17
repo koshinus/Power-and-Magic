@@ -1,5 +1,7 @@
 extends Control
 
+var global_map_scene = preload("res://scenes/global_map.tscn").instantiate()
+
 #-------------------Play button logic-------------------
 func _on_play_pressed() -> void:
 	#var dialog = AcceptDialog.new()
@@ -7,7 +9,8 @@ func _on_play_pressed() -> void:
 	#dialog.set_text("You clicked play!")
 	#get_tree().current_scene.add_child(dialog)  # Add dialog to the current scene
 	#dialog.popup_centered()  # Show the dialog centered on the screen
-	get_tree().change_scene_to_file("res://scenes/global_map.tscn")
+	#get_tree().change_scene_to_file()
+	get_tree().root.add_child(global_map_scene)
 
 #-------------------Quit button logic-------------------
 func form_quit_dialog() -> ConfirmationDialog:

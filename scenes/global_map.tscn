@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c1ktqw5o3kmfy" path="res://resources/tilesets/tileset_for_global_map_1.png" id="2_34bu7"]
 
 [sub_resource type="Gradient" id="Gradient_rgbo0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.452316, 0.577657, 0.866485)
+colors = PackedColorArray(0.210466, 0.266802, 0.699607, 1, 0.845676, 0.911741, 0.170201, 1, 0.525347, 0.98912, 0.35071, 1, 0.616003, 0.494938, 0.235851, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wgu33"]
 
@@ -230,3 +233,5 @@ noise_height_text = SubResource("NoiseTexture2D_5ln3g")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_5c6yw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
