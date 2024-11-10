@@ -1,16 +1,15 @@
 extends Control
 
-var global_map_scene = preload("res://scenes/global_map.tscn").instantiate()
+@export var global_map_scene: PackedScene = preload("res://scenes/global_map.tscn")
+@export var player_sc: PackedScene = preload("res://scenes/player_scene.tscn")
 
 #-------------------Play button logic-------------------
 func _on_play_pressed() -> void:
-	#var dialog = AcceptDialog.new()
-	#dialog.set_title("")
-	#dialog.set_text("You clicked play!")
-	#get_tree().current_scene.add_child(dialog)  # Add dialog to the current scene
-	#dialog.popup_centered()  # Show the dialog centered on the screen
-	#get_tree().change_scene_to_file()
-	get_tree().root.add_child(global_map_scene)
+	var player_node = player_sc.instantiate()
+	get_tree().root.add_child( player_node )
+	#print( get_tree().root.get_children(), " ", global_map_scene )
+	#print("Going to change scene")
+	get_tree().root.add_child( global_map_scene.instantiate() )
 
 #-------------------Quit button logic-------------------
 func form_quit_dialog() -> ConfirmationDialog:
@@ -19,8 +18,8 @@ func form_quit_dialog() -> ConfirmationDialog:
 	d.set_text("Are you really want to quit?")
 	
 	# Connect the signals for OK and Cancel buttons
-	d.get_ok_button().pressed.connect(_on_confirmed)
-	d.get_cancel_button().pressed.connect(_on_canceled)
+	d.get_ok_button().pressed.connect( _on_confirmed )
+	d.get_cancel_button().pressed.connect( _on_canceled )
 	
 	return d
 
