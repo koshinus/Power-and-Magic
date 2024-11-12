@@ -4,9 +4,11 @@ var speed : int = 300
 var click_pos = Vector2i()
 var target_pos = Vector2i()
 var DISTANSE_TO_START_MOVE : int = 3
+var px_start_pos = 30
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	position = Vector2i( px_start_pos, px_start_pos )
 	click_pos = position
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.

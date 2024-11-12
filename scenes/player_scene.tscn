@@ -1,17 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://0jl82rfj3nhj"]
+[gd_scene load_steps=5 format=3 uid="uid://0jl82rfj3nhj"]
 
 [ext_resource type="Script" path="res://scripts/player_scene.gd" id="1_omaqs"]
-[ext_resource type="Texture2D" uid="uid://tu8hm40caq5m" path="res://icon.svg" id="2_t5cxx"]
+[ext_resource type="Texture2D" uid="uid://bhhlm5mpl8476" path="res://resources/tilesets/hero.png" id="2_qu17e"]
+[ext_resource type="Script" path="res://scripts/hero_cam.gd" id="3_47odv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wfjm"]
+size = Vector2(63, 63)
 
 [node name="Hero" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
 script = ExtResource("1_omaqs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2wfjm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_t5cxx")
+texture = ExtResource("2_qu17e")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="HeroCam" type="Camera2D" parent="."]
+script = ExtResource("3_47odv")
