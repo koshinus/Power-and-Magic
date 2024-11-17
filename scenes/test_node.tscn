@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://h3tjdsxrvqjh"]
+
+[ext_resource type="Script" path="res://scripts/test_node.gd" id="1_jc7ip"]
+
+[node name="TestNode" type="Node2D"]
+script = ExtResource("1_jc7ip")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
