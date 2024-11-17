@@ -6,20 +6,14 @@ var target_pos = Vector2i()
 var DISTANSE_TO_START_MOVE : int = 3
 var px_start_pos = 30
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	position = Vector2i( px_start_pos, px_start_pos )
 	click_pos = position
 
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
-
-#func _enter_tree() -> void:
-	#self.global_position = Vector2i( 50, 50 )
-
 func _physics_process( delta: float ) -> void:
-	#print(delta)
+	#pass
 	if Input.is_action_just_pressed( "left_click" ):
 		click_pos = get_global_mouse_position()
 	if position.distance_to( click_pos ) > DISTANSE_TO_START_MOVE:

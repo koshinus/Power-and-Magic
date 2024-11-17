@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://0jl82rfj3nhj"]
 
 [ext_resource type="Script" path="res://scripts/player_scene.gd" id="1_omaqs"]
-[ext_resource type="Texture2D" uid="uid://bhhlm5mpl8476" path="res://resources/tilesets/hero.png" id="2_qu17e"]
+[ext_resource type="Texture2D" uid="uid://cf4nxwxds208j" path="res://resources/tilesets/hero.png" id="2_qu17e"]
 [ext_resource type="Script" path="res://scripts/hero_cam.gd" id="3_47odv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wfjm"]

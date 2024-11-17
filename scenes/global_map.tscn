@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/global_map.gd" id="1_h63jr"]
 [ext_resource type="Script" path="res://scripts/global_map_surface.gd" id="1_lu7nb"]
-[ext_resource type="Texture2D" uid="uid://kk1wk7g0i5iu" path="res://resources/tilesets/global_tileset_64.png" id="1_w8c6h"]
+[ext_resource type="Texture2D" uid="uid://baxhd62ewehwo" path="res://resources/tilesets/global_tileset_64.png" id="1_w8c6h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0f6sr"]
 texture = ExtResource("1_w8c6h")
@@ -31,12 +31,12 @@ script = ExtResource("1_h63jr")
 tile_set = SubResource("TileSet_7wjaf")
 script = ExtResource("1_lu7nb")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Limits" type="StaticBody2D" parent="."]
 
-[node name="TopLimit" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="TopLimit" type="CollisionShape2D" parent="Limits"]
 
-[node name="BottomLimit" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="BottomLimit" type="CollisionShape2D" parent="Limits"]
 
-[node name="LeftLimit" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="LeftLimit" type="CollisionShape2D" parent="Limits"]
 
-[node name="RightLimit" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="RightLimit" type="CollisionShape2D" parent="Limits"]

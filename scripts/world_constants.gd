@@ -18,3 +18,6 @@ enum GLOBAL_MAP_TERRAIN
 }
 
 const GLOBAL_TILE_SIZE_IN_PIXELS : int = 64;
+const LOCAL_TILE_SIZE_IN_PIXELS : int = 16;
+const GLOBAL_MAP_WIDTH : int = 40;
+const GLOBAL_MAP_HEIGHT : int = 40;

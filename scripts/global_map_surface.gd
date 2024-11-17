@@ -2,15 +2,12 @@ extends TileMapLayer
 
 @export var terrain_type = WorldConstants.GLOBAL_MAP_TERRAIN
 @export var px_tile_size : int = WorldConstants.GLOBAL_TILE_SIZE_IN_PIXELS
+@export var layer_width : int = WorldConstants.GLOBAL_MAP_WIDTH
+@export var layer_height : int = WorldConstants.GLOBAL_MAP_HEIGHT
 
-#var world_limits = $
-
-class GlobalTileInfo:
+class GbTileInfo:
 	var atlas: Vector2i
 	var tile_id: int
-
-var layer_width = 100
-var layer_height = 100
 
 var min_noise = 2.0
 var max_noise = -2.0
@@ -29,9 +26,9 @@ var stat_dict = {
 	terrain_type.MOUNTAINE: 0
 }
 
-func _generate_tile( id: int, idx_in_tileset: int, atlas : Vector2i ) -> GlobalTileInfo:
+func _generate_tile( id: int, idx_in_tileset: int, atlas : Vector2i ) -> GbTileInfo:
 	stat_dict[idx_in_tileset] = stat_dict[idx_in_tileset]+1
-	var tile_info = GlobalTileInfo.new()
+	var tile_info = GbTileInfo.new()
 	tile_info.tile_id = id
 	tile_info.atlas = atlas
 	return tile_info
@@ -39,7 +36,7 @@ func _generate_tile( id: int, idx_in_tileset: int, atlas : Vector2i ) -> GlobalT
 func _normalize( noise_val: float ) -> float:
 	return ( noise_val + 0.7 ) * terrain_type.COUNT
 	
-func get_tile_info_from_noise( noise_val: float ) -> GlobalTileInfo:
+func get_tile_info_from_noise( noise_val: float ) -> GbTileInfo:
 	min_noise = minf( min_noise, noise_val )
 	max_noise = maxf( max_noise, noise_val )
 	noise_val = _normalize( noise_val )
@@ -79,10 +76,6 @@ func get_prepared_noise() -> FastNoiseLite:
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#var world_limits = get_node_or_null( "./StaticBody2D/WorldLimits" )
-	#if world_limits != null:
-		#print(1)
-		#world_limits.size = Vector2i( layer_width * px_tile_size, layer_height * px_tile_size )
 	var noise = get_prepared_noise()
 	for x in range( layer_width ):
 		for y in range( layer_height ):

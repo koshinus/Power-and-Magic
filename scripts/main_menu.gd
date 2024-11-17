@@ -3,13 +3,23 @@ extends Control
 @export var global_map_scene: PackedScene = preload("res://scenes/global_map.tscn")
 @export var player_sc: PackedScene = preload("res://scenes/player_scene.tscn")
 
+@export var test_sc: PackedScene = preload("res://scenes/test_node.tscn")
+
+@export var px_tile_size : int = WorldConstants.GLOBAL_TILE_SIZE_IN_PIXELS
+
 #-------------------Play button logic-------------------
-func _on_play_pressed() -> void:
+func _test_pressed() -> void:
+	get_tree().root.add_child( test_sc.instantiate() )
+	
+func _normal_pressed() -> void:
 	var player_node = player_sc.instantiate()
 	get_tree().root.add_child( player_node )
-	#print( get_tree().root.get_children(), " ", global_map_scene )
-	#print("Going to change scene")
-	get_tree().root.add_child( global_map_scene.instantiate() )
+	var map_node = global_map_scene.instantiate()
+	get_tree().root.add_child( map_node )
+	#player_node.setup_astar_grid( map_node.get_used_rect(), px_tile_size )
+
+func _on_play_pressed() -> void:
+	_normal_pressed()
 
 #-------------------Quit button logic-------------------
 func form_quit_dialog() -> ConfirmationDialog:
