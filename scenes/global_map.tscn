@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/global_map.gd" id="1_h63jr"]
 [ext_resource type="Script" path="res://scripts/global_map_surface.gd" id="1_lu7nb"]
-[ext_resource type="Texture2D" uid="uid://baxhd62ewehwo" path="res://resources/tilesets/global_tileset_64.png" id="1_w8c6h"]
+[ext_resource type="Texture2D" uid="uid://55vhymcr33to" path="res://resources/32/local_tileset.png" id="2_lqrab"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0f6sr"]
-texture = ExtResource("1_w8c6h")
-texture_region_size = Vector2i(64, 64)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvj6h"]
+texture = ExtResource("2_lqrab")
+texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -17,18 +17,17 @@ texture_region_size = Vector2i(64, 64)
 7:0/0 = 0
 8:0/0 = 0
 9:0/0 = 0
-10:0/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_7wjaf"]
-tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_0f6sr")
+[sub_resource type="TileSet" id="TileSet_t5vi8"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_xvj6h")
 
 [node name="GlobalMap" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_h63jr")
 
 [node name="GlobalMapSurface" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_7wjaf")
+tile_set = SubResource("TileSet_t5vi8")
 script = ExtResource("1_lu7nb")
 
 [node name="Limits" type="StaticBody2D" parent="."]

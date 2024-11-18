@@ -19,6 +19,7 @@ func _normal_pressed() -> void:
 	#player_node.setup_astar_grid( map_node.get_used_rect(), px_tile_size )
 
 func _on_play_pressed() -> void:
+	#_test_pressed()
 	_normal_pressed()
 
 #-------------------Quit button logic-------------------

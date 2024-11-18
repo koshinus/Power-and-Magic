@@ -76,10 +76,11 @@ func get_prepared_noise() -> FastNoiseLite:
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var noise = get_prepared_noise()
-	for x in range( layer_width ):
-		for y in range( layer_height ):
-			# Функция для получения ID тайла на основе значения шума
-			var tile_info = get_tile_info_from_noise( noise.get_noise_2d( x, y ) )
-			self.set_cell( Vector2i( x, y ), tile_info.tile_id, tile_info.atlas )
-	print( "Generation result: ", stat_dict, " ", min_noise, " ", max_noise )
+	pass
+	#var noise = get_prepared_noise()
+	#for x in range( layer_width ):
+		#for y in range( layer_height ):
+			## Функция для получения ID тайла на основе значения шума
+			#var tile_info = get_tile_info_from_noise( noise.get_noise_2d( x, y ) )
+			#self.set_cell( Vector2i( x, y ), tile_info.tile_id, tile_info.atlas )
+	#print( "Generation result: ", stat_dict, " ", min_noise, " ", max_noise )

@@ -6,7 +6,6 @@ extends Node2D
 
 @onready var local_tset : TileSet = preload( "res://data/global_map_tileset.tres" )
 
-
 func _setup_limit( limit_side : CollisionShape2D, limit_size : Vector2i, limit_pos : Vector2i ) -> void:
 	var cur_limits : RectangleShape2D = RectangleShape2D.new()
 	cur_limits.set_size( limit_size )
@@ -28,28 +27,11 @@ func _ready() -> void:
 	
 	print( local_tset, " ", local_tset.get_source_count(),
 						" ", local_tset.get_source( local_tset.get_source_id( 0 ) ) )
-	var w_generator = WorldGenerator.MapGenerator.generate( local_tset, layer_width, layer_height )
-	#var top = $Limits/TopLimit
-	#var top_limits : RectangleShape2D = RectangleShape2D.new()
-	#top_limits.set_size( Vector2i( layer_width * px_tile_size, 1 ) )
-	#top.shape = top_limits
-	#top.position = Vector2i( ( layer_width * px_tile_size )/2, 0 )
-	
-	#var bottom = $Limits/BottomLimit
-	#var bot_limits : RectangleShape2D = RectangleShape2D.new()
-	#bot_limits.set_size( Vector2i( layer_width * px_tile_size, 1 ) )
-	#bottom.shape = bot_limits
-	#bottom.position = Vector2i( ( layer_width * px_tile_size )/2, layer_height * px_tile_size )
-	
-	#var left = $Limits/LeftLimit
-	#var left_limits : RectangleShape2D = RectangleShape2D.new()
-	#left_limits.set_size( Vector2i( 1, layer_height * px_tile_size ) )
-	#left.shape = left_limits
-	#left.position = Vector2i( 0, ( layer_height * px_tile_size )/2 )
-	
-	#var right = $Limits/RightLimit
-	#var right_limits : RectangleShape2D = RectangleShape2D.new()
-	#right_limits.set_size( Vector2i( 1, layer_height * px_tile_size ) )
-	#right.shape = right_limits
-	#right.position = Vector2i( layer_width * px_tile_size, ( layer_height * px_tile_size )/2 )
-	
+	#var map_info = WorldGenerator.MapGenerator.generate( local_tset, layer_width, layer_height )
+	#map_info._global_tiles
+	var tsource = TileSetAtlasSource.new()
+	#tsource.margins
+	var dynamic_tset_id = $GlobalMapSurface.tile_set.add_source( tsource )
+	for x in range( layer_width ):
+		for y in range( layer_height ):
+			$GlobalMapSurface.set_cell( Vector2i( x, y ), dynamic_tset_id )

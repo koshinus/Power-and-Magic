@@ -1,48 +1,15 @@
 extends Node2D
 
-var w = 4
-var h = 4
+var w = 32
+var h = 32
 
-func create_tile_set_source() -> TileSetAtlasSource:
-	var tss = TileSetAtlasSource.new()
-	var txtr = Texture2D.new()
-	var plh = txtr.create_placeholder()
-	plh.set_size( Vector2i( w*64, h*64 ) )
-	tss.texture = txtr
-	for x in range(w):
-		for y in range(h):
-			tss.create_tile( Vector2i( x, y ), Vector2i( 64, 64 ) )
-	return tss
-	
-func create_tile_set() -> TileSet:
-	var tile_set = TileSet.new()
-	# Define tile size
-	const TILE_SIZE = Vector2(32, 32)
-	# Create a few tiles with different properties
-	for i in range(4):
-		var tile_id = i
-		# Create a rectangle shape for the tile
-		var shape = RectangleShape2D.new()
-		shape.extents = TILE_SIZE / 2  # Set extents (half the size)
-		# Add the tile to the TileSet
-		tile_set.add_tile(tile_id, shape)
-		# Optionally, set a collision shape for the tile
-		tile_set.tile_set_shape(tile_id, 0, shape)  # Using shape ID 0 for the first shape
-	return tile_set
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var tml = $TileMapLayer
-	tml.tile_set = TileSet.new()
-	#tml.tile_set = create_tile_set()
-	var src_id = tml.tile_set.add_source( create_tile_set_source() )
-	for x in range(w):
-		for y in range(h):
-			tml.set_cell( Vector2i( x, y ), src_id )
+	for x in range( w ):
+		for y in range( h ):
+			
+			$TileMapLayer.set_cell( Vector2i( x, y ), 0, Vector2i( randi() % 10, 0 ) )
+	#print( "Generation result: ", stat_dict, " ", min_noise, " ", max_noise )
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
 
 #extends Node2D
 #
@@ -85,6 +52,43 @@ func _ready() -> void:
 			#tile_map.set_cellv(Vector2(x, y), randi() % 4)  # Randomly assign one of the 4 tiles
 
 ##################### UNUSED CODE #####################
+
+# Called when the node enters the scene tree for the first time.
+#func _ready() -> void:
+	#var tml = $TileMapLayer
+	#tml.tile_set = TileSet.new()
+	##tml.tile_set = create_tile_set()
+	#var src_id = tml.tile_set.add_source( create_tile_set_source() )
+	#for x in range(w):
+		#for y in range(h):
+			#tml.set_cell( Vector2i( x, y ), src_id )
+#func create_tile_set_source() -> TileSetAtlasSource:
+	#var tss = TileSetAtlasSource.new()
+	#var txtr = Texture2D.new()
+	#var plh = txtr.create_placeholder()
+	#plh.set_size( Vector2i( w*64, h*64 ) )
+	#tss.texture = txtr
+	#for x in range(w):
+		#for y in range(h):
+			#tss.create_tile( Vector2i( x, y ), Vector2i( 64, 64 ) )
+	#return tss
+	#
+#func create_tile_set() -> TileSet:
+	#var tile_set = TileSet.new()
+	## Define tile size
+	#const TILE_SIZE = Vector2(32, 32)
+	## Create a few tiles with different properties
+	#for i in range(4):
+		#var tile_id = i
+		## Create a rectangle shape for the tile
+		#var shape = RectangleShape2D.new()
+		#shape.extents = TILE_SIZE / 2  # Set extents (half the size)
+		## Add the tile to the TileSet
+		#tile_set.add_tile(tile_id, shape)
+		## Optionally, set a collision shape for the tile
+		#tile_set.tile_set_shape(tile_id, 0, shape)  # Using shape ID 0 for the first shape
+	#return tile_set
+	
 # For tilemap using astargrid
 
 #var astar_grid : AStarGrid2D
