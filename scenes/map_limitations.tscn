@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://32r8bk3412j5"]
+
+[ext_resource type="Script" path="res://scripts/map_limitations.gd" id="1_hg8jm"]
+
+[node name="MapLimitations" type="StaticBody2D"]
+script = ExtResource("1_hg8jm")
+
+[node name="TopLimit" type="CollisionShape2D" parent="."]
+
+[node name="BottomLimit" type="CollisionShape2D" parent="."]
+
+[node name="LeftLimit" type="CollisionShape2D" parent="."]
+
+[node name="RightLimit" type="CollisionShape2D" parent="."]
