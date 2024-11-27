@@ -1,9 +1,9 @@
 extends TileMapLayer
 
-@export var terrain_type = WorldConstants.GLOBAL_MAP_TERRAIN
-@export var px_tile_size : int = WorldConstants.GLOBAL_TILE_SIZE_IN_PIXELS
-@export var layer_width : int = WorldConstants.GLOBAL_MAP_WIDTH
-@export var layer_height : int = WorldConstants.GLOBAL_MAP_HEIGHT
+@export var terrain_type = GLOBAL_MAP.TYPES
+@export var px_tile_size : int = GLOBAL_MAP.GLOBAL_TILE_SIZE_IN_PIXELS
+@export var layer_width : int = GLOBAL_MAP.GLOBAL_MAP_WIDTH
+@export var layer_height : int = GLOBAL_MAP.GLOBAL_MAP_HEIGHT
 
 class GbTileInfo:
 	var atlas: Vector2i

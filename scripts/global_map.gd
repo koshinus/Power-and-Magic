@@ -1,8 +1,8 @@
 extends Node2D
 
-@export var px_tile_size : int = WorldConstants.GLOBAL_TILE_SIZE_IN_PIXELS
-@export var layer_width : int = WorldConstants.GLOBAL_MAP_WIDTH
-@export var layer_height : int = WorldConstants.GLOBAL_MAP_HEIGHT
+@export var px_tile_size : int = GLOBAL_MAP.GLOBAL_TILE_SIZE_IN_PIXELS
+@export var layer_width : int = GLOBAL_MAP.GLOBAL_MAP_WIDTH
+@export var layer_height : int = GLOBAL_MAP.GLOBAL_MAP_HEIGHT
 
 @onready var local_tset : TileSet = preload( "res://data/global_map_tileset.tres" )
 

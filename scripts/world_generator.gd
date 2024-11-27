@@ -5,8 +5,9 @@ extends Node
 	
 #class AbstractTileInfo:
 class TileGenerator:
-	@export var glob_tile_size : int = WorldConstants.GLOBAL_TILE_SIZE_IN_PIXELS
-	@export var loc_tile_size : int = WorldConstants.LOCAL_TILE_SIZE_IN_PIXELS
+	@export var glob_tile_size : int = GLOBAL_MAP.GLOBAL_TILE_SIZE_IN_PIXELS
+	@export var loc_tile_size : int = GLOBAL_MAP.LOCAL_TILE_SIZE_IN_PIXELS
+	#@export var terrain_type = GLOBAL_MAP.TYPES
 
 const LOCAL_TILES_IN_GLOBAL_TILE : int = 32;
 
@@ -75,54 +76,53 @@ class GlobalTileGenerator extends TileGenerator:
 
 class MapGenerator extends TileGenerator:
 	class StatHolder:
-		@export var terrain_type = WorldConstants.GLOBAL_MAP_TERRAIN
 		var min_noise : float = 2.0
 		var max_noise : float = -2.0
 		var stat_dict = {
-			terrain_type.DEEP_WATER: 0,
-			terrain_type.WATER: 0,
-			terrain_type.SWAMP: 0,
-			terrain_type.GRASS: 0,
-			terrain_type.SNOW: 0,
-			terrain_type.FROZEN_LAVA: 0,
-			terrain_type.DIRT: 0,
-			terrain_type.SAND: 0,
-			terrain_type.ROUGH: 0,
-			terrain_type.WASTELAND: 0,
-			terrain_type.MOUNTAINE: 0
+			GLOBAL_MAP.TYPES.DEEP_WATER: 0,
+			GLOBAL_MAP.TYPES.WATER: 0,
+			GLOBAL_MAP.TYPES.SWAMP: 0,
+			GLOBAL_MAP.TYPES.GRASS: 0,
+			GLOBAL_MAP.TYPES.SNOW: 0,
+			GLOBAL_MAP.TYPES.FROZEN_LAVA: 0,
+			GLOBAL_MAP.TYPES.DIRT: 0,
+			GLOBAL_MAP.TYPES.SAND: 0,
+			GLOBAL_MAP.TYPES.ROUGH: 0,
+			GLOBAL_MAP.TYPES.WASTELAND: 0,
+			GLOBAL_MAP.TYPES.MOUNTAINE: 0
 		}
 		func print_stat() -> void:
 			print( "Generation result: ", stat_dict, " ", min_noise, " ", max_noise )
 			
 		func _normalize( noise_val: float ) -> float:
-			return ( noise_val + 0.7 ) * terrain_type.COUNT
+			return ( noise_val + 0.7 ) * GLOBAL_MAP.TYPES.COUNT
 	
 		func  generate_terrain_type( noise_val: float ) -> int:
 			min_noise = minf( min_noise, noise_val )
 			max_noise = maxf( max_noise, noise_val )
 			noise_val = _normalize( noise_val )
-			if ( noise_val < terrain_type.WATER ):
-				return terrain_type.DEEP_WATER
-			elif ( noise_val >= terrain_type.WATER && noise_val < terrain_type.SWAMP ):
-				return terrain_type.WATER
-			elif ( noise_val >= terrain_type.SWAMP && noise_val < terrain_type.GRASS ):
-				return terrain_type.SWAMP
-			elif ( noise_val >= terrain_type.GRASS && noise_val < terrain_type.SNOW ):
-				return terrain_type.GRASS
-			elif ( noise_val >= terrain_type.SNOW && noise_val < terrain_type.FROZEN_LAVA ):
-				return terrain_type.SNOW
-			elif ( noise_val >= terrain_type.FROZEN_LAVA && noise_val < terrain_type.DIRT ):
-				return terrain_type.FROZEN_LAVA
-			elif ( noise_val >= terrain_type.DIRT && noise_val < terrain_type.SAND ):
-				return terrain_type.DIRT
-			elif ( noise_val >= terrain_type.SAND && noise_val < terrain_type.ROUGH ):
-				return terrain_type.SAND
-			elif ( noise_val >= terrain_type.ROUGH && noise_val < terrain_type.WASTELAND ):
-				return terrain_type.ROUGH
-			elif ( noise_val >= terrain_type.WASTELAND && noise_val < terrain_type.MOUNTAINE ):
-				return terrain_type.WASTELAND
+			if ( noise_val < GLOBAL_MAP.TYPES.WATER ):
+				return GLOBAL_MAP.TYPES.DEEP_WATER
+			elif ( noise_val >= GLOBAL_MAP.TYPES.WATER && noise_val < GLOBAL_MAP.TYPES.SWAMP ):
+				return GLOBAL_MAP.TYPES.WATER
+			elif ( noise_val >= GLOBAL_MAP.TYPES.SWAMP && noise_val < GLOBAL_MAP.TYPES.GRASS ):
+				return GLOBAL_MAP.TYPES.SWAMP
+			elif ( noise_val >= GLOBAL_MAP.TYPES.GRASS && noise_val < GLOBAL_MAP.TYPES.SNOW ):
+				return GLOBAL_MAP.TYPES.GRASS
+			elif ( noise_val >= GLOBAL_MAP.TYPES.SNOW && noise_val < GLOBAL_MAP.TYPES.FROZEN_LAVA ):
+				return GLOBAL_MAP.TYPES.SNOW
+			elif ( noise_val >= GLOBAL_MAP.TYPES.FROZEN_LAVA && noise_val < GLOBAL_MAP.TYPES.DIRT ):
+				return GLOBAL_MAP.TYPES.FROZEN_LAVA
+			elif ( noise_val >= GLOBAL_MAP.TYPES.DIRT && noise_val < GLOBAL_MAP.TYPES.SAND ):
+				return GLOBAL_MAP.TYPES.DIRT
+			elif ( noise_val >= GLOBAL_MAP.TYPES.SAND && noise_val < GLOBAL_MAP.TYPES.ROUGH ):
+				return GLOBAL_MAP.TYPES.SAND
+			elif ( noise_val >= GLOBAL_MAP.TYPES.ROUGH && noise_val < GLOBAL_MAP.TYPES.WASTELAND ):
+				return GLOBAL_MAP.TYPES.ROUGH
+			elif ( noise_val >= GLOBAL_MAP.TYPES.WASTELAND && noise_val < GLOBAL_MAP.TYPES.MOUNTAINE ):
+				return GLOBAL_MAP.TYPES.WASTELAND
 			else:
-				return terrain_type.MOUNTAINE
+				return GLOBAL_MAP.TYPES.MOUNTAINE
 	
 	static func _get_prepared_noise() -> FastNoiseLite:
 		var noise = FastNoiseLite.new()

@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://h3tjdsxrvqjh"]
+[gd_scene load_steps=6 format=3 uid="uid://h3tjdsxrvqjh"]
 
 [ext_resource type="Script" path="res://scripts/test_node.gd" id="1_jc7ip"]
-[ext_resource type="Texture2D" uid="uid://55vhymcr33to" path="res://resources/32/local_tileset.png" id="2_fky5a"]
+[ext_resource type="Texture2D" uid="uid://cgc0y51shiu4r" path="res://resources/tilesets/tileset_local_1600.png" id="2_dpryo"]
+[ext_resource type="Script" path="res://scripts/grid_2d_node.gd" id="3_t5eqe"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mm1w7"]
-texture = ExtResource("2_fky5a")
-texture_region_size = Vector2i(32, 32)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s4puc"]
+texture = ExtResource("2_dpryo")
+texture_region_size = Vector2i(36, 36)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -16,13 +17,106 @@ texture_region_size = Vector2i(32, 32)
 7:0/0 = 0
 8:0/0 = 0
 9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+12:6/0 = 0
+15:18/0 = 0
+16:17/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_3uemf"]
+[sub_resource type="TileSet" id="TileSet_8grcj"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_mm1w7")
+sources/0 = SubResource("TileSetAtlasSource_s4puc")
 
 [node name="TestNode" type="Node2D"]
 script = ExtResource("1_jc7ip")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_3uemf")
+[node name="TestLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_8grcj")
+
+[node name="Grid2DNode" type="Node2D" parent="."]
+script = ExtResource("3_t5eqe")

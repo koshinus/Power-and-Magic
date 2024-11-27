@@ -5,7 +5,7 @@ extends Control
 
 @export var test_sc: PackedScene = preload("res://scenes/test_node.tscn")
 
-@export var px_tile_size : int = WorldConstants.GLOBAL_TILE_SIZE_IN_PIXELS
+@export var px_tile_size : int = GLOBAL_MAP.GLOBAL_TILE_SIZE_IN_PIXELS
 
 #-------------------Play button logic-------------------
 func _test_pressed() -> void:
@@ -19,8 +19,8 @@ func _normal_pressed() -> void:
 	#player_node.setup_astar_grid( map_node.get_used_rect(), px_tile_size )
 
 func _on_play_pressed() -> void:
-	#_test_pressed()
-	_normal_pressed()
+	_test_pressed()
+	#_normal_pressed()
 
 #-------------------Quit button logic-------------------
 func form_quit_dialog() -> ConfirmationDialog:
