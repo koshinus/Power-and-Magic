@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed : int = 300
+var speed : float = 300.0
 var click_pos = Vector2i()
 var target_pos = Vector2i()
 var DISTANSE_TO_START_MOVE : int = 3

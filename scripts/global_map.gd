@@ -13,17 +13,17 @@ func _setup_limit( limit_side : CollisionShape2D, limit_size : Vector2i, limit_p
 	limit_side.position = limit_pos
 
 func _ready() -> void:
-	_setup_limit( $Limits/TopLimit, Vector2i( layer_width * px_tile_size, 1 ),
-					Vector2i( ( layer_width * px_tile_size )/2, 0 ) )
-	
-	_setup_limit( $Limits/BottomLimit, Vector2i( layer_width * px_tile_size, 1 ),
-					Vector2i( ( layer_width * px_tile_size )/2, layer_height * px_tile_size ) )
-	
-	_setup_limit( $Limits/LeftLimit, Vector2i( 1, layer_height * px_tile_size ),
-					Vector2i( 0, ( layer_height * px_tile_size )/2 ) )
-	
-	_setup_limit( $Limits/RightLimit, Vector2i( 1, layer_height * px_tile_size ),
-					Vector2i( layer_width * px_tile_size, ( layer_height * px_tile_size )/2 ) )
+	#_setup_limit( $Limits/TopLimit, Vector2i( layer_width * px_tile_size, 1 ),
+					#Vector2i( ( layer_width * px_tile_size )/2, 0 ) )
+	#
+	#_setup_limit( $Limits/BottomLimit, Vector2i( layer_width * px_tile_size, 1 ),
+					#Vector2i( ( layer_width * px_tile_size )/2, layer_height * px_tile_size ) )
+	#
+	#_setup_limit( $Limits/LeftLimit, Vector2i( 1, layer_height * px_tile_size ),
+					#Vector2i( 0, ( layer_height * px_tile_size )/2 ) )
+	#
+	#_setup_limit( $Limits/RightLimit, Vector2i( 1, layer_height * px_tile_size ),
+					#Vector2i( layer_width * px_tile_size, ( layer_height * px_tile_size )/2 ) )
 	
 	print( local_tset, " ", local_tset.get_source_count(),
 						" ", local_tset.get_source( local_tset.get_source_id( 0 ) ) )
