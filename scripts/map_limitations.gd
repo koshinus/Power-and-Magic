@@ -15,8 +15,6 @@ func _setup_limit( limit_side : CollisionShape2D, limit_size : Vector2i, limit_p
 	limit_side.position = limit_pos
 
 func _ready() -> void:
-	#await get_tree().create_timer(10).timeout
-	print( $TopLimit )
 	_setup_limit( $TopLimit, Vector2i( map_width * tile_size.x, 1 ),
 					Vector2i( ( map_width * tile_size.x )/2, 0 ) )
 	_setup_limit( $BottomLimit, Vector2i( map_width * tile_size.x, 1 ),

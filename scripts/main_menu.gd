@@ -10,13 +10,16 @@ extends Control
 #-------------------Play button logic-------------------
 func _test_pressed() -> void:
 	get_tree().root.add_child( test_sc.instantiate() )
-	
+
 func _normal_pressed() -> void:
+	var local_tset_texture : CompressedTexture2D = load( "res://resources/tilesets/tileset_local_1600.png" )
+	var world_info : Genarators.WorldInfo = Genarators.WorldGenerator.generate( local_tset_texture.get_image() )
+	
 	var player_node = player_sc.instantiate()
 	get_tree().root.add_child( player_node )
 	var map_node = global_map_scene.instantiate()
+	map_node.set_based_on_generated( world_info.global_tset_source )
 	get_tree().root.add_child( map_node )
-	#player_node.setup_astar_grid( map_node.get_used_rect(), px_tile_size )
 
 func _on_play_pressed() -> void:
 	#_test_pressed()

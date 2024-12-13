@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dj5dgdfuq8wvq"]
+[gd_scene load_steps=8 format=3 uid="uid://dj5dgdfuq8wvq"]
 
 [ext_resource type="Script" path="res://scripts/global_map.gd" id="1_h63jr"]
 [ext_resource type="Script" path="res://scripts/global_map_surface.gd" id="1_lu7nb"]
 [ext_resource type="Texture2D" uid="uid://55vhymcr33to" path="res://resources/32/local_tileset.png" id="2_lqrab"]
-[ext_resource type="Script" path="res://scripts/map_limitations.gd" id="4_oqq6t"]
+[ext_resource type="PackedScene" uid="uid://32r8bk3412j5" path="res://scenes/map_limitations.tscn" id="4_oinbj"]
+[ext_resource type="Script" path="res://scripts/grid_2d_node.gd" id="5_agj6e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvj6h"]
 texture = ExtResource("2_lqrab")
@@ -31,8 +32,13 @@ script = ExtResource("1_h63jr")
 tile_set = SubResource("TileSet_t5vi8")
 script = ExtResource("1_lu7nb")
 
-[node name="MapLimitations" type="StaticBody2D" parent="."]
-script = ExtResource("4_oqq6t")
+[node name="MapLimitations" parent="." instance=ExtResource("4_oinbj")]
+map_width = 40
+map_height = 40
+tile_size = Vector2i(64, 64)
+
+[node name="Grid2DNode" type="Node2D" parent="."]
+script = ExtResource("5_agj6e")
 map_width = 40
 map_height = 40
 tile_size = Vector2i(64, 64)
