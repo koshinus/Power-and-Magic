@@ -16,7 +16,7 @@ class_name Grid2DNode
 func _ready() -> void:
 	set_process(true)
 	
-func _process(delta):
+func _process(float):
 	queue_redraw()
 	
 func _draw():

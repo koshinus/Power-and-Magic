@@ -6,19 +6,11 @@ extends Node2D
 
 func _ready() -> void:
 	pass
-	#var map_info = WorldGenerator.MapGenerator.generate( local_tset, layer_width, layer_height )
-	#map_info._global_tiles
-	#var tsource = TileSetAtlasSource.new()
-	##tsource.margins
-	#var dynamic_tset_id = $GlobalMapSurface.tile_set.add_source( tsource )
-	#for x in range( layer_width ):
-		#for y in range( layer_height ):
-			#$GlobalMapSurface.set_cell( Vector2i( x, y ), dynamic_tset_id )
 
 func set_based_on_generated( global_tsource : TileSetAtlasSource ) -> void:
 	var src_id = $GlobalMapSurface.tile_set.add_source( global_tsource )
-	print( src_id )
-	for x in range( layer_width ):
-		for y in range( layer_height ):
+	print( "New source id is ", src_id )
+	for y in range( layer_height ):
+		for x in range( layer_width ):
 			$GlobalMapSurface.set_cell( Vector2i( x, y ), src_id, Vector2i( x, y ) )
 	

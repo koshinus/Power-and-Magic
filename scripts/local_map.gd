@@ -1,10 +1,11 @@
 extends Node2D
+class_name LocalMap
 
 @onready var map_image : Image = Image.create_empty(
 						GLOBAL_MAP.LOCAL_MAP_WIDTH*GLOBAL_MAP.LOCAL_TILE_SIZE_IN_PIXELS,
 						GLOBAL_MAP.LOCAL_MAP_HEIGHT*GLOBAL_MAP.LOCAL_TILE_SIZE_IN_PIXELS,
 						false,
-						$TestLayer.tile_set.get_source( 0 ).texture.get_image().get_format()
+						$LocalMapSurface.tile_set.get_source( 0 ).texture.get_image().get_format()
 						)
 
 ## Generating tile type for local adventure map:
@@ -50,7 +51,7 @@ func _get_tile_offset_by_coords( x : int, y : int ) -> int:
 	else: return GLOBAL_MAP.LOCAL_TILES.MIDDLE_EVEN
 
 func get_tilemap_layer_data() -> PackedByteArray:
-	return $TestLayer.tile_map_data
+	return $LocalMapSurface.tile_map_data
 
 func get_map_image() -> Image:
 	return map_image
@@ -62,12 +63,12 @@ func init_by_params( global_tile_type : int, neighbours : Array[int] ) -> void:
 	var w : int = GLOBAL_MAP.LOCAL_MAP_WIDTH
 	var h : int = GLOBAL_MAP.LOCAL_MAP_HEIGHT
 	var tsize : int  = GLOBAL_MAP.TILE_SIZE_IN_TILESET
-	var src_image : Image = $TestLayer.tile_set.get_source( 0 ).texture.get_image()
+	var src_image : Image = $LocalMapSurface.tile_set.get_source( 0 ).texture.get_image()
 	map_image = Image.create_empty(
 						GLOBAL_MAP.LOCAL_MAP_WIDTH*GLOBAL_MAP.LOCAL_TILE_SIZE_IN_PIXELS,
 						GLOBAL_MAP.LOCAL_MAP_HEIGHT*GLOBAL_MAP.LOCAL_TILE_SIZE_IN_PIXELS,
 						false, src_image.get_format() )
-	print("Start initialization. Size is ", neighbours.size())
+	#print("Start initialization. Size is ", neighbours.size())
 	for y in range( h ):
 		for x in range( w ):
 			var tile_x_offset = _get_tile_offset_by_coords( x, y )
@@ -76,8 +77,5 @@ func init_by_params( global_tile_type : int, neighbours : Array[int] ) -> void:
 			var tileset_offset_36 : Vector2i = Vector2i ( tile_x_offset*36, tile_y_offset*36 )
 			map_image.blit_rect( src_image, Rect2i( tileset_offset_36, Vector2i( tsize, tsize ) ),
 								Vector2i(x*w, y*h) )
-			$TestLayer.set_cell( Vector2i( x, y ), 0, tileset_offset )
-	map_image.resize( 64, 64, Image.INTERPOLATE_BILINEAR )
-	#var file_temp = "C:/Users/Vadim/Desktop/test/some_{0}_{1}.png"
-	#map_image.save_png( file_temp.format([0, 0]) )
-	#map_image.save_png( file_temp.format([0, 1]) )
+			$LocalMapSurface.set_cell( Vector2i( x, y ), 0, tileset_offset )
+	#map_image.resize( 64, 64, Image.INTERPOLATE_BILINEAR )

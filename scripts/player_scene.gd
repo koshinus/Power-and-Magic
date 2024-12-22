@@ -4,7 +4,7 @@ var speed : float = 300.0
 var click_pos = Vector2i()
 var target_pos = Vector2i()
 var DISTANSE_TO_START_MOVE : int = 3
-var px_start_pos = 30
+var px_start_pos = 64
 
 
 # Called when the node enters the scene tree for the first time.

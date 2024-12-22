@@ -27,14 +27,14 @@ enum LOCAL_TILES
 	TOP = 6,
 	TOP_RIGHT = 7,
 	LEFT_EVEN = 8,
-	LEFT_ODD = 9,
-	RIGHT_EVEN = 10,
+	RIGHT_EVEN = 9,
+	LEFT_ODD = 10,
 	RIGHT_ODD = 11,
 };
 
 const GLOBAL_TILE_SIZE_IN_PIXELS : int = 64;
-const GLOBAL_MAP_WIDTH : int = 10;
-const GLOBAL_MAP_HEIGHT : int = 10;
+const GLOBAL_MAP_WIDTH : int = 30;
+const GLOBAL_MAP_HEIGHT : int = 30;
 
 const LOCAL_TILE_SIZE_IN_PIXELS : int = 32;
 const TILE_SIZE_IN_TILESET : int = 36;

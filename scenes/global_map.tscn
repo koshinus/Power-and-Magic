@@ -1,40 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj5dgdfuq8wvq"]
+[gd_scene load_steps=6 format=3 uid="uid://dj5dgdfuq8wvq"]
 
 [ext_resource type="Script" path="res://scripts/global_map.gd" id="1_h63jr"]
-[ext_resource type="Script" path="res://scripts/global_map_surface.gd" id="1_lu7nb"]
-[ext_resource type="Texture2D" uid="uid://55vhymcr33to" path="res://resources/32/local_tileset.png" id="2_lqrab"]
 [ext_resource type="PackedScene" uid="uid://32r8bk3412j5" path="res://scenes/map_limitations.tscn" id="4_oinbj"]
 [ext_resource type="Script" path="res://scripts/grid_2d_node.gd" id="5_agj6e"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvj6h"]
-texture = ExtResource("2_lqrab")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
+[sub_resource type="TileSet" id="TileSet_iitxv"]
+tile_size = Vector2i(64, 64)
 
-[sub_resource type="TileSet" id="TileSet_t5vi8"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_xvj6h")
+[sub_resource type="GDScript" id="GDScript_vrtyy"]
+script/source = "extends TileMapLayer
+	
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+	#var noise = get_prepared_noise()
+	#for x in range( layer_width ):
+		#for y in range( layer_height ):
+			## Функция для получения ID тайла на основе значения шума
+			#var tile_info = get_tile_info_from_noise( noise.get_noise_2d( x, y ) )
+			#self.set_cell( Vector2i( x, y ), tile_info.tile_id, tile_info.atlas )
+	#print( \"Generation result: \", stat_dict, \" \", min_noise, \" \", max_noise )
+"
 
 [node name="GlobalMap" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_h63jr")
 
 [node name="GlobalMapSurface" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_t5vi8")
-script = ExtResource("1_lu7nb")
+tile_set = SubResource("TileSet_iitxv")
+script = SubResource("GDScript_vrtyy")
 
 [node name="MapLimitations" parent="." instance=ExtResource("4_oinbj")]
-map_width = 40
-map_height = 40
+map_width = 30
+map_height = 30
 tile_size = Vector2i(64, 64)
 
 [node name="Grid2DNode" type="Node2D" parent="."]
