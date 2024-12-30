@@ -78,6 +78,7 @@ func init_by_params( global_tile_type : int, neighbours : Array[int] ) -> void:
 								Vector2i(x*w, y*h) )
 			$TestLayer.set_cell( Vector2i( x, y ), 0, tileset_offset )
 	map_image.resize( 64, 64, Image.INTERPOLATE_BILINEAR )
+	#AStarGrid2D
 	#var file_temp = "C:/Users/Vadim/Desktop/test/some_{0}_{1}.png"
 	#map_image.save_png( file_temp.format([0, 0]) )
 	#map_image.save_png( file_temp.format([0, 1]) )

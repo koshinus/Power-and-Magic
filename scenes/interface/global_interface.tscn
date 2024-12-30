@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://b25vtryjj6rii"]
+
+[ext_resource type="Script" path="res://scripts/global_interface.gd" id="1_4vu35"]
+[ext_resource type="PackedScene" uid="uid://dm8j436yvjsrj" path="res://scenes/interface/resources_info.tscn" id="2_gp74t"]
+[ext_resource type="PackedScene" uid="uid://baro0o7aq21dr" path="res://scenes/interface/army_info.tscn" id="3_xsdba"]
+[ext_resource type="Texture2D" uid="uid://d2ikkr2k6wldr" path="res://resources/64/hero.png" id="4_2rjhi"]
+[ext_resource type="Texture2D" uid="uid://dvuc2eklv7xg6" path="res://resources/16/Initiative.png" id="5_3cguk"]
+[ext_resource type="PackedScene" uid="uid://ckrmdqteh1bjm" path="res://scenes/interface/unit_stats.tscn" id="5_e1rfo"]
+
+[node name="GlobalInterface" type="CanvasLayer"]
+script = ExtResource("1_4vu35")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="MinimapContainer" type="SubViewportContainer" parent="Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="Minimap" type="SubViewport" parent="Control/MinimapContainer"]
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+
+[node name="HBoxArmy" type="HBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Spacer" type="Label" parent="Control/HBoxArmy"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+
+[node name="ArmyInfo" parent="Control/HBoxArmy" instance=ExtResource("3_xsdba")]
+layout_mode = 2
+
+[node name="HBoxHero" type="HBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(300, 170)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -170.0
+offset_right = 304.0
+grow_vertical = 0
+
+[node name="BtnHero" type="TextureButton" parent="Control/HBoxHero"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("4_2rjhi")
+stretch_mode = 3
+
+[node name="UnitStats" parent="Control/HBoxHero" instance=ExtResource("5_e1rfo")]
+custom_minimum_size = Vector2(100, 170)
+layout_mode = 2
+
+[node name="BtnNextTurn" type="TextureButton" parent="Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("5_3cguk")
+
+[node name="HBoxResources" type="HBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+offset_right = 103.0
+offset_bottom = 80.0
+grow_horizontal = 2
+
+[node name="ResourcesInfo" parent="Control/HBoxResources" instance=ExtResource("2_gp74t")]
+layout_mode = 2

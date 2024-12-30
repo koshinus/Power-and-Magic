@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://baro0o7aq21dr"]
+
+[ext_resource type="Script" path="res://scripts/army_info.gd" id="1_7ohne"]
+[ext_resource type="PackedScene" uid="uid://brmtlrtydjbos" path="res://scenes/interface/numbered_texture.tscn" id="2_lmx6r"]
+
+[node name="ArmyInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7ohne")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Unit0" parent="HBoxContainer" instance=ExtResource("2_lmx6r")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Unit1" parent="HBoxContainer" instance=ExtResource("2_lmx6r")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Unit2" parent="HBoxContainer" instance=ExtResource("2_lmx6r")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Unit3" parent="HBoxContainer" instance=ExtResource("2_lmx6r")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Unit4" parent="HBoxContainer" instance=ExtResource("2_lmx6r")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Unit5" parent="HBoxContainer" instance=ExtResource("2_lmx6r")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Unit6" parent="HBoxContainer" instance=ExtResource("2_lmx6r")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Unit7" parent="HBoxContainer" instance=ExtResource("2_lmx6r")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+light_mask = 0
+visibility_layer = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.866667, 0.796078, 0.152941, 1)

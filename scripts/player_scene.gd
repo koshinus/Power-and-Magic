@@ -4,7 +4,8 @@ var speed : float = 300.0
 var click_pos = Vector2i()
 var target_pos = Vector2i()
 var DISTANSE_TO_START_MOVE : int = 3
-var px_start_pos = 64
+var px_start_pos : int = ( GLOBAL_MAP.GLOBAL_TILE_SIZE_IN_PIXELS/2 +
+						   GLOBAL_MAP.GLOBAL_TILE_SIZE_IN_PIXELS*2 )
 
 
 # Called when the node enters the scene tree for the first time.

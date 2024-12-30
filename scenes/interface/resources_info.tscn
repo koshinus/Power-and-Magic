@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://dm8j436yvjsrj"]
+
+[ext_resource type="PackedScene" uid="uid://brmtlrtydjbos" path="res://scenes/interface/numbered_texture.tscn" id="1_gwjet"]
+[ext_resource type="Script" path="res://scripts/resources_info.gd" id="1_owxtx"]
+[ext_resource type="Texture2D" uid="uid://ch5b4ad3taxh" path="res://resources/16/Gold.png" id="3_ec7po"]
+[ext_resource type="Texture2D" uid="uid://bclghnceu6kww" path="res://resources/16/science.png" id="3_q7hb6"]
+[ext_resource type="Texture2D" uid="uid://bm6cya6bb1ory" path="res://resources/16/culture.png" id="4_0ydyc"]
+[ext_resource type="Texture2D" uid="uid://bsq8s6mrin5no" path="res://resources/16/Wood.png" id="4_3a5p6"]
+[ext_resource type="Texture2D" uid="uid://dc5jm6sbqcn4f" path="res://resources/16/Ore.png" id="5_6hmrb"]
+[ext_resource type="Texture2D" uid="uid://dp6tlusp4o734" path="res://resources/16/belief.png" id="5_ukgyj"]
+[ext_resource type="Texture2D" uid="uid://b3eyliiy34mbr" path="res://resources/16/Crystal.png" id="6_gdtee"]
+[ext_resource type="Texture2D" uid="uid://cj5hyyvv7ddpw" path="res://resources/16/Gem.png" id="7_v21eb"]
+[ext_resource type="Texture2D" uid="uid://c1vojer47xbx5" path="res://resources/16/Mercury.png" id="8_7xh5g"]
+[ext_resource type="Texture2D" uid="uid://de3l7ywovhsiu" path="res://resources/16/Sulfur.png" id="9_vv7sv"]
+
+[node name="ResourcesInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_owxtx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScienceInfo" parent="HBoxContainer" instance=ExtResource("1_gwjet")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+button_texture = ExtResource("3_q7hb6")
+
+[node name="CultureInfo" parent="HBoxContainer" instance=ExtResource("1_gwjet")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+button_texture = ExtResource("4_0ydyc")
+
+[node name="BeliefInfo" parent="HBoxContainer" instance=ExtResource("1_gwjet")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+button_texture = ExtResource("5_ukgyj")
+
+[node name="GoldInfo" parent="HBoxContainer" instance=ExtResource("1_gwjet")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+button_is_active = false
+button_texture = ExtResource("3_ec7po")
+
+[node name="WoodInfo" parent="HBoxContainer" instance=ExtResource("1_gwjet")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+button_is_active = false
+button_texture = ExtResource("4_3a5p6")
+
+[node name="OreInfo" parent="HBoxContainer" instance=ExtResource("1_gwjet")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+button_is_active = false
+button_texture = ExtResource("5_6hmrb")
+
+[node name="CrystalInfo" parent="HBoxContainer" instance=ExtResource("1_gwjet")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+button_is_active = false
+button_texture = ExtResource("6_gdtee")
+
+[node name="GemInfo" parent="HBoxContainer" instance=ExtResource("1_gwjet")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+button_is_active = false
+button_texture = ExtResource("7_v21eb")
+
+[node name="MercuryInfo" parent="HBoxContainer" instance=ExtResource("1_gwjet")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+button_is_active = false
+button_texture = ExtResource("8_7xh5g")
+
+[node name="SulfurInfo" parent="HBoxContainer" instance=ExtResource("1_gwjet")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+button_is_active = false
+button_texture = ExtResource("9_vv7sv")

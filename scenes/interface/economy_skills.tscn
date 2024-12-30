@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpq76y4adnipb"]
+
+[ext_resource type="Script" path="res://scripts/economy_skills.gd" id="1_eb1i4"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_8l6an"]
+
+[node name="EconomySkills" type="Control"]
+custom_minimum_size = Vector2(900, 900)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -252.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eb1i4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(900, 900)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ImageTexture_8l6an")
