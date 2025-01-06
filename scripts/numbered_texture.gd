@@ -16,3 +16,7 @@ func set_amount( new_amount : int ) -> void:
 	$VBoxContainer/Amount.text = str( new_amount )
 	if hide_on_zero and new_amount == 0:
 		hide()
+
+signal texture_activated
+func _on_btn_pressed() -> void:
+	texture_activated.emit()

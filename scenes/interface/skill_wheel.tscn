@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://b46tt3wtgrmoo"]
+[gd_scene load_steps=5 format=3 uid="uid://b46tt3wtgrmoo"]
+
+[ext_resource type="PackedScene" uid="uid://bcorx80shdxuy" path="res://scenes/interface/hero_items.tscn" id="1_m01ix"]
+[ext_resource type="PackedScene" uid="uid://fdmwyo7ylcck" path="res://scenes/interface/military_skills.tscn" id="2_ornlh"]
+[ext_resource type="PackedScene" uid="uid://bdfvr3bb2spjb" path="res://scenes/interface/magic_skills.tscn" id="3_mt7cn"]
+[ext_resource type="PackedScene" uid="uid://cpq76y4adnipb" path="res://scenes/interface/economy_skills.tscn" id="4_bx8uv"]
 
 [node name="SkillWheel" type="Control"]
 custom_minimum_size = Vector2(900, 1000)
@@ -22,9 +27,29 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SkillTabs" type="TabContainer" parent="VBoxContainer"]
+[node name="HeroTabs" type="TabContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(900, 950)
 layout_mode = 2
+current_tab = 0
+
+[node name="Items" parent="VBoxContainer/HeroTabs" instance=ExtResource("1_m01ix")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Military" parent="VBoxContainer/HeroTabs" instance=ExtResource("2_ornlh")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Magic" parent="VBoxContainer/HeroTabs" instance=ExtResource("3_mt7cn")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Economy" parent="VBoxContainer/HeroTabs" instance=ExtResource("4_bx8uv")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(900, 50)

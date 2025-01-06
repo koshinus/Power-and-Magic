@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc7knlynm1sny"]
+
+[ext_resource type="Script" path="res://scripts/skills/skill_button.gd" id="1_mugpy"]
+
+[node name="SkillButton" type="Control"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mugpy")
+
+[node name="Btn" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+disabled = true
+toggle_mode = true
+
+[connection signal="toggled" from="Btn" to="." method="_on_btn_toggled"]

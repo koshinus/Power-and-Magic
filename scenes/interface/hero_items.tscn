@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcorx80shdxuy"]
+
+[ext_resource type="Texture2D" uid="uid://c5qeqlbvrxyka" path="res://resources/skillwheel/hero_puppet_shorted.png" id="1_qwjrt"]
+
+[node name="HeroItems" type="Control"]
+custom_minimum_size = Vector2(900, 900)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -252.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(900, 900)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HeroPuppet" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(900, 800)
+layout_mode = 2
+texture = ExtResource("1_qwjrt")
+
+[node name="Inventory" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(900, 100)
+layout_mode = 2

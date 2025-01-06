@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://0jl82rfj3nhj"]
 
 [ext_resource type="Script" path="res://scripts/player_scene.gd" id="1_omaqs"]
-[ext_resource type="Texture2D" uid="uid://cf4nxwxds208j" path="res://resources/tilesets/hero.png" id="2_qu17e"]
 [ext_resource type="Script" path="res://scripts/hero_cam.gd" id="3_47odv"]
+[ext_resource type="Texture2D" uid="uid://d2ikkr2k6wldr" path="res://resources/64/hero.png" id="3_kqu8f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wfjm"]
 size = Vector2(63, 63)
@@ -15,8 +15,16 @@ script = ExtResource("1_omaqs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2wfjm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_qu17e")
-
 [node name="HeroCam" type="Camera2D" parent="."]
 script = ExtResource("3_47odv")
+
+[node name="BtnHero" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+texture_normal = ExtResource("3_kqu8f")
+
+[connection signal="pressed" from="BtnHero" to="." method="_on_hero_selected"]
