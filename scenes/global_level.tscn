@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb0oogfok8dyf"]
+
+[ext_resource type="Script" path="res://scripts/global_level.gd" id="1_hjvoo"]
+[ext_resource type="PackedScene" uid="uid://dj5dgdfuq8wvq" path="res://scenes/global_map.tscn" id="1_ntjfi"]
+[ext_resource type="PackedScene" uid="uid://0jl82rfj3nhj" path="res://scenes/hero_scene.tscn" id="2_dhgti"]
+[ext_resource type="PackedScene" uid="uid://b25vtryjj6rii" path="res://scenes/interface/global_interface.tscn" id="3_t6am8"]
+
+[node name="GlobalLevel" type="Node"]
+script = ExtResource("1_hjvoo")
+
+[node name="GlobalMap" parent="." instance=ExtResource("1_ntjfi")]
+
+[node name="BattleHero" parent="." instance=ExtResource("2_dhgti")]
+start_pos = 96
+
+[node name="EconomicHero" parent="." instance=ExtResource("2_dhgti")]
+start_pos = 160
+
+[node name="GlobalInterface" parent="." instance=ExtResource("3_t6am8")]
+
+[connection signal="hero_selected" from="BattleHero" to="." method="_on_hero_hero_selected"]
+[connection signal="hero_selected" from="EconomicHero" to="." method="_on_hero_hero_selected"]

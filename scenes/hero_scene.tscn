@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://0jl82rfj3nhj"]
+
+[ext_resource type="Script" path="res://scripts/hero/hero_scene.gd" id="1_vk6a0"]
+[ext_resource type="Script" path="res://scripts/hero/hero_cam.gd" id="2_0lrvx"]
+[ext_resource type="PackedScene" uid="uid://draxspvitqxqx" path="res://scenes/tools/selectable.tscn" id="3_0n486"]
+[ext_resource type="Texture2D" uid="uid://d2ikkr2k6wldr" path="res://resources/64/hero.png" id="3_70eys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wfjm"]
+size = Vector2(63, 63)
+
+[node name="Hero" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_vk6a0")
+
+[node name="Selectable" parent="." instance=ExtResource("3_0n486")]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+group_name = "heroes"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2wfjm")
+
+[node name="HeroCam" type="Camera2D" parent="."]
+script = ExtResource("2_0lrvx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_70eys")
+
+[connection signal="selected" from="Selectable" to="." method="_on_hero_selected"]

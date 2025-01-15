@@ -10,72 +10,60 @@
 [node name="GlobalInterface" type="CanvasLayer"]
 script = ExtResource("1_4vu35")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-
-[node name="MinimapContainer" type="SubViewportContainer" parent="Control"]
+[node name="MinimapContainer" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -200.0
+offset_left = -198.0
+offset_right = 2.0
 offset_bottom = 200.0
 grow_horizontal = 0
+mouse_filter = 0
 
-[node name="Minimap" type="SubViewport" parent="Control/MinimapContainer"]
+[node name="Minimap" type="SubViewport" parent="MinimapContainer"]
 handle_input_locally = false
 size = Vector2i(200, 200)
 render_target_update_mode = 4
 
-[node name="BtnNextTurn" type="TextureButton" parent="Control"]
+[node name="BtnNextTurn" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(70, 70)
-layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -68.0
+offset_top = -70.0
+offset_right = 2.0
 grow_horizontal = 0
 grow_vertical = 0
 texture_normal = ExtResource("5_3cguk")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="ResourcesPanel" type="Panel" parent="Control"]
+[node name="ResourcesPanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(550, 0)
-layout_mode = 1
-offset_right = 40.0
+offset_right = 550.0
 offset_bottom = 40.0
 
-[node name="ResourcesInfo" parent="Control/ResourcesPanel" instance=ExtResource("2_gp74t")]
+[node name="ResourcesInfo" parent="ResourcesPanel" instance=ExtResource("2_gp74t")]
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_bottom = 80.0
 
-[node name="HeroPanel" type="Panel" parent="Control"]
+[node name="HeroPanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -200.0
+offset_right = 200.0
 grow_vertical = 0
 
-[node name="HBoxHero" type="HBoxContainer" parent="Control/HeroPanel"]
+[node name="HBoxHero" type="HBoxContainer" parent="HeroPanel"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 2
@@ -85,34 +73,34 @@ offset_top = -170.0
 offset_right = 304.0
 grow_vertical = 0
 
-[node name="BtnHero" type="TextureButton" parent="Control/HeroPanel/HBoxHero"]
+[node name="BtnHero" type="TextureButton" parent="HeroPanel/HBoxHero"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("4_2rjhi")
 stretch_mode = 3
 
-[node name="UnitStats" parent="Control/HeroPanel/HBoxHero" instance=ExtResource("5_e1rfo")]
+[node name="UnitStats" parent="HeroPanel/HBoxHero" instance=ExtResource("5_e1rfo")]
 custom_minimum_size = Vector2(100, 200)
 layout_mode = 2
 
-[node name="HBoxArmy" type="HBoxContainer" parent="Control"]
-layout_mode = 1
+[node name="HBoxArmy" type="HBoxContainer" parent="."]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -50.0
-offset_right = 700.0
+offset_right = 904.0
 grow_vertical = 0
+mouse_filter = 0
 
-[node name="Label" type="Label" parent="Control/HBoxArmy"]
+[node name="Label" type="Label" parent="HBoxArmy"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="ArmyPanel" type="Panel" parent="Control/HBoxArmy"]
+[node name="ArmyPanel" type="Panel" parent="HBoxArmy"]
 custom_minimum_size = Vector2(700, 50)
 layout_mode = 2
 
-[node name="ArmyInfo" parent="Control/HBoxArmy/ArmyPanel" instance=ExtResource("3_xsdba")]
+[node name="ArmyInfo" parent="HBoxArmy/ArmyPanel" instance=ExtResource("3_xsdba")]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 anchors_preset = 0

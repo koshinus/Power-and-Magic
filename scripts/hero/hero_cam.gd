@@ -10,7 +10,3 @@ func _ready() -> void:
 	self.limit_top = 0
 	self.limit_right = layer_width * px_tile_size
 	self.limit_bottom = layer_height * px_tile_size
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(float) -> void:
-	pass
