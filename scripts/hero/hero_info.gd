@@ -1,5 +1,12 @@
 extends Node
 class_name HeroProperties
 
+enum Specialization
+{
+	WARRIOR,
+	MAGICIAN,
+	ECONOMIST
+}
+
 class HeroInfo:
-	var a : int  = 6
+	var specialization : Specialization = Specialization.WARRIOR
