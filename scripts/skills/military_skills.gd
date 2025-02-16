@@ -1,11 +1,6 @@
 extends Control
 class_name MilitarySkills
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	$TextureRect/Offense11.setup_textures(
+		ImageTexture.create_from_image( Image.load_from_file( "res://resources/samples/sword.png" ) ) )
