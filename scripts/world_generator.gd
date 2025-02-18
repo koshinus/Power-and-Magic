@@ -78,7 +78,7 @@ class WorldGenerator:
 		var cols = glob_tiles_vals.front().size()
 		# Define the possible relative positions for neighbours
 		var directions : Array[Vector2i] = [
-			Vector2i(-1,-1), Vector2i(-1, 0), Vector2i(-1,1), # Top-left,   Top	   , Top-right
+			Vector2i(-1,-1), Vector2i(-1, 0), Vector2i(-1,1), # Top-left,    Top   , Top-right
 			Vector2i( 0,-1),                  Vector2i( 0,1), # Left,          	   , Right
 			Vector2i( 1,-1), Vector2i( 1, 0), Vector2i( 1,1)  # Bottom-left, Bottom, Bottom-right
 		];
@@ -98,14 +98,8 @@ class WorldGenerator:
 		for y in range(h):
 			var map_row : Array[LocalMap]
 			for x in range(w):
-				#print(x, ",", y)
-				#var loc_map = LocalMap.new()
 				var loc_map = load("res://scenes/local_map.tscn").instantiate()
 				loc_map.init_by_params( global_tiles_vals[x][y], _get_neighbours( global_tiles_vals, x, y ) )
-				#if x == 0 and y == 0:
-					#loc_map.init_by_params( global_tiles_vals[x][y], _get_neighbours( global_tiles_vals, x, y ) )
-					#var file_temp = "C:/Users/Vadim/Desktop/test/some_{0}_{1}.png"
-					#loc_map.get_map_image().save_png( file_temp.format([0, 0]) )
 				map_row.push_back( loc_map )
 			loc_maps.push_back( map_row )
 		return loc_maps

@@ -10,13 +10,10 @@ script = ExtResource("1_hjvoo")
 
 [node name="GlobalMap" parent="." instance=ExtResource("1_ntjfi")]
 
-[node name="BattleHero" parent="." instance=ExtResource("2_dhgti")]
+[node name="MilitaryHero" parent="." instance=ExtResource("2_dhgti")]
 start_pos = 96
 
 [node name="EconomicHero" parent="." instance=ExtResource("2_dhgti")]
 start_pos = 160
 
 [node name="GlobalInterface" parent="." instance=ExtResource("3_t6am8")]
-
-[connection signal="hero_selected" from="BattleHero" to="." method="_on_hero_hero_selected"]
-[connection signal="hero_selected" from="EconomicHero" to="." method="_on_hero_hero_selected"]

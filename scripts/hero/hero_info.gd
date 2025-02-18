@@ -8,5 +8,20 @@ enum Specialization
 	ECONOMIST
 }
 
+class MovementEffects:
+	pass
+
+class RaceEffects:
+	pass
+
+class CombatEffects:
+	pass
+
+class HeroEffects:
+	var move : MovementEffects
+	var race : RaceEffects
+	var combat : CombatEffects
+
 class HeroInfo:
+	var effects: HeroEffects
 	var specialization : Specialization = Specialization.WARRIOR

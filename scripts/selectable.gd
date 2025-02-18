@@ -9,7 +9,7 @@ signal selected( selection_flag : bool )
 var is_selected : bool = false : set = set_selected
 
 func set_selected( selection_flag : bool ):
-	print("Setting selected to ", selection_flag, " for node ", self)
+	#print("Setting selected to ", selection_flag, " for node ", self)
 	if selection_flag:
 		_make_exclusive()
 		add_to_group( group_name )
