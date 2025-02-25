@@ -41,26 +41,6 @@ func process_row() -> void:
 		velocity = target_pos * speed
 		move_and_slide()
 
-func process_astar1() -> void:
-	var tsize = Vector2i.ONE*GLOBAL_MAP.GLOBAL_TILE_SIZE_IN_PIXELS
-	var pos_grid = GridMovement.calculate_grid_stat( position, tsize )
-	if astar_path.is_empty() and Input.is_action_just_pressed( "left_click" ):
-		click_pos = GridMovement.calculate_grid_coords_stat( get_global_mouse_position(), tsize )
-		var click_grid = GridMovement.calculate_grid_stat( click_pos, tsize )
-		print(1)
-		if click_grid == pos_grid:
-			return
-		astar_path = GridMovement.get_grid_path( astar_grid_2d, pos_grid, click_grid )
-		print("Result path: ", astar_path, " clicked grid ", click_grid)
-	var next_grid_center = GridMovement.calculate_grid_coords_stat( astar_path.front(), tsize )
-	if position.distance_to( next_grid_center ) <= DISTANSE_TO_START_MOVE:
-		astar_path.pop_front()
-		next_grid_center = GridMovement.calculate_grid_coords_stat( astar_path.front(), tsize )
-		print("next grid center ", next_grid_center)
-	var target_pos = (Vector2(next_grid_center) - position).normalized()
-	velocity = target_pos * speed
-	move_and_slide()
-	
 func process_astar() -> void:
 	var tsize = Vector2i.ONE*GLOBAL_MAP.GLOBAL_TILE_SIZE_IN_PIXELS
 	var pos_grid = GridMovement.calculate_grid_stat( position, tsize )
@@ -81,7 +61,6 @@ func process_astar() -> void:
 	if astar_path.is_empty():
 		return
 	var next_grid_center = GridMovement.calculate_grid_coords_stat( astar_path.front()*tsize, tsize )
-	#if position.is_equal_approx( next_grid_center ):
 	if position.distance_to( next_grid_center ) <= DISTANSE_TO_START_MOVE:
 		astar_path.pop_front()
 		return
@@ -103,5 +82,6 @@ func _on_hero_selected(selection_flag: bool) -> void:
 	$HeroCam.enabled = selection_flag
 	if not is_selected:
 		click_pos = position
+		hero_selected.emit( null )
 		return
 	hero_selected.emit( HeroProperties.HeroInfo.new() )

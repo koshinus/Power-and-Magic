@@ -107,3 +107,17 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_bottom = 50.0
+
+[node name="HBoxAdditionalButtons" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 50)
+offset_top = 381.0
+offset_right = 104.0
+offset_bottom = 443.0
+
+[node name="BtnChangeView" type="Button" parent="HBoxAdditionalButtons"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="BtnMagicBook" type="Button" parent="HBoxAdditionalButtons"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2

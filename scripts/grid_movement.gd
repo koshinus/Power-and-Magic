@@ -32,7 +32,7 @@ static func reset_tiles_passability( astar_grid: AStarGrid2D, tml : TileMapLayer
 			var tile_pos = Vector2i(x, y) + used_rect.position
 			var tdata : TileData = tml.get_cell_tile_data( tile_pos )
 			var glob_tile_val : int = -1
-			if !glob_tiles_vals.is_empty():
+			if not glob_tiles_vals.is_empty():
 				glob_tile_val = glob_tiles_vals[x][y]
 			if tdata == null or not _is_passable( tdata, glob_tile_val, hero_info ):
 				astar_grid.set_point_solid( tile_pos )
