@@ -4,7 +4,7 @@ var world_info : Genarators.WorldInfo
 
 func _ready() -> void:
 	world_info = Genarators.WorldGenerator.generate()
-	$GlobalMap.set_based_on_generated( world_info.global_tset_source )
+	$GlobalMap.set_based_on_generated( world_info )
 	$MilitaryHero.set_tilemap_layer( $GlobalMap/GlobalMapSurface, world_info.global_tiles_values )
 	$EconomicHero.set_tilemap_layer( $GlobalMap/GlobalMapSurface, world_info.global_tiles_values )
 	$MilitaryHero.hero_selected.connect( _on_hero_hero_selected )
