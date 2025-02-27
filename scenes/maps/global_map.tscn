@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dj5dgdfuq8wvq"]
 
-[ext_resource type="Script" path="res://scripts/global_map.gd" id="1_h63jr"]
-[ext_resource type="PackedScene" uid="uid://32r8bk3412j5" path="res://scenes/map_limitations.tscn" id="4_oinbj"]
+[ext_resource type="Script" path="res://scripts/maps/global_map.gd" id="1_h63jr"]
+[ext_resource type="PackedScene" uid="uid://32r8bk3412j5" path="res://scenes/maps/map_limitations.tscn" id="4_oinbj"]
 [ext_resource type="Script" path="res://scripts/grid_2d_node.gd" id="5_agj6e"]
 
 [sub_resource type="TileSet" id="TileSet_iitxv"]

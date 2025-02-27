@@ -1,5 +1,4 @@
 extends Node
-
 class_name Genarators
 
 ################################ FREE FUNCTIONS
@@ -58,6 +57,25 @@ class WorldGenerator:
 			tiles_types.push_back( arr )
 		return tiles_types
 
+	static func _get_neighbours( glob_tiles_vals : Array[Array], i : int, j : int ) -> Array[int]:		
+		var neighbours : Array[int]
+		var rows = glob_tiles_vals.size()
+		var cols = glob_tiles_vals.front().size()
+		# Define the possible relative positions for neighbours
+		var directions : Array[Vector2i] = [
+			Vector2i(-1,-1), Vector2i(-1, 0), Vector2i(-1,1), # Top-left,    Top   , Top-right
+			Vector2i( 0,-1),                  Vector2i( 0,1), # Left,          	   , Right
+			Vector2i( 1,-1), Vector2i( 1, 0), Vector2i( 1,1)  # Bottom-left, Bottom, Bottom-right
+		];
+		# Check each direction for valid neighbours
+		for dir in directions:
+			var new_row : int = i + dir.x;
+			var new_col : int = j + dir.y;
+			# Check if the new position is within bounds
+			if new_row >= 0 && new_row < rows && new_col >= 0 && new_col < cols:
+				neighbours.push_back( glob_tiles_vals[new_row][new_col] )
+		return neighbours
+
 	static func _generate_local_maps( global_tiles_vals : Array[Array] ) -> ScenesInfo:
 		var loc_scenes_info : ScenesInfo = ScenesInfo.new()
 		var tset_source : TileSetScenesCollectionSource = TileSetScenesCollectionSource.new()
@@ -65,8 +83,10 @@ class WorldGenerator:
 		var h : int = GLOBAL_MAP.GLOBAL_MAP_HEIGHT
 		for y in range(h):
 			for x in range(w):
-				loc_scenes_info.local_maps[ Vector2i(x,y) ] = \
-					tset_source.create_scene_tile( preload("res://scenes/local_map.tscn") )
+				var loc_map_scene : PackedScene = preload( "res://scenes/maps/local_map.tscn" )
+				var loc_map : LocalMap = loc_map_scene.instantiate()
+				loc_map.init_by_params( global_tiles_vals[x][y], _get_neighbours( global_tiles_vals, x, y ) )
+				loc_scenes_info.local_maps[ Vector2i(x,y) ] = tset_source.create_scene_tile( loc_map_scene )
 		loc_scenes_info.global_tset_source = tset_source
 		return loc_scenes_info
 

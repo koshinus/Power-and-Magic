@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bu5igr6yrad6a"]
 
-[ext_resource type="PackedScene" uid="uid://32r8bk3412j5" path="res://scenes/map_limitations.tscn" id="1_1vt5x"]
+[ext_resource type="PackedScene" uid="uid://32r8bk3412j5" path="res://scenes/maps/map_limitations.tscn" id="1_1vt5x"]
 [ext_resource type="Texture2D" uid="uid://cgc0y51shiu4r" path="res://resources/tilesets/tileset_local_1600.png" id="1_4pe8d"]
-[ext_resource type="Script" path="res://scripts/local_map.gd" id="1_y48bh"]
+[ext_resource type="Script" path="res://scripts/maps/local_map.gd" id="1_y48bh"]
 [ext_resource type="Script" path="res://scripts/grid_2d_node.gd" id="2_ltb17"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_heda3"]

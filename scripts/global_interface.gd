@@ -16,3 +16,10 @@ func _ready() -> void:
 	$HeroPanel.hide()
 	$HBoxAdditionalButtons.hide()
 	
+signal view_changed
+func _on_btn_change_view_pressed() -> void:
+	view_changed.emit()
+
+signal magic_book_clicked
+func _on_btn_magic_book_pressed() -> void:
+	magic_book_clicked.emit()

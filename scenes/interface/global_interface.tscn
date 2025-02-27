@@ -121,3 +121,6 @@ layout_mode = 2
 [node name="BtnMagicBook" type="Button" parent="HBoxAdditionalButtons"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+
+[connection signal="pressed" from="HBoxAdditionalButtons/BtnChangeView" to="." method="_on_btn_change_view_pressed"]
+[connection signal="pressed" from="HBoxAdditionalButtons/BtnMagicBook" to="." method="_on_btn_magic_book_pressed"]

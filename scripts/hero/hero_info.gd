@@ -23,5 +23,6 @@ class HeroEffects:
 	var combat : CombatEffects
 
 class HeroInfo:
-	var effects: HeroEffects
+	var grid_pos : Vector2i
+	var effects : HeroEffects
 	var specialization : Specialization = Specialization.WARRIOR
