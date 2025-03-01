@@ -14,13 +14,13 @@ class_name Grid2DNode
 @export var grid_color : Color = Color.WHITE
 
 func _ready() -> void:
-	set_process(true)
-	
+    set_process(true)
+    
 func _process(float):
-	queue_redraw()
-	
+    queue_redraw()
+    
 func _draw():
-	for y in range(0, map_height+1):
-		draw_line(Vector2(0, y * tile_size.y), Vector2(map_width * tile_size.x, y * tile_size.y), grid_color)
-	for x in range(0, map_width+1):
-		draw_line(Vector2(x * tile_size.x, 0), Vector2(x * tile_size.x, map_height * tile_size.y), grid_color)
+    for y in range(0, map_height+1):
+        draw_line(Vector2(0, y * tile_size.y), Vector2(map_width * tile_size.x, y * tile_size.y), grid_color)
+    for x in range(0, map_width+1):
+        draw_line(Vector2(x * tile_size.x, 0), Vector2(x * tile_size.x, map_height * tile_size.y), grid_color)
