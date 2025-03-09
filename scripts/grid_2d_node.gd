@@ -20,7 +20,7 @@ func _process(float):
     queue_redraw()
     
 func _draw():
-    for y in range(0, map_height+1):
+    for y in range( 0, map_height+1 ):
         draw_line(Vector2(0, y * tile_size.y), Vector2(map_width * tile_size.x, y * tile_size.y), grid_color)
-    for x in range(0, map_width+1):
+    for x in range( 0, map_width+1 ):
         draw_line(Vector2(x * tile_size.x, 0), Vector2(x * tile_size.x, map_height * tile_size.y), grid_color)

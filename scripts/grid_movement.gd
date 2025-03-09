@@ -24,6 +24,12 @@ static func create_astar_stat( tml : TileMapLayer, glob_tiles_vals : Array[Array
     reset_tiles_passability( astar_grid_2d, tml, glob_tiles_vals, hero_info )
     return astar_grid_2d
 
+static func _tile_set_source_is_scene_collection( tml : TileMapLayer ) -> bool:
+    for i in ( tml.tile_set.get_source_count() ):
+        if tml.tile_set.get_source( tml.tile_set.get_source_id( i ) ) is TileSetScenesCollectionSource:
+            return true
+    return false
+
 static func reset_tiles_passability( astar_grid: AStarGrid2D, tml : TileMapLayer,
             glob_tiles_vals : Array[Array], hero_info : HeroProperties.HeroInfo ) -> void:
     var used_rect : Rect2i = tml.get_used_rect()
@@ -34,7 +40,10 @@ static func reset_tiles_passability( astar_grid: AStarGrid2D, tml : TileMapLayer
             var glob_tile_val : int = -1
             if not glob_tiles_vals.is_empty():
                 glob_tile_val = glob_tiles_vals[x][y]
-            if tdata == null or not _is_passable( tdata, glob_tile_val, hero_info ):
+            ## TileData could be null if tile set source is not a TileSetAtlas,
+            ## so we need additional check
+            if ( tdata == null and not _tile_set_source_is_scene_collection( tml ) ) or \
+                                   not _is_passable( tdata, glob_tile_val, hero_info ):
                 astar_grid.set_point_solid( tile_pos )
 
 static func get_grid_path( astar_grid_2d : AStarGrid2D, start_point : Vector2i, end_point : Vector2i ) -> Array[Vector2i]:

@@ -62,8 +62,8 @@ class WorldGenerator:
         var tset_source : TileSetScenesCollectionSource = TileSetScenesCollectionSource.new()
         var w : int = GLOBAL_MAP.GLOBAL_MAP_WIDTH
         var h : int = GLOBAL_MAP.GLOBAL_MAP_HEIGHT
-        for y in range(h):
-            for x in range(w):
+        for y in range( h ):
+            for x in range( w ):
                 var loc_map_scene : PackedScene = preload( "res://scenes/maps/local_map.tscn" )
                 loc_scenes_info.local_maps[ Vector2i(x,y) ] = tset_source.create_scene_tile( loc_map_scene )
         loc_scenes_info.global_tset_source = tset_source
