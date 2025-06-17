@@ -1,5 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+/extensions/out/
+/3rdparty/engine/
 *.import
 *.uid
+*.user
+*.dll
+*.so
