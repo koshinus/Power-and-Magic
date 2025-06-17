@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://32r8bk3412j5" path="res://scenes/maps/map_limitations.tscn" id="1_1vt5x"]
 [ext_resource type="Texture2D" uid="uid://cgc0y51shiu4r" path="res://resources/tilesets/tileset_local_1600.png" id="1_4pe8d"]
-[ext_resource type="Script" path="res://scripts/maps/local_map.gd" id="1_y48bh"]
-[ext_resource type="Script" path="res://scripts/grid_2d_node.gd" id="2_ltb17"]
+[ext_resource type="Script" uid="uid://dictad4nlj5jc" path="res://scripts/maps/local_map.gd" id="1_y48bh"]
+[ext_resource type="Script" uid="uid://k1jj3rod1uk6" path="res://scripts/grid_2d_node.gd" id="2_ltb17"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_heda3"]
 texture = ExtResource("1_4pe8d")

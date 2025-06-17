@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bdfvr3bb2spjb"]
 
-[ext_resource type="Script" path="res://scripts/skills/magic_skills.gd" id="1_ntkdy"]
+[ext_resource type="Script" uid="uid://dk1s3epn02q6u" path="res://scripts/skills/magic_skills.gd" id="1_ntkdy"]
 [ext_resource type="Texture2D" uid="uid://v6nwd4f4mjpr" path="res://resources/skillwheel/mag_best_900.png" id="2_rtmsq"]
 
 [node name="MagicSkills" type="Control"]

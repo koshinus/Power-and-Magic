@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://0jl82rfj3nhj"]
 
-[ext_resource type="Script" path="res://scripts/hero/hero_scene.gd" id="1_vk6a0"]
-[ext_resource type="Script" path="res://scripts/hero/hero_cam.gd" id="2_0lrvx"]
+[ext_resource type="Script" uid="uid://c7clrn5ulb24y" path="res://scripts/hero/hero_scene.gd" id="1_vk6a0"]
+[ext_resource type="Script" uid="uid://bdxv0mke7np8v" path="res://scripts/hero/hero_cam.gd" id="2_0lrvx"]
 [ext_resource type="PackedScene" uid="uid://draxspvitqxqx" path="res://scenes/tools/selectable.tscn" id="3_0n486"]
 [ext_resource type="Texture2D" uid="uid://d2ikkr2k6wldr" path="res://resources/64/hero.png" id="3_70eys"]
 

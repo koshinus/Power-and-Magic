@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://brmtlrtydjbos"]
 
-[ext_resource type="Script" path="res://scripts/numbered_texture.gd" id="1_5sb5o"]
+[ext_resource type="Script" uid="uid://drmnwye55bgoe" path="res://scripts/numbered_texture.gd" id="1_5sb5o"]
 
 [node name="NumberedTexture" type="Control"]
 layout_mode = 3

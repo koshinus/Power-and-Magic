@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dc7knlynm1sny"]
 
-[ext_resource type="Script" path="res://scripts/skills/skill_button.gd" id="1_mugpy"]
+[ext_resource type="Script" uid="uid://dkpbh5qushgi6" path="res://scripts/skills/skill_button.gd" id="1_mugpy"]
 
 [node name="SkillButton" type="Control"]
 custom_minimum_size = Vector2(20, 20)

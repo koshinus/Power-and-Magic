@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://baro0o7aq21dr"]
 
-[ext_resource type="Script" path="res://scripts/army_info.gd" id="1_7ohne"]
+[ext_resource type="Script" uid="uid://dipnkvxfv3qa1" path="res://scripts/army_info.gd" id="1_7ohne"]
 [ext_resource type="PackedScene" uid="uid://brmtlrtydjbos" path="res://scenes/interface/numbered_texture.tscn" id="2_lmx6r"]
 
 [node name="ArmyInfo" type="Control"]

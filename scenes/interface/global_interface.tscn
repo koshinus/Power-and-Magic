@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b25vtryjj6rii"]
 
-[ext_resource type="Script" path="res://scripts/global_interface.gd" id="1_4vu35"]
+[ext_resource type="Script" uid="uid://chuoiyll2810p" path="res://scripts/global_interface.gd" id="1_4vu35"]
 [ext_resource type="PackedScene" uid="uid://dm8j436yvjsrj" path="res://scenes/interface/resources_info.tscn" id="2_gp74t"]
 [ext_resource type="PackedScene" uid="uid://baro0o7aq21dr" path="res://scenes/interface/army_info.tscn" id="3_xsdba"]
 [ext_resource type="Texture2D" uid="uid://d2ikkr2k6wldr" path="res://resources/64/hero.png" id="4_2rjhi"]

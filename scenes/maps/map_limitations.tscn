@@ -1,14 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://32r8bk3412j5"]
+[gd_scene load_steps=6 format=3 uid="uid://32r8bk3412j5"]
 
-[ext_resource type="Script" path="res://scripts/maps/map_limitations.gd" id="1_hg8jm"]
+[ext_resource type="Script" uid="uid://bijqgnea4s712" path="res://scripts/maps/map_limitations.gd" id="1_hg8jm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7tqx"]
+size = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxtyl"]
+size = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2e1f"]
+size = Vector2(1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bot5x"]
+size = Vector2(1, 0)
 
 [node name="MapLimitations" type="StaticBody2D"]
 script = ExtResource("1_hg8jm")
 
 [node name="TopLimit" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x7tqx")
 
 [node name="BottomLimit" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wxtyl")
 
 [node name="LeftLimit" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u2e1f")
 
 [node name="RightLimit" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bot5x")

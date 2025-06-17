@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpq76y4adnipb"]
 
-[ext_resource type="Script" path="res://scripts/skills/economy_skills.gd" id="1_eb1i4"]
+[ext_resource type="Script" uid="uid://b0rty3nky7raw" path="res://scripts/skills/economy_skills.gd" id="1_eb1i4"]
 [ext_resource type="Texture2D" uid="uid://7ctbf7ncftbn" path="res://resources/skillwheel/merch_1_900.png" id="2_dalmi"]
 
 [node name="EconomySkills" type="Control"]

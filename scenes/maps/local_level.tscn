@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgreipagdbnor"]
 
-[ext_resource type="Script" path="res://scripts/maps/local_level.gd" id="1_ag221"]
-[ext_resource type="Script" path="res://scripts/maps/local_map.gd" id="1_sr670"]
+[ext_resource type="Script" uid="uid://bagwyn7auwtki" path="res://scripts/maps/local_level.gd" id="1_ag221"]
+[ext_resource type="Script" uid="uid://dictad4nlj5jc" path="res://scripts/maps/local_map.gd" id="1_sr670"]
 
 [node name="LocalLevel" type="Window"]
 script = ExtResource("1_ag221")
