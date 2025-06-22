@@ -1,7 +1,6 @@
 #include "register_types.hpp"
 
-#include "gdexample.hpp"
-#include "gdexample2.hpp"
+#include "main_menu_impl.hpp"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -14,8 +13,7 @@ void initialize_pwmlibs_module( godot::ModuleInitializationLevel p_level )
         return;
     }
 
-    GDREGISTER_RUNTIME_CLASS( godot::GDExample );
-    GDREGISTER_RUNTIME_CLASS( godot::GDExample2 );
+    GDREGISTER_RUNTIME_CLASS( pwm::MainMenuImpl );
 }
 
 void uninitialize_pwmlibs_module( godot::ModuleInitializationLevel p_level )

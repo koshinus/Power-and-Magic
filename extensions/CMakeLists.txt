@@ -29,11 +29,13 @@ endif()
 # Make it lower case.
 STRING(TOLOWER ${TARGET} TARGET)
 # Find all cpp files and put those in SOURCES variable.
-FILE(GLOB_RECURSE SOURCES src/*.c**)
+FILE(GLOB_RECURSE SOURCES src/*.c** src/utils/*.c**)
 # Create build target from the name and sources we setup above.
 ADD_LIBRARY(${TARGET} SHARED ${SOURCES})
 # Add godot::cpp as private dependency.
 TARGET_LINK_LIBRARIES(${TARGET} PRIVATE godot::cpp)
+TARGET_LINK_LIBRARIES(${TARGET} PRIVATE expected)
+
 # If we are using Visual Studio compiler, add some options.
 IF("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   # Enable C++20 support.
