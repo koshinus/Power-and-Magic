@@ -1,21 +1,37 @@
-#include <tl/expected.hpp>
+//#include <tl/expected.hpp>
 
 #include <godot_cpp/classes/confirmation_dialog.hpp>
 #include <godot_cpp/classes/button.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
-#include <godot_cpp/godot.hpp>
+#include <godot_cpp/classes/margin_container.hpp>
+#include <godot_cpp/classes/resource_loader.hpp>
+#include <godot_cpp/classes/packed_scene.hpp>
 
 #include "utils/pwm_string_view.hpp"
+// #include "utils/pwm_properties.hpp"
+#include "test_node_impl.hpp"
+#include "global_level_impl.hpp"
+
 #include "main_menu_impl.hpp"
 
 namespace pwm
 {
+
+
+// @export var global_level : PackedScene = preload("res://scenes/global_level.tscn")
+// @export var test_sc: PackedScene = preload("res://scenes/test_node.tscn")
+
+
+constexpr auto GLOBAL_LVL_SCENE = pwm::string_view{ "res://scenes/global_level.tscn" };
+constexpr auto TEST_NODE_SCENE = pwm::string_view{ "res://scenes/test_node.tscn" };
 
 constexpr auto ON_CONFIRMED = pwm::string_view{ "on_confirmed" };
 constexpr auto ON_CANCELED = pwm::string_view{ "on_canceled" };
 constexpr auto ON_PLAY = pwm::string_view{ "on_play_pressed" };
 constexpr auto ON_QUIT = pwm::string_view{ "on_quit_pressed" };
 constexpr auto PRESSED_SIGNAL = pwm::string_view{ "pressed" };
+
+constexpr auto MARGIN_CONTAINER = pwm::string_view{ "MarginContainer" };
 
 MainMenuImpl::MainMenuImpl()
 {
@@ -27,26 +43,45 @@ MainMenuImpl::~MainMenuImpl()
 
 void MainMenuImpl::_bind_methods()
 {
+    // BindHelper::method( ON_PLAY, &MainMenuImpl::on_play_pressed );
     godot::ClassDB::bind_method( godot::D_METHOD( ON_PLAY ), &MainMenuImpl::on_play_pressed );
     godot::ClassDB::bind_method( godot::D_METHOD( ON_QUIT ), &MainMenuImpl::on_quit_pressed );
     godot::ClassDB::bind_method( godot::D_METHOD( ON_CONFIRMED ), &MainMenuImpl::on_confirmed );
     godot::ClassDB::bind_method( godot::D_METHOD( ON_CANCELED ), &MainMenuImpl::on_canceled );
+
+    // PROP_BIND_MACRO( MainMenuImpl, "amplitude", amplitude, godot::Variant::FLOAT );
+
+    // auto am = "amplitude";
+    // auto get_name = std::vformat( "get_{}", std::make_format_args( am ) );
+    // auto set_name = std::vformat( "set_{}", std::make_format_args( am ) );
+    // auto get_var_name = std::vformat( "_{}", std::make_format_args( am ) );
+    // godot::ClassDB::bind_method( godot::D_METHOD( get_name.c_str() ), &MainMenuImpl::get_amplitude ); \
+    // godot::ClassDB::bind_method( godot::D_METHOD( set_name.c_str(), get_var_name.c_str() ), &MainMenuImpl::set_amplitude ); \
+    // ADD_PROPERTY( godot::PropertyInfo( godot::Variant::FLOAT, am ), set_name.c_str(), get_name.c_str() );
 }
 
 void MainMenuImpl::test_pressed()
 {
-
+    auto loaded_resource = godot::ResourceLoader::get_singleton()->load( TEST_NODE_SCENE );
+    auto inst = dynamic_cast<TestNodeImpl*>( dynamic_cast<godot::PackedScene*>( loaded_resource.ptr() )->instantiate() );
+    // inst->init_by_params( 7, std::vector<int>{ 4, 5, 5, 6 } );
+    get_tree()->get_root()->add_child( inst );
 }
 
 void MainMenuImpl::normal_pressed()
 {
-
+    auto loaded_resource = godot::ResourceLoader::get_singleton()->load( GLOBAL_LVL_SCENE );
+    auto glob_lvl = dynamic_cast<GlobalLevelImpl*>( dynamic_cast<godot::PackedScene*>( loaded_resource.ptr() )->instantiate() );
+    get_tree()->get_root()->add_child( glob_lvl );
+    // If left buttons in the main scene player could accidentally click on them
+    // $MarginContainer.hide();
+    get_node<godot::MarginContainer>( MARGIN_CONTAINER )->hide();
 }
 
 void MainMenuImpl::on_play_pressed()
 {
-    test_pressed();
-    // normal_pressed();
+    // test_pressed();
+    normal_pressed();
 }
 
 // std::unique_ptr<ConfirmationDialog> MainMenuImpl::form_quit_dialog()
@@ -61,7 +96,6 @@ godot::ConfirmationDialog* MainMenuImpl::form_quit_dialog()
 
     return d;
 }
-
 
 void MainMenuImpl::on_quit_pressed()
 {

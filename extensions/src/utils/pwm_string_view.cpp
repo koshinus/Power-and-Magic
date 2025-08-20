@@ -7,10 +7,10 @@ namespace pwm
 
 // constexpr string_view::string_view( const char* cstr ) noexcept: m_view{ cstr } {}
 
-constexpr std::string_view string_view::toStd() const
-{
-    return m_view;
-}
+// constexpr std::string_view string_view::toStd() const
+// {
+//     return m_view;
+// }
 
 string_view::operator godot::String() const
 {
@@ -18,6 +18,11 @@ string_view::operator godot::String() const
 }
 
 string_view::operator godot::StringName() const
+{
+    return m_view.data();
+}
+
+string_view::operator godot::NodePath() const
 {
     return m_view.data();
 }

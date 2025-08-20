@@ -10,10 +10,10 @@ class LocalLevelImpl: public godot::Node
     GDCLASS( LocalLevelImpl, godot::Node )
 private:
 protected:
-    static void _bind_methods();
+    static void _bind_methods() {}
 public:
-    LocalLevelImpl();
-    ~LocalLevelImpl();
+    LocalLevelImpl() {}
+    ~LocalLevelImpl() {}
 };
 
 }

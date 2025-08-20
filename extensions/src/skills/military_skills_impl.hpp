@@ -1,13 +1,13 @@
 #pragma once
 
-#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/control.hpp>
 
 namespace pwm
 {
 
-class MilitarySkillsImpl: public godot::Node
+class MilitarySkillsImpl: public godot::Control
 {
-    GDCLASS( MilitarySkillsImpl, godot::Node )
+    GDCLASS( MilitarySkillsImpl, godot::Control )
 private:
 protected:
     static void _bind_methods();

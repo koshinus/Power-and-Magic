@@ -13,11 +13,11 @@ func _ready() -> void:
     $GlobalMap.set_based_on_generated( world_info )
     $MilitaryHero.set_tilemap_layer( $GlobalMap/GlobalMapSurface, world_info.global_tiles_values )
     $EconomicHero.set_tilemap_layer( $GlobalMap/GlobalMapSurface, world_info.global_tiles_values )
-    $MilitaryHero.hero_selected.connect( _on_hero_hero_selected )
-    $EconomicHero.hero_selected.connect( _on_hero_hero_selected )
+    $MilitaryHero.hero_selected.connect( _on_hero_selected )
+    $EconomicHero.hero_selected.connect( _on_hero_selected )
     $GlobalInterface.view_changed.connect( _on_view_changed ) 
 
-func _on_hero_hero_selected( info: HeroProperties.HeroInfo ) -> void:
+func _on_hero_selected( info: HeroProperties.HeroInfo ) -> void:
     grid_pos = Vector2i.ZERO
     if info != null:
         grid_pos = info.grid_pos

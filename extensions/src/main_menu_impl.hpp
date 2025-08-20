@@ -17,6 +17,8 @@ private:
     godot::ConfirmationDialog* form_quit_dialog();
     void test_pressed();
     void normal_pressed();
+
+    // double amplitude;
 protected:
     static void _bind_methods();
 public:
@@ -26,6 +28,9 @@ public:
     void on_confirmed();
     void on_canceled();
     void on_play_pressed();
+
+    // double get_amplitude() { return amplitude; }
+    // void set_amplitude( const double _amplitude ) { amplitude = _amplitude; }
 };
 
 }

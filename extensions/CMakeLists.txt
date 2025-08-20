@@ -12,6 +12,7 @@ ENDIF()
 SET(TARGET_BUILD_TYPE ${CMAKE_BUILD_TYPE})
 STRING(TOLOWER ${TARGET_BUILD_TYPE} TARGET_BUILD_TYPE)
 
+
 if(CMAKE_SYSTEM_NAME MATCHES "iOS")
 	SET(TARGET "${PROJECT_NAME}.${CMAKE_SYSTEM_NAME}.template_${TARGET_BUILD_TYPE}")
 elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "arm")
@@ -26,10 +27,12 @@ else()
 	SET(TARGET "unknown" PARENT_SCOPE)
 endif()
 
+
 # Make it lower case.
 STRING(TOLOWER ${TARGET} TARGET)
 # Find all cpp files and put those in SOURCES variable.
-FILE(GLOB_RECURSE SOURCES src/*.c** src/utils/*.c**)
+#FILE(GLOB_RECURSE SOURCES src/*.c** src/*.h** src/utils/*.c** src/utils/*.h**)
+FILE(GLOB_RECURSE SOURCES src/*.c** src/*.h**)
 # Create build target from the name and sources we setup above.
 ADD_LIBRARY(${TARGET} SHARED ${SOURCES})
 # Add godot::cpp as private dependency.
