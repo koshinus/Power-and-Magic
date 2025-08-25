@@ -3,6 +3,8 @@
 #include <godot_cpp/classes/collision_shape2d.hpp>
 #include <godot_cpp/classes/rectangle_shape2d.hpp>
 
+#include "../utils/pwm_properties.hpp"
+
 #include "map_limitations_impl.hpp"
 
 namespace pwm
@@ -13,10 +15,6 @@ constexpr auto BOTTOM_LIMIT = pwm::string_view{ "bottom_limit" };
 constexpr auto LEFT_LIMIT = pwm::string_view{ "left_limit" };
 constexpr auto RIGHT_LIMIT = pwm::string_view{ "right_limit" };
 
-void MapLimitationsImpl::_bind_methods()
-{
-}
-
 MapLimitationsImpl::MapLimitationsImpl()
     : m_tile_size( godot::Vector2i( 0, 0 ) )
     , m_map_width( 0 )
@@ -26,6 +24,19 @@ MapLimitationsImpl::MapLimitationsImpl()
 
 MapLimitationsImpl::~MapLimitationsImpl()
 {
+}
+
+void MapLimitationsImpl::_bind_methods()
+{
+    // BindHelper::property<MapLimitationsImpl>( START_POS,
+    //                                     &HeroSceneImpl::get_px_tile_size,
+    //                                     &HeroSceneImpl::set_px_tile_size );
+    // BindHelper::property<MapLimitationsImpl>( START_POS,
+    //                                     &HeroSceneImpl::get_px_tile_size,
+    //                                     &HeroSceneImpl::set_px_tile_size );
+    // BindHelper::property<MapLimitationsImpl>( START_POS,
+    //                                     &HeroSceneImpl::get_px_tile_size,
+    //                                     &HeroSceneImpl::set_px_tile_size );
 }
 
 void MapLimitationsImpl::setup_limits( godot::CollisionShape2D* limit_side,
@@ -40,17 +51,17 @@ void MapLimitationsImpl::setup_limits( godot::CollisionShape2D* limit_side,
 void MapLimitationsImpl::_ready()
 {
     setup_limits( get_node<godot::CollisionShape2D>( TOP_LIMIT ),
-                godot::Vector2i( m_map_width.val * m_tile_size.val.x, 1 ),
-                godot::Vector2i( ( m_map_width.val * m_tile_size.val.x )/2, 0 ) );
+                godot::Vector2i( m_map_width * m_tile_size.x, 1 ),
+                godot::Vector2i( ( m_map_width * m_tile_size.x )/2, 0 ) );
     setup_limits( get_node<godot::CollisionShape2D>( BOTTOM_LIMIT ),
-                godot::Vector2i( m_map_width.val * m_tile_size.val.x, 1 ),
-                godot::Vector2i( ( m_map_width.val * m_tile_size.val.x )/2, m_map_height.val * m_tile_size.val.y ) );
+                godot::Vector2i( m_map_width * m_tile_size.x, 1 ),
+                godot::Vector2i( ( m_map_width * m_tile_size.x )/2, m_map_height * m_tile_size.y ) );
     setup_limits( get_node<godot::CollisionShape2D>( LEFT_LIMIT ),
-                godot::Vector2i( 1, m_map_height.val * m_tile_size.val.y ),
-                godot::Vector2i( 0, ( m_map_height.val * m_tile_size.val.y )/2 ) );
+                godot::Vector2i( 1, m_map_height * m_tile_size.y ),
+                godot::Vector2i( 0, ( m_map_height * m_tile_size.y )/2 ) );
     setup_limits( get_node<godot::CollisionShape2D>( RIGHT_LIMIT ),
-                godot::Vector2i( 1, m_map_height.val * m_tile_size.val.y ),
-                godot::Vector2i( m_map_width.val * m_tile_size.val.x, ( m_map_height.val * m_tile_size.val.y )/2 ) );
+                godot::Vector2i( 1, m_map_height * m_tile_size.y ),
+                godot::Vector2i( m_map_width * m_tile_size.x, ( m_map_height * m_tile_size.y )/2 ) );
 }
 
 }

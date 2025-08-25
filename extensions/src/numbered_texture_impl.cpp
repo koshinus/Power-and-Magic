@@ -23,10 +23,6 @@ namespace signals
 constexpr auto TEXTURE_ACTIVATED = pwm::string_view{ "texture_activated" };
 }
 
-//@export var hide_on_zero : bool = false
-//@export var button_is_active : bool = true
-//@export var button_texture : Texture2D
-
 NumberedTextureImpl::NumberedTextureImpl()
     : m_button_texture( godot::Texture2D() )
     , m_hide_on_zero( false )
@@ -45,60 +41,29 @@ void NumberedTextureImpl::_bind_methods()
     //                                       &NumberedTextureImpl::get_button_texture,
     //                                       &NumberedTextureImpl::set_button_texture );
 
-    PwmProperty<bool>::bind<NumberedTextureImpl>( BTN_IS_ACTIVE,
-                                          &NumberedTextureImpl::get_btn_is_active,
-                                          &NumberedTextureImpl::set_btn_is_active );
+    // BindHelper::property<NumberedTextureImpl>( BTN_IS_ACTIVE,
+    //                                       &NumberedTextureImpl::get_btn_is_active,
+    //                                       &NumberedTextureImpl::set_btn_is_active );
 
-    PwmProperty<int>::bind<NumberedTextureImpl>( HIDE_ON_ZERO,
-                                          &NumberedTextureImpl::get_hide_on_zero,
-                                          &NumberedTextureImpl::set_hide_on_zero );
+    // BindHelper::property<NumberedTextureImpl>( HIDE_ON_ZERO,
+    //                                       &NumberedTextureImpl::get_hide_on_zero,
+    //                                       &NumberedTextureImpl::set_hide_on_zero );
 
-    godot::ClassDB::add_signal( get_class_static(),
-                               godot::MethodInfo{ signals::TEXTURE_ACTIVATED.toStd().data() } );
+    // godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::TEXTURE_ACTIVATED } );
 }
 
 void NumberedTextureImpl::_ready()
 {
     auto btn = get_node<godot::TextureButton>( BTN_WITH_TEXTURE );
-    btn->set_disabled( !m_button_is_active.val );
-    btn->set_texture_normal( godot::Ref( &m_button_texture.val ) );
-}
-
-godot::Texture2D NumberedTextureImpl::get_button_texture()
-{
-    return m_button_texture.val;
-}
-
-bool NumberedTextureImpl::get_btn_is_active()
-{
-    return m_button_is_active.val;
-}
-
-bool NumberedTextureImpl::get_hide_on_zero()
-{
-    return m_hide_on_zero.val;
-}
-
-void NumberedTextureImpl::set_button_texture( const godot::Texture2D val )
-{
-    // m_button_texture.val = val;????????
-}
-
-void NumberedTextureImpl::set_btn_is_active( const bool val )
-{
-    m_button_is_active.val = val;
-}
-
-void NumberedTextureImpl::set_hide_on_zero( const bool val )
-{
-    m_hide_on_zero.val = val;
+    btn->set_disabled( !m_button_is_active );
+    btn->set_texture_normal( godot::Ref( &m_button_texture ) );
 }
 
 void NumberedTextureImpl::set_amount( int new_amount )
 {
     auto label = get_node<godot::Label>( AMOUNT );
     label->set_text( std::to_string( new_amount ).data() );
-    if ( m_hide_on_zero.val && new_amount == 0 )
+    if ( m_hide_on_zero && new_amount == 0 )
     {
         hide();
     }

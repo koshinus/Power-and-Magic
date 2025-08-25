@@ -40,13 +40,15 @@ SelectableImpl::~SelectableImpl()
 
 void SelectableImpl::_bind_methods()
 {
-    PwmProperty<godot::String>::bind<SelectableImpl>( GROUP_NAME, &SelectableImpl::get_group_name,
-                                           &SelectableImpl::set_group_name );
-    PwmProperty<bool>::bind<SelectableImpl>( EXCLUSIVE, &SelectableImpl::get_exclusive,
-                                           &SelectableImpl::set_exclusive );
+    // BindHelper::property<SelectableImpl>( GROUP_NAME,
+    //                                        &SelectableImpl::get_group_name,
+    //                                        &SelectableImpl::set_group_name );
+    // BindHelper::property<SelectableImpl>( EXCLUSIVE,
+    //                                        &SelectableImpl::get_exclusive,
+    //                                        &SelectableImpl::set_exclusive );
 
-    godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::SELECTED.toStd().data(),
-                                                    godot::PropertyInfo{ godot::Variant::BOOL, SELECTED } } );
+    // godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::SELECTED,
+    //                                                 godot::PropertyInfo{ godot::Variant::BOOL, SELECTED } } );
 }
 
 void SelectableImpl::set_selected( bool selection_flag )
@@ -55,12 +57,12 @@ void SelectableImpl::set_selected( bool selection_flag )
     if ( selection_flag )
     {
         make_exclusive();
-        add_to_group( m_group_name.val );
+        add_to_group( m_group_name );
     }
     else
     {
         get_node<godot::Button>( BUTTON )->release_focus();
-        remove_from_group( m_group_name.val );
+        remove_from_group( m_group_name );
     }
     m_is_selected = selection_flag;
     emit_signal( signals::SELECTED, m_is_selected );
@@ -68,9 +70,9 @@ void SelectableImpl::set_selected( bool selection_flag )
 
 void SelectableImpl::make_exclusive()
 {
-    if ( m_exclusive.val )
+    if ( m_exclusive )
     {
-        get_tree()->call_group( m_group_name.val, "set_selected", false );
+        get_tree()->call_group( m_group_name, "set_selected", false );
     }
 }
 
@@ -82,22 +84,22 @@ void SelectableImpl::on_button_pressed()
 
 godot::String SelectableImpl::get_group_name()
 {
-    return m_group_name.val;
+    return m_group_name;
 }
 
 void SelectableImpl::set_group_name( const godot::String val )
 {
-    m_group_name.val = val;
+    m_group_name = val;
 }
 
 bool SelectableImpl::get_exclusive()
 {
-    return m_exclusive.val;
+    return m_exclusive;
 }
 
 void SelectableImpl::set_exclusive( const bool val )
 {
-    m_exclusive.val = val;
+    m_exclusive = val;
 }
 
 }

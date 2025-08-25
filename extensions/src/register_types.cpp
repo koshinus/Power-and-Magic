@@ -1,10 +1,31 @@
-#include "register_types.hpp"
-
-#include "main_menu_impl.hpp"
-
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
+
+#include "utils/pwm_properties.hpp"
+
+#include "main_menu_impl.hpp"
+// #include "global_level_impl.hpp"
+// #include "combat_interface_impl.hpp"
+
+#include "register_types.hpp"
+
+namespace pwm
+{
+
+template<GodotNode T>
+void registrate_one()
+{
+    godot::ClassDB::register_runtime_class< T >();
+}
+
+template<GodotNode... Types>
+void registrate()
+{
+    (registrate_one<Types>(), ...);
+}
+
+}
 
 void initialize_pwmlibs_module( godot::ModuleInitializationLevel p_level )
 {
@@ -13,7 +34,7 @@ void initialize_pwmlibs_module( godot::ModuleInitializationLevel p_level )
         return;
     }
 
-    GDREGISTER_RUNTIME_CLASS( pwm::MainMenuImpl );
+    pwm::registrate< pwm::MainMenuImpl >();
 }
 
 void uninitialize_pwmlibs_module( godot::ModuleInitializationLevel p_level )

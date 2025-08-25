@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://btef5nmmcs35w"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
+[node name="MainMenu" type="MainMenuImpl"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,7 +33,5 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Quit"
 
-[node name="Impl" type="MainMenuImpl" parent="."]
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="Impl" method="on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="Impl" method="on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="on_quit_pressed"]

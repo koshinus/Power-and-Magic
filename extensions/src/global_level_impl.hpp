@@ -13,7 +13,6 @@ class GlobalLevelImpl: public godot::Node
 {
     GDCLASS( GlobalLevelImpl, godot::Node )
 private:
-    // WorldInfo m_winfo;
     godot::Vector2i m_grid_pos;
 protected:
     static void _bind_methods();

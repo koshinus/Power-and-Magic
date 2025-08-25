@@ -10,8 +10,8 @@
 namespace pwm
 {
 
-void MilitarySkillsImpl::_bind_methods(){}
 MilitarySkillsImpl::MilitarySkillsImpl(){}
 MilitarySkillsImpl::~MilitarySkillsImpl(){}
+void MilitarySkillsImpl::_bind_methods(){}
 
 }

@@ -11,8 +11,8 @@ class SelectableImpl: public godot::Control
 {
     GDCLASS( SelectableImpl, godot::Control )
 private:
-    PwmProperty<godot::String> m_group_name;
-    PwmProperty<bool> m_exclusive;
+    godot::String m_group_name;
+    bool m_exclusive;
 
     bool m_is_selected;
 

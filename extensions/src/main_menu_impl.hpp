@@ -1,6 +1,6 @@
 #pragma once
 
-#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/control.hpp>
 
 namespace godot
 {
@@ -10,17 +10,9 @@ class ConfirmationDialog;
 namespace pwm
 {
 
-class MainMenuImpl: public godot::Node
+class MainMenuImpl: public godot::Control
 {
-    GDCLASS( MainMenuImpl, godot::Node )
-private:
-    godot::ConfirmationDialog* form_quit_dialog();
-    void test_pressed();
-    void normal_pressed();
-
-    // double amplitude;
-protected:
-    static void _bind_methods();
+    GDCLASS( MainMenuImpl, godot::Control )
 public:
     MainMenuImpl();
     ~MainMenuImpl();
@@ -29,8 +21,16 @@ public:
     void on_canceled();
     void on_play_pressed();
 
-    // double get_amplitude() { return amplitude; }
-    // void set_amplitude( const double _amplitude ) { amplitude = _amplitude; }
+    double get_amplitude() const { return amplitude; }
+    void set_amplitude( const double p_amplitude ) { amplitude = p_amplitude; }
+protected:
+    static void _bind_methods();
+private:
+    godot::ConfirmationDialog* form_quit_dialog();
+    void test_pressed();
+    void normal_pressed();
+
+    double amplitude;
 };
 
 }

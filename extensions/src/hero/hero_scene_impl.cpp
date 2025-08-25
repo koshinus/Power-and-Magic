@@ -5,6 +5,7 @@
 
 #include "../utils/world_constants.hpp"
 #include "../utils/grid_movement_impl.hpp"
+#include "../utils/pwm_properties.hpp"
 
 #include "hero_scene_impl.hpp"
 
@@ -47,28 +48,18 @@ HeroSceneImpl::~HeroSceneImpl()
 
 void HeroSceneImpl::_bind_methods()
 {
-    PwmProperty<int>::bind<HeroSceneImpl>( START_POS,
+    BindHelper::property<HeroSceneImpl>( START_POS,
                                           &HeroSceneImpl::get_px_tile_size,
                                           &HeroSceneImpl::set_px_tile_size );
 
     godot::ClassDB::add_signal( get_class_static(),
-                                godot::MethodInfo{ signals::HERO_SELECTED.toStd().data(),
+                                godot::MethodInfo{ signals::HERO_SELECTED,
                                                    godot::PropertyInfo{ godot::Variant::BOOL, SELECTED } } );
-}
-
-int HeroSceneImpl::get_px_tile_size()
-{
-    return m_start_pos.val;
-}
-
-void HeroSceneImpl::set_px_tile_size( const int _val )
-{
-    m_start_pos.val = _val;
 }
 
 void HeroSceneImpl::_ready()
 {
-    set_position( godot::Vector2i( m_start_pos.val, m_start_pos.val ) );
+    set_position( godot::Vector2i( m_start_pos, m_start_pos ) );
     click_pos = get_position();
 }
 
@@ -157,7 +148,6 @@ godot::Vector2 HeroSceneImpl::process_astar( godot::Vector2 cur_pos )
     return ( godot::Vector2( next_grid_center ) - cur_pos ).normalized();
 }
 
-// signal hero_selected( info: HeroProperties.HeroInfo )
 void HeroSceneImpl::on_hero_selected( bool selection_flag )
 {
     m_is_selected = selection_flag;

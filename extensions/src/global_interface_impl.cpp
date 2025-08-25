@@ -27,8 +27,8 @@ void GlobalInterfaceImpl::_ready()
 
 void GlobalInterfaceImpl::_bind_methods()
 {
-    godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::VIEW_CHANGED.toStd().data() } );
-    godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::MAGIC_BOOK_CLICKED.toStd().data() } );
+    // godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::VIEW_CHANGED } );
+    // godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::MAGIC_BOOK_CLICKED } );
 }
 
 void GlobalInterfaceImpl::show_hero_depending_parts( std::optional<HeroInfo> info )

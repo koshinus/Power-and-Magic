@@ -2,10 +2,12 @@
 #include <random>
 #include <chrono>
 #include <limits>
+#include <map>
 
 #include <godot_cpp/classes/tile_map_layer.hpp>
 
 #include "../grid_2d_node_impl.hpp"
+#include "../utils/pwm_string_view.hpp"
 #include "local_map_impl.hpp"
 
 namespace pwm
@@ -37,14 +39,6 @@ int LocalMapImpl::get_local_tile_type_by_neighbours( int big_tile_type, std::vec
 {
     std::sort( neighbours.begin(), neighbours.end() );
     std::vector<int> tiles_arr( neighbours.size(), big_tile_type );
-    // if ( auto it = std::find( neighbours.begin(), neighbours.end(), big_tile_type ); it == neighbours.end() )
-    // {
-    //     neighbours.insert( neighbours.end(), tiles_arr.begin(), tiles_arr.end() );
-    // }
-    // else
-    // {
-    //     for ( int i : tiles_arr ) neighbours.insert( it, i );
-    // }
     auto it = std::find( neighbours.begin(), neighbours.end(), big_tile_type );
     for ( int i : tiles_arr ) neighbours.insert( it, i );
 

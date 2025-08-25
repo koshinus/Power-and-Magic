@@ -1,6 +1,7 @@
 #include <godot_cpp/classes/texture_button.hpp>
 
 #include "../utils/pwm_string_view.hpp"
+#include "../utils/pwm_properties.hpp"
 
 #include "skill_button_impl.hpp"
 
@@ -20,12 +21,6 @@ namespace signals
 constexpr auto SKILL_ACTIVATED = pwm::string_view{ "skill_activated" };
 }
 
-// @export var skill_num : int = 0
-// @export var skill_group : int = 0
-// @export var texture : ImageTexture
-
-// signal skill_activated( toggled : bool, num : int, group : int )
-
 SkillButtonImpl::SkillButtonImpl()
     : m_texture( godot::ImageTexture() )
     , m_skill_num( 0 )
@@ -44,18 +39,18 @@ void SkillButtonImpl::_bind_methods()
     // PwmProperty<godot::ImageTexture>::bind<SkillButtonImpl>( TEXTURE,
     //                                       &SkillButtonImpl::get_texture,
     //                                       &SkillButtonImpl::set_texture );
-    PwmProperty<int>::bind<SkillButtonImpl>( SKILL_NUM,
-                                          &SkillButtonImpl::get_skill_num,
-                                          &SkillButtonImpl::set_skill_num );
-    PwmProperty<int>::bind<SkillButtonImpl>( SKILL_GROUP,
-                                          &SkillButtonImpl::get_skill_group,
-                                          &SkillButtonImpl::set_skill_group );
+    // BindHelper::property<SkillButtonImpl>( SKILL_NUM,
+    //                                       &SkillButtonImpl::get_skill_num,
+    //                                       &SkillButtonImpl::set_skill_num );
+    // BindHelper::property<SkillButtonImpl>( SKILL_GROUP,
+    //                                       &SkillButtonImpl::get_skill_group,
+    //                                       &SkillButtonImpl::set_skill_group );
 
-    godot::ClassDB::add_signal( get_class_static(),
-                               godot::MethodInfo{ signals::SKILL_ACTIVATED.toStd().data(),
-                                                 godot::PropertyInfo{ godot::Variant::BOOL, TOGGLED },
-                                                 godot::PropertyInfo{ godot::Variant::INT, SKILL_NUM },
-                                                 godot::PropertyInfo{ godot::Variant::INT, SKILL_GROUP } } );
+    // godot::ClassDB::add_signal( get_class_static(),
+    //                            godot::MethodInfo{ signals::SKILL_ACTIVATED,
+    //                                              godot::PropertyInfo{ godot::Variant::BOOL, TOGGLED },
+    //                                              godot::PropertyInfo{ godot::Variant::INT, SKILL_NUM },
+    //                                              godot::PropertyInfo{ godot::Variant::INT, SKILL_GROUP } } );
 }
 
 godot::Ref<godot::Texture2D> SkillButtonImpl::circled_texture( godot::Ref<godot::Texture2D> txtr, godot::Color color, int radius, godot::Vector2 center )
@@ -106,38 +101,7 @@ void SkillButtonImpl::setup_textures( const godot::Ref<godot::Texture2D>& txtr )
 
 void SkillButtonImpl::on_btn_toggled( bool toggled_on )
 {
-    emit_signal( signals::SKILL_ACTIVATED, toggled_on, m_skill_num.val, m_skill_group.val );
-}
-
-godot::ImageTexture SkillButtonImpl::get_texture()
-{
-    return m_texture.val;
-}
-
-void SkillButtonImpl::set_texture( const godot::ImageTexture val )
-{
-    // TODO: change types to Ref<>
-    // m_texture.val = val;
-}
-
-int SkillButtonImpl::get_skill_num()
-{
-    return m_skill_num.val;
-}
-
-void SkillButtonImpl::set_skill_num( const int val )
-{
-    m_skill_num.val = val;
-}
-
-int  SkillButtonImpl::get_skill_group()
-{
-    return m_skill_group.val;
-}
-
-void SkillButtonImpl::set_skill_group( const int val )
-{
-    m_skill_group.val = val;
+    emit_signal( signals::SKILL_ACTIVATED, toggled_on, m_skill_num, m_skill_group );
 }
 
 }

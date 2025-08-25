@@ -26,7 +26,6 @@ constexpr auto VIEW_CHANGED = pwm::string_view{ "view_changed" };
 
 
 GlobalLevelImpl::GlobalLevelImpl()
-    // : m_winfo{}
     : m_grid_pos( godot::Vector2i( 0, 0 ) )
 {
 }
@@ -76,8 +75,8 @@ void GlobalLevelImpl::on_hero_selected( std::optional<HeroInfo> info )
 
 void GlobalLevelImpl::on_view_changed()
 {
-//     if grid_pos == Vector2i.ZERO:
-//         return
+    if ( m_grid_pos == godot::Vector2i( 0, 0 ) )
+        return;
 //     //lvl_window.
 //     //lvl_window.visible = not lvl_window.visible
 }

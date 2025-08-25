@@ -28,17 +28,16 @@ class SkillGroupImpl: public godot::Node
 public:
     SkillGroupImpl();
     ~SkillGroupImpl();
-    // SkillGroupImpl( int _group_num, int _advanced_threshold, int _expert_threshold );
     void on_skill_activated( bool toggled, int num, int group );
     void setup_group( SkillLevel* beginer, SkillLevel* advanced, SkillLevel* expert,
                      const std::map<int, bool>& skills_dict );
 
-    int get_group_num();
-    void set_group_num( const int val );
-    int get_advanced_threshold();
-    void set_advanced_threshold( const int val );
-    int get_expert_threshold();
-    void set_expert_threshold( const int val );
+    int get_group_num() { return m_group_num; }
+    void set_group_num( const int val ) { m_group_num = val; }
+    int get_advanced_threshold() { return m_advanced_threshold; }
+    void set_advanced_threshold( const int val ) { m_advanced_threshold = val; }
+    int get_expert_threshold() { return m_expert_threshold; }
+    void set_expert_threshold( const int val ) { m_expert_threshold = val; }
 protected:
     static void _bind_methods();
 private:
@@ -51,12 +50,9 @@ private:
 
     int activated_num;
 
-    PwmProperty<int> m_group_num;
-    PwmProperty<int> m_advanced_threshold;
-    PwmProperty<int> m_expert_threshold;
-    // const int group_num = 0;
-    // const int advanced_threshold = 2;
-    // const int expert_threshold = 4;
+    int m_group_num;
+    int m_advanced_threshold;
+    int m_expert_threshold;
 };
 
 }
