@@ -27,15 +27,10 @@ else()
 	SET(TARGET "unknown" PARENT_SCOPE)
 endif()
 
-
 # Make it lower case.
 STRING(TOLOWER ${TARGET} TARGET)
 # Find all cpp files and put those in SOURCES variable.
-# FILE(GLOB_RECURSE SOURCES src/*.c** src/*.h**)
-FILE(GLOB_RECURSE SOURCES src/register_types.cpp src/register_types.hpp
-                          src/main_menu_impl.cpp src/main_menu_impl.hpp
-                          src/utils/pwm_properties.cpp src/utils/pwm_properties.hpp
-                          src/utils/pwm_string_view.cpp src/utils/pwm_string_view.hpp)
+FILE(GLOB_RECURSE SOURCES src/*.c** src/*.h**)
 # Create build target from the name and sources we setup above.
 ADD_LIBRARY(${TARGET} SHARED ${SOURCES})
 # Add godot::cpp as private dependency.

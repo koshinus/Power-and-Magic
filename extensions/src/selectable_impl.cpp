@@ -40,15 +40,15 @@ SelectableImpl::~SelectableImpl()
 
 void SelectableImpl::_bind_methods()
 {
-    // BindHelper::property<SelectableImpl>( GROUP_NAME,
-    //                                        &SelectableImpl::get_group_name,
-    //                                        &SelectableImpl::set_group_name );
-    // BindHelper::property<SelectableImpl>( EXCLUSIVE,
-    //                                        &SelectableImpl::get_exclusive,
-    //                                        &SelectableImpl::set_exclusive );
+    BindHelper::property<SelectableImpl>( GROUP_NAME,
+                                           &SelectableImpl::get_group_name,
+                                           &SelectableImpl::set_group_name );
+    BindHelper::property<SelectableImpl>( EXCLUSIVE,
+                                           &SelectableImpl::get_exclusive,
+                                           &SelectableImpl::set_exclusive );
 
-    // godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::SELECTED,
-    //                                                 godot::PropertyInfo{ godot::Variant::BOOL, SELECTED } } );
+    godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::SELECTED,
+                                                    godot::PropertyInfo{ godot::Variant::BOOL, SELECTED } } );
 }
 
 void SelectableImpl::set_selected( bool selection_flag )

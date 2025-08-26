@@ -8,6 +8,7 @@
 namespace godot
 {
 class TileMapLayer;
+class AStarGrid2D;
 }
 
 namespace pwm
@@ -24,13 +25,22 @@ public:
     void _physics_process( double delta ) override;
     void set_tilemap_layer( godot::TileMapLayer* tml, const GlobalTypesMap& global_tiles_vals );
 
-    int get_px_tile_size() { return m_start_pos; }
-    void set_px_tile_size( const int _val ) { m_start_pos = _val; }
+    int get_start_pos() { return m_start_pos; }
+    void set_start_pos( const int _val ) { m_start_pos = _val; }
 protected:
     static void _bind_methods();
 private:
     int m_start_pos;
     bool m_is_selected;
+    godot::Vector2i m_click_pos;
+    // Path calculation can be different from hero to hero:
+    // for example one hero uses "Fly" spell, while th other don't.
+    // To avoid recalculating AStarGrid2D on each hero switch, we need
+    // to store it hero, despite they share one TileMapLayer
+    godot::AStarGrid2D* m_astar_grid_2d;
+    godot::TypedArray<godot::Vector2i> m_astar_path;
+    // For read purpose only and setup astar grid!!
+    const godot::TileMapLayer* m_tml_ref;
 
     godot::Vector2 process_row( godot::Vector2 cur_pos );
     godot::Vector2 process_astar( godot::Vector2 cur_pos );

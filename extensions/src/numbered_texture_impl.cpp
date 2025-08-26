@@ -41,15 +41,15 @@ void NumberedTextureImpl::_bind_methods()
     //                                       &NumberedTextureImpl::get_button_texture,
     //                                       &NumberedTextureImpl::set_button_texture );
 
-    // BindHelper::property<NumberedTextureImpl>( BTN_IS_ACTIVE,
-    //                                       &NumberedTextureImpl::get_btn_is_active,
-    //                                       &NumberedTextureImpl::set_btn_is_active );
+    BindHelper::property<NumberedTextureImpl>( BTN_IS_ACTIVE,
+                                          &NumberedTextureImpl::get_btn_is_active,
+                                          &NumberedTextureImpl::set_btn_is_active );
 
-    // BindHelper::property<NumberedTextureImpl>( HIDE_ON_ZERO,
-    //                                       &NumberedTextureImpl::get_hide_on_zero,
-    //                                       &NumberedTextureImpl::set_hide_on_zero );
+    BindHelper::property<NumberedTextureImpl>( HIDE_ON_ZERO,
+                                          &NumberedTextureImpl::get_hide_on_zero,
+                                          &NumberedTextureImpl::set_hide_on_zero );
 
-    // godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::TEXTURE_ACTIVATED } );
+    godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::TEXTURE_ACTIVATED } );
 }
 
 void NumberedTextureImpl::_ready()

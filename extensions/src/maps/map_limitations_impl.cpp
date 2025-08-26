@@ -29,14 +29,14 @@ MapLimitationsImpl::~MapLimitationsImpl()
 void MapLimitationsImpl::_bind_methods()
 {
     // BindHelper::property<MapLimitationsImpl>( START_POS,
-    //                                     &HeroSceneImpl::get_px_tile_size,
-    //                                     &HeroSceneImpl::set_px_tile_size );
+    //                                     &MapLimitationsImpl::get_px_tile_size,
+    //                                     &MapLimitationsImpl::set_px_tile_size );
     // BindHelper::property<MapLimitationsImpl>( START_POS,
-    //                                     &HeroSceneImpl::get_px_tile_size,
-    //                                     &HeroSceneImpl::set_px_tile_size );
+    //                                     &MapLimitationsImpl::get_px_tile_size,
+    //                                     &MapLimitationsImpl::set_px_tile_size );
     // BindHelper::property<MapLimitationsImpl>( START_POS,
-    //                                     &HeroSceneImpl::get_px_tile_size,
-    //                                     &HeroSceneImpl::set_px_tile_size );
+    //                                     &MapLimitationsImpl::get_px_tile_size,
+    //                                     &MapLimitationsImpl::set_px_tile_size );
 }
 
 void MapLimitationsImpl::setup_limits( godot::CollisionShape2D* limit_side,

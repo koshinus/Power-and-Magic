@@ -7,7 +7,6 @@
 #include "../hero/hero_info_impl.hpp"
 #include "world_generator_impl.hpp"
 
-// @export var tile_size : Vector2i = Vector2i.ONE
 namespace godot
 {
 class AStarGrid2D;
@@ -17,19 +16,6 @@ class TileMapLayer;
 
 namespace pwm
 {
-
-// class GridMovementImpl: public godot::Node
-// {
-//     GDCLASS( GridMovementImpl, godot::Node )
-// private:
-// protected:
-//     static void _bind_methods();
-//     void _process( double p_delta ) override;
-// public:
-//     GridMovementImpl();
-//     ~GridMovementImpl();
-// };
-
 
 class GridMovement
 {

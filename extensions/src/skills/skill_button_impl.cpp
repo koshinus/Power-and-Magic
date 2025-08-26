@@ -39,18 +39,18 @@ void SkillButtonImpl::_bind_methods()
     // PwmProperty<godot::ImageTexture>::bind<SkillButtonImpl>( TEXTURE,
     //                                       &SkillButtonImpl::get_texture,
     //                                       &SkillButtonImpl::set_texture );
-    // BindHelper::property<SkillButtonImpl>( SKILL_NUM,
-    //                                       &SkillButtonImpl::get_skill_num,
-    //                                       &SkillButtonImpl::set_skill_num );
-    // BindHelper::property<SkillButtonImpl>( SKILL_GROUP,
-    //                                       &SkillButtonImpl::get_skill_group,
-    //                                       &SkillButtonImpl::set_skill_group );
+    BindHelper::property<SkillButtonImpl>( SKILL_NUM,
+                                          &SkillButtonImpl::get_skill_num,
+                                          &SkillButtonImpl::set_skill_num );
+    BindHelper::property<SkillButtonImpl>( SKILL_GROUP,
+                                          &SkillButtonImpl::get_skill_group,
+                                          &SkillButtonImpl::set_skill_group );
 
-    // godot::ClassDB::add_signal( get_class_static(),
-    //                            godot::MethodInfo{ signals::SKILL_ACTIVATED,
-    //                                              godot::PropertyInfo{ godot::Variant::BOOL, TOGGLED },
-    //                                              godot::PropertyInfo{ godot::Variant::INT, SKILL_NUM },
-    //                                              godot::PropertyInfo{ godot::Variant::INT, SKILL_GROUP } } );
+    godot::ClassDB::add_signal( get_class_static(),
+                               godot::MethodInfo{ signals::SKILL_ACTIVATED,
+                                                 godot::PropertyInfo{ godot::Variant::BOOL, TOGGLED },
+                                                 godot::PropertyInfo{ godot::Variant::INT, SKILL_NUM },
+                                                 godot::PropertyInfo{ godot::Variant::INT, SKILL_GROUP } } );
 }
 
 godot::Ref<godot::Texture2D> SkillButtonImpl::circled_texture( godot::Ref<godot::Texture2D> txtr, godot::Color color, int radius, godot::Vector2 center )
