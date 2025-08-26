@@ -24,13 +24,13 @@ HeroCameraImpl::~HeroCameraImpl()
 
 void HeroCameraImpl::_bind_methods()
 {
-    BindHelper::property<HeroCameraImpl>( PX_TILE_SIZE,
+    BindHelper<HeroCameraImpl>::property<int>( PX_TILE_SIZE,
                                          &HeroCameraImpl::get_px_tile_size,
                                          &HeroCameraImpl::set_px_tile_size );
-    BindHelper::property<HeroCameraImpl>( LAYER_WIDTH,
+    BindHelper<HeroCameraImpl>::property<int>( LAYER_WIDTH,
                                          &HeroCameraImpl::get_layer_width,
                                          &HeroCameraImpl::set_layer_width );
-    BindHelper::property<HeroCameraImpl>( LAYER_HEIGHT,
+    BindHelper<HeroCameraImpl>::property<int>( LAYER_HEIGHT,
                                          &HeroCameraImpl::get_layer_height,
                                          &HeroCameraImpl::set_layer_height );
 }

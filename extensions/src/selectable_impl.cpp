@@ -40,10 +40,10 @@ SelectableImpl::~SelectableImpl()
 
 void SelectableImpl::_bind_methods()
 {
-    BindHelper::property<SelectableImpl>( GROUP_NAME,
+    BindHelper<SelectableImpl>::property<godot::String>( GROUP_NAME,
                                            &SelectableImpl::get_group_name,
                                            &SelectableImpl::set_group_name );
-    BindHelper::property<SelectableImpl>( EXCLUSIVE,
+    BindHelper<SelectableImpl>::property<bool>( EXCLUSIVE,
                                            &SelectableImpl::get_exclusive,
                                            &SelectableImpl::set_exclusive );
 
@@ -79,27 +79,6 @@ void SelectableImpl::make_exclusive()
 void SelectableImpl::on_button_pressed()
 {
     set_selected( !m_is_selected );
-}
-
-
-godot::String SelectableImpl::get_group_name()
-{
-    return m_group_name;
-}
-
-void SelectableImpl::set_group_name( const godot::String val )
-{
-    m_group_name = val;
-}
-
-bool SelectableImpl::get_exclusive()
-{
-    return m_exclusive;
-}
-
-void SelectableImpl::set_exclusive( const bool val )
-{
-    m_exclusive = val;
 }
 
 }

@@ -30,16 +30,16 @@ Grid2dNodeImpl::~Grid2dNodeImpl()
 
 void Grid2dNodeImpl::_bind_methods()
 {
-    BindHelper::property<Grid2dNodeImpl>( MAP_WIDTH,
+    BindHelper<Grid2dNodeImpl>::property<int>( MAP_WIDTH,
                                            &Grid2dNodeImpl::get_map_width,
                                            &Grid2dNodeImpl::set_map_width );
-    BindHelper::property<Grid2dNodeImpl>( MAP_HEIGHT,
+    BindHelper<Grid2dNodeImpl>::property<int>( MAP_HEIGHT,
                                            &Grid2dNodeImpl::get_map_height,
                                            &Grid2dNodeImpl::set_map_height );
-    BindHelper::property<Grid2dNodeImpl>( PX_TILE_SIZE,
+    BindHelper<Grid2dNodeImpl>::property<godot::Vector2i>( PX_TILE_SIZE,
                                            &Grid2dNodeImpl::get_tile_size,
                                            &Grid2dNodeImpl::set_tile_size );
-    BindHelper::property<Grid2dNodeImpl>( GRID_COLOR,
+    BindHelper<Grid2dNodeImpl>::property<godot::Color>( GRID_COLOR,
                                            &Grid2dNodeImpl::get_grid_color,
                                            &Grid2dNodeImpl::set_grid_color );
 }

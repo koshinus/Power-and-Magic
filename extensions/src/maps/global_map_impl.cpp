@@ -30,13 +30,13 @@ GlobalMapImpl::~GlobalMapImpl()
 
 void GlobalMapImpl::_bind_methods()
 {
-    BindHelper::property<GlobalMapImpl>( PX_TILE_SIZE,
+    BindHelper<GlobalMapImpl>::property<int>( PX_TILE_SIZE,
                                           &GlobalMapImpl::get_px_tile_size,
                                           &GlobalMapImpl::set_px_tile_size );
-    BindHelper::property<GlobalMapImpl>( LAYER_WIDTH,
+    BindHelper<GlobalMapImpl>::property<int>( LAYER_WIDTH,
                                           &GlobalMapImpl::get_layer_width,
                                           &GlobalMapImpl::set_layer_width );
-    BindHelper::property<GlobalMapImpl>( LAYER_HEIGHT,
+    BindHelper<GlobalMapImpl>::property<int>( LAYER_HEIGHT,
                                           &GlobalMapImpl::get_layer_height,
                                           &GlobalMapImpl::set_layer_height );
 }

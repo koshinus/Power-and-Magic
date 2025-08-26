@@ -29,13 +29,13 @@ SkillGroupImpl::~SkillGroupImpl()
 
 void SkillGroupImpl::_bind_methods()
 {
-    BindHelper::property<SkillGroupImpl>( GROUP_NUM,
+    BindHelper<SkillGroupImpl>::property<int>( GROUP_NUM,
                                            &SkillGroupImpl::get_group_num,
                                            &SkillGroupImpl::set_group_num );
-    BindHelper::property<SkillGroupImpl>( ADVANCED_THRESHOLD,
+    BindHelper<SkillGroupImpl>::property<int>( ADVANCED_THRESHOLD,
                                            &SkillGroupImpl::get_advanced_threshold,
                                            &SkillGroupImpl::set_advanced_threshold );
-    BindHelper::property<SkillGroupImpl>( EXPERT_THRESHOLD,
+    BindHelper<SkillGroupImpl>::property<int>( EXPERT_THRESHOLD,
                                            &SkillGroupImpl::get_expert_threshold,
                                            &SkillGroupImpl::set_expert_threshold );
 }

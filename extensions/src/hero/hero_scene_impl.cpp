@@ -41,7 +41,7 @@ HeroSceneImpl::~HeroSceneImpl()
 
 void HeroSceneImpl::_bind_methods()
 {
-    BindHelper::property<HeroSceneImpl>( START_POS,
+    BindHelper<HeroSceneImpl>::property<int>( START_POS,
                                           &HeroSceneImpl::get_start_pos,
                                           &HeroSceneImpl::set_start_pos );
     godot::ClassDB::add_signal( get_class_static(),

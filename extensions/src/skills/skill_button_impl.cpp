@@ -39,10 +39,10 @@ void SkillButtonImpl::_bind_methods()
     // PwmProperty<godot::ImageTexture>::bind<SkillButtonImpl>( TEXTURE,
     //                                       &SkillButtonImpl::get_texture,
     //                                       &SkillButtonImpl::set_texture );
-    BindHelper::property<SkillButtonImpl>( SKILL_NUM,
+    BindHelper<SkillButtonImpl>::property<int>( SKILL_NUM,
                                           &SkillButtonImpl::get_skill_num,
                                           &SkillButtonImpl::set_skill_num );
-    BindHelper::property<SkillButtonImpl>( SKILL_GROUP,
+    BindHelper<SkillButtonImpl>::property<int>( SKILL_GROUP,
                                           &SkillButtonImpl::get_skill_group,
                                           &SkillButtonImpl::set_skill_group );
 

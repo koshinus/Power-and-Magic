@@ -61,15 +61,19 @@ struct TypedProperty
     pwm::string_view m_prop_name;
 };
 
+template<GodotNode ParentT>
 struct BindHelper
 {
-    template<GodotNode ParentT, PropertyMethod<ParentT> MethodT, typename... Args>
+    template<PropertyMethod<ParentT> MethodT, typename... Args>
     static godot::MethodBind* method( pwm::string_view mname, MethodT fn, Args... args )
     {
         return godot::ClassDB::bind_method( godot::D_METHOD( mname ), fn, std::forward( args )... );
     }
 
-    template<GodotNode ParentT, PropertyGetMethod<ParentT> GetFnT, PropertySetMethod<ParentT> SetFnT>
+
+    template<typename PropT, typename GetFnT, typename SetFnT>
+    requires std::is_same_v<GetPtrType<PropT, ParentT>, GetFnT> &&
+             std::is_same_v<SetPtrType<PropT, ParentT>, SetFnT>
     static void property( pwm::string_view name, GetFnT get_fn, SetFnT set_fn )
     {
         auto get = std::vformat( "get_{}", std::make_format_args( name.toStd() ) );
@@ -78,10 +82,10 @@ struct BindHelper
         godot::ClassDB::bind_method( godot::D_METHOD( get.c_str() ), get_fn );
         godot::ClassDB::bind_method( godot::D_METHOD( set.c_str(), _var_name.c_str() ), set_fn );
         godot::ClassDB::add_property( ParentT::get_class_static(),
-                godot::PropertyInfo( get_godot_variant_t<ParentT>(), name ), set.c_str(), get.c_str() );
+                godot::PropertyInfo( get_godot_variant_t<PropT>(), name ), set.c_str(), get.c_str() );
     }
 
-    template<GodotNode ParentT, typename... TypedProperty>
+    template<typename... TypedProperty>
     static void signal( pwm::string_view signal_name, TypedProperty... args )
     {
         // godot::ClassDB::add_signal( ParentT::get_class_static(),

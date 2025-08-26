@@ -25,7 +25,7 @@ public:
     void _physics_process( double delta ) override;
     void set_tilemap_layer( godot::TileMapLayer* tml, const GlobalTypesMap& global_tiles_vals );
 
-    int get_start_pos() { return m_start_pos; }
+    int get_start_pos() const { return m_start_pos; }
     void set_start_pos( const int _val ) { m_start_pos = _val; }
 protected:
     static void _bind_methods();

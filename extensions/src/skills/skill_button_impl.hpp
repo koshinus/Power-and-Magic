@@ -21,9 +21,9 @@ public:
 
     godot::ImageTexture get_texture() { return m_texture; }
     void set_texture( const godot::ImageTexture val ) { /*TODO*/ }
-    int get_skill_num() { return m_skill_num; }
+    int get_skill_num() const { return m_skill_num; }
     void set_skill_num( const int val ) { m_skill_num = val; }
-    int get_skill_group() { return m_skill_group; }
+    int get_skill_group() const { return m_skill_group; }
     void set_skill_group( const int val ) { m_skill_group = val; }
 protected:
     static void _bind_methods();

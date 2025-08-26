@@ -17,11 +17,11 @@ public:
     void _ready() override;
     void set_amount( int new_amount );
 
-    godot::Texture2D get_button_texture() { return m_button_texture; }
+    godot::Texture2D get_button_texture() const { return m_button_texture; }
     void set_button_texture( const godot::Texture2D val ) { /*TODO*/}
-    bool get_btn_is_active() { return m_button_is_active; }
+    bool get_btn_is_active() const { return m_button_is_active; }
     void set_btn_is_active( const bool val ) { m_button_is_active = val; }
-    bool get_hide_on_zero() { return m_hide_on_zero; }
+    bool get_hide_on_zero() const { return m_hide_on_zero; }
     void set_hide_on_zero( const bool val ) { m_hide_on_zero = val; }
 protected:
     static void _bind_methods();

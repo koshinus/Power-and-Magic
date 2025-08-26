@@ -44,7 +44,7 @@ void MainMenuImpl::_bind_methods()
     godot::ClassDB::bind_method( godot::D_METHOD( ON_CONFIRMED ), &MainMenuImpl::on_confirmed );
     godot::ClassDB::bind_method( godot::D_METHOD( ON_CANCELED ), &MainMenuImpl::on_canceled );
 
-    BindHelper::property<MainMenuImpl>( AMPLITUDE, &MainMenuImpl::get_amplitude, &MainMenuImpl::set_amplitude );
+    BindHelper<MainMenuImpl>::property<double>( AMPLITUDE, &MainMenuImpl::get_amplitude, &MainMenuImpl::set_amplitude );
 }
 
 void MainMenuImpl::test_pressed()
