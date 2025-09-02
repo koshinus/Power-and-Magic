@@ -1,3 +1,4 @@
+#include "utils/pwm_properties.hpp"
 #include "utils/pwm_string_view.hpp"
 // #include "maps/local_level_impl.hpp"
 #include "global_interface_impl.hpp"
@@ -36,9 +37,11 @@ GlobalLevelImpl::~GlobalLevelImpl()
 
 void GlobalLevelImpl::_bind_methods()
 {
+    using bh = BindHelper<GlobalLevelImpl>;
+
     // TODO: find a way to add custom types to godot variant types
     // godot::ClassDB::bind_method( godot::D_METHOD( ON_HERO_SELECTED ), &GlobalLevelImpl::on_hero_selected );
-    // godot::ClassDB::bind_method( godot::D_METHOD( ON_VIEW_CHANGED ), &GlobalLevelImpl::on_view_changed );
+    bh::method( ON_VIEW_CHANGED, &GlobalLevelImpl::on_view_changed );
 }
 
 

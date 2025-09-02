@@ -39,12 +39,13 @@ MainMenuImpl::~MainMenuImpl()
 
 void MainMenuImpl::_bind_methods()
 {
-    godot::ClassDB::bind_method( godot::D_METHOD( ON_PLAY ), &MainMenuImpl::on_play_pressed );
-    godot::ClassDB::bind_method( godot::D_METHOD( ON_QUIT ), &MainMenuImpl::on_quit_pressed );
-    godot::ClassDB::bind_method( godot::D_METHOD( ON_CONFIRMED ), &MainMenuImpl::on_confirmed );
-    godot::ClassDB::bind_method( godot::D_METHOD( ON_CANCELED ), &MainMenuImpl::on_canceled );
+    using bh = BindHelper<MainMenuImpl>;
+    bh::method( ON_PLAY, &MainMenuImpl::on_play_pressed );
+    bh::method( ON_QUIT, &MainMenuImpl::on_quit_pressed );
+    bh::method( ON_CONFIRMED, &MainMenuImpl::on_confirmed );
+    bh::method( ON_CANCELED, &MainMenuImpl::on_canceled );
 
-    BindHelper<MainMenuImpl>::property<double>( AMPLITUDE, &MainMenuImpl::get_amplitude, &MainMenuImpl::set_amplitude );
+    bh::property<double>( AMPLITUDE, &MainMenuImpl::get_amplitude, &MainMenuImpl::set_amplitude );
 }
 
 void MainMenuImpl::test_pressed()

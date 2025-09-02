@@ -41,12 +41,10 @@ HeroSceneImpl::~HeroSceneImpl()
 
 void HeroSceneImpl::_bind_methods()
 {
-    BindHelper<HeroSceneImpl>::property<int>( START_POS,
-                                          &HeroSceneImpl::get_start_pos,
-                                          &HeroSceneImpl::set_start_pos );
-    godot::ClassDB::add_signal( get_class_static(),
-                                godot::MethodInfo{ signals::HERO_SELECTED,
-                                                   godot::PropertyInfo{ godot::Variant::BOOL, SELECTED } } );
+    using bh = BindHelper<HeroSceneImpl>;
+    bh::property<int>( START_POS, &HeroSceneImpl::get_start_pos,
+                                  &HeroSceneImpl::set_start_pos );
+    bh::signal( signals::HERO_SELECTED, godot::PropertyInfo{ godot::Variant::BOOL, SELECTED } );
 }
 
 void HeroSceneImpl::_ready()

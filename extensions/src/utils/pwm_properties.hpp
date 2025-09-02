@@ -53,27 +53,26 @@ constexpr godot::Variant::Type get_godot_variant_t()
     return godot::Variant::NIL;
 }
 
-template<typename T>
-struct TypedProperty
-{
-    explicit TypedProperty( pwm::string_view prop_name ) : m_prop_name{ prop_name } {}
-    godot::PropertyInfo toPropInfo() { return godot::PropertyInfo{ get_godot_variant_t<T>(), m_prop_name }; }
-    pwm::string_view m_prop_name;
-};
-
 template<GodotNode ParentT>
 struct BindHelper
 {
-    template<PropertyMethod<ParentT> MethodT, typename... Args>
-    static godot::MethodBind* method( pwm::string_view mname, MethodT fn, Args... args )
+    template<typename RetT, typename MethodT, typename... Args>
+    requires std::same_as<MemFnPtr<ParentT, RetT, Args...>, MethodT>
+    static godot::MethodBind* method( pwm::string_view mname, MethodT&& fn, Args&&... args )
     {
         return godot::ClassDB::bind_method( godot::D_METHOD( mname ), fn, std::forward( args )... );
     }
 
+    template<typename MethodT, typename... Args>
+    requires std::same_as<MemFnPtr<ParentT, void, Args...>, MethodT>
+    static godot::MethodBind* method( pwm::string_view mname, MethodT&& fn, Args&&... args )
+    {
+        return godot::ClassDB::bind_method( godot::D_METHOD( mname ), fn, std::forward( args )... );
+    }
 
     template<typename PropT, typename GetFnT, typename SetFnT>
-    requires std::is_same_v<GetPtrType<PropT, ParentT>, GetFnT> &&
-             std::is_same_v<SetPtrType<PropT, ParentT>, SetFnT>
+    requires std::same_as<GetPtrType<PropT, ParentT>, GetFnT> &&
+             std::same_as<SetPtrType<PropT, ParentT>, SetFnT>
     static void property( pwm::string_view name, GetFnT get_fn, SetFnT set_fn )
     {
         auto get = std::vformat( "get_{}", std::make_format_args( name.toStd() ) );
@@ -85,14 +84,10 @@ struct BindHelper
                 godot::PropertyInfo( get_godot_variant_t<PropT>(), name ), set.c_str(), get.c_str() );
     }
 
-    template<typename... TypedProperty>
-    static void signal( pwm::string_view signal_name, TypedProperty... args )
+    template<typename... Args, typename = std::enable_if_t<(std::is_convertible_v<Args, godot::PropertyInfo> && ...)>>
+    static void signal( pwm::string_view signal_name, const Args&... args )
     {
-        // godot::ClassDB::add_signal( ParentT::get_class_static(),
-        //                            godot::MethodInfo{ signal_name,
-        //                                              godot::PropertyInfo{ godot::Variant::BOOL, TOGGLED },
-        //                                              godot::PropertyInfo{ godot::Variant::INT, SKILL_NUM },
-        //                                              godot::PropertyInfo{ godot::Variant::INT, SKILL_GROUP } } );
+        godot::ClassDB::add_signal( ParentT::get_class_static(), godot::MethodInfo{ signal_name, args...} );
     }
 };
 

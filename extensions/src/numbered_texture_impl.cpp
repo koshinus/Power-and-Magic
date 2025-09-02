@@ -36,20 +36,19 @@ NumberedTextureImpl::~NumberedTextureImpl()
 
 void NumberedTextureImpl::_bind_methods()
 {
+    using bh = BindHelper<NumberedTextureImpl>;
     // TODO: godot::ImageTexture is not in Variant type
     // PwmProperty<godot::Texture2D>::bind<NumberedTextureImpl>( BTN_TEXTURE,
     //                                       &NumberedTextureImpl::get_button_texture,
     //                                       &NumberedTextureImpl::set_button_texture );
 
-    BindHelper<NumberedTextureImpl>::property<bool>( BTN_IS_ACTIVE,
-                                          &NumberedTextureImpl::get_btn_is_active,
-                                          &NumberedTextureImpl::set_btn_is_active );
+    bh::property<bool>( BTN_IS_ACTIVE, &NumberedTextureImpl::get_btn_is_active,
+                                       &NumberedTextureImpl::set_btn_is_active );
 
-    BindHelper<NumberedTextureImpl>::property<bool>( HIDE_ON_ZERO,
-                                          &NumberedTextureImpl::get_hide_on_zero,
-                                          &NumberedTextureImpl::set_hide_on_zero );
+    bh::property<bool>( HIDE_ON_ZERO, &NumberedTextureImpl::get_hide_on_zero,
+                                      &NumberedTextureImpl::set_hide_on_zero );
 
-    godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::TEXTURE_ACTIVATED } );
+    bh::signal( signals::TEXTURE_ACTIVATED );
 }
 
 void NumberedTextureImpl::_ready()

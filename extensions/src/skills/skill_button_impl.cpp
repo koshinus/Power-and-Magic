@@ -35,22 +35,20 @@ SkillButtonImpl::~SkillButtonImpl()
 
 void SkillButtonImpl::_bind_methods()
 {
+    using bh = BindHelper<SkillButtonImpl>;
+
     // TODO: godot::ImageTexture is not in Variant type
     // PwmProperty<godot::ImageTexture>::bind<SkillButtonImpl>( TEXTURE,
     //                                       &SkillButtonImpl::get_texture,
     //                                       &SkillButtonImpl::set_texture );
-    BindHelper<SkillButtonImpl>::property<int>( SKILL_NUM,
-                                          &SkillButtonImpl::get_skill_num,
-                                          &SkillButtonImpl::set_skill_num );
-    BindHelper<SkillButtonImpl>::property<int>( SKILL_GROUP,
-                                          &SkillButtonImpl::get_skill_group,
-                                          &SkillButtonImpl::set_skill_group );
+    bh::property<int>( SKILL_NUM, &SkillButtonImpl::get_skill_num,
+                                  &SkillButtonImpl::set_skill_num );
+    bh::property<int>( SKILL_GROUP, &SkillButtonImpl::get_skill_group,
+                                    &SkillButtonImpl::set_skill_group );
 
-    godot::ClassDB::add_signal( get_class_static(),
-                               godot::MethodInfo{ signals::SKILL_ACTIVATED,
-                                                 godot::PropertyInfo{ godot::Variant::BOOL, TOGGLED },
-                                                 godot::PropertyInfo{ godot::Variant::INT, SKILL_NUM },
-                                                 godot::PropertyInfo{ godot::Variant::INT, SKILL_GROUP } } );
+    bh::signal( signals::SKILL_ACTIVATED, godot::PropertyInfo{ godot::Variant::BOOL, TOGGLED },
+                                          godot::PropertyInfo{ godot::Variant::INT, SKILL_NUM },
+                                          godot::PropertyInfo{ godot::Variant::INT, SKILL_GROUP } );
 }
 
 godot::Ref<godot::Texture2D> SkillButtonImpl::circled_texture( godot::Ref<godot::Texture2D> txtr, godot::Color color, int radius, godot::Vector2 center )

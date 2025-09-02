@@ -2,6 +2,7 @@
 #include <godot_cpp/classes/h_box_container.hpp>
 #include <godot_cpp/classes/panel.hpp>
 
+#include "utils/pwm_properties.hpp"
 #include "utils/pwm_string_view.hpp"
 #include "global_interface_impl.hpp"
 
@@ -27,8 +28,9 @@ void GlobalInterfaceImpl::_ready()
 
 void GlobalInterfaceImpl::_bind_methods()
 {
-    godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::VIEW_CHANGED } );
-    godot::ClassDB::add_signal( get_class_static(), godot::MethodInfo{ signals::MAGIC_BOOK_CLICKED } );
+    using bh = BindHelper<GlobalInterfaceImpl>;
+    bh::signal( signals::VIEW_CHANGED );
+    bh::signal( signals::MAGIC_BOOK_CLICKED );
 }
 
 void GlobalInterfaceImpl::show_hero_depending_parts( std::optional<HeroInfo> info )
