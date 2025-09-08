@@ -28,7 +28,7 @@ class SkillGroupImpl: public godot::Node
 public:
     SkillGroupImpl();
     ~SkillGroupImpl();
-    void on_skill_activated( bool toggled, int num, int group );
+    void on_skill_activated( godot::Variant toggled, godot::Variant num, godot::Variant group );
     void setup_group( SkillLevel* beginer, SkillLevel* advanced, SkillLevel* expert,
                      const std::map<int, bool>& skills_dict );
 
@@ -48,7 +48,7 @@ private:
     SkillLevel* advanced_lvl;
     SkillLevel* expert_lvl;
 
-    int activated_num;
+    int m_activated_num;
 
     int m_group_num;
     int m_advanced_threshold;

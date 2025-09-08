@@ -13,6 +13,12 @@ namespace pwm
 template<typename NodeT>
 concept GodotNode = std::derived_from<NodeT, godot::Node>;
 
+template<typename T>
+concept GodotVariant = std::convertible_to<T, godot::Variant>;
+
+template<typename T>
+concept GodotPInfo = std::convertible_to<T, godot::PropertyInfo>;
+
 template<typename RetT, typename T>
 using SetPtrType = void(T::*)(const RetT);
 
@@ -22,6 +28,9 @@ using GetPtrType = RetT(T::*)() const;
 template<typename T, typename RetT, typename... Args>
 using MemFnPtr = RetT(T::*)(Args...);
 
+template<typename T, typename... Args>
+using VoidMemFnPtr = void(T::*)(Args...);
+
 template<typename T, typename ParentT>
 concept PropertySetMethod = std::is_member_function_pointer_v<SetPtrType<T, ParentT>>;
 
@@ -30,6 +39,9 @@ concept PropertyGetMethod = std::is_member_function_pointer_v<GetPtrType<T, Pare
 
 template<typename T, typename RetT, typename... Args>
 concept PropertyMethod = std::is_member_function_pointer_v<MemFnPtr<T, RetT, Args>...>;
+
+template<typename T, typename RetT, typename... Args>
+concept VoidPropertyMethod = std::is_member_function_pointer_v<VoidMemFnPtr<T, Args>...>;
 
 template<typename T>
 constexpr godot::Variant::Type get_godot_variant_t()
@@ -56,18 +68,18 @@ constexpr godot::Variant::Type get_godot_variant_t()
 template<GodotNode ParentT>
 struct BindHelper
 {
-    template<typename RetT, typename MethodT, typename... Args>
+    template<typename RetT, typename MethodT, GodotVariant... Args>
     requires std::same_as<MemFnPtr<ParentT, RetT, Args...>, MethodT>
-    static godot::MethodBind* method( pwm::string_view mname, MethodT&& fn, Args&&... args )
+    static godot::MethodBind* method( pwm::string_view mname, MethodT fn, Args... args )
     {
-        return godot::ClassDB::bind_method( godot::D_METHOD( mname ), fn, std::forward( args )... );
+        return godot::ClassDB::bind_method( godot::D_METHOD( mname ), fn, args... );
     }
 
-    template<typename MethodT, typename... Args>
-    requires std::same_as<MemFnPtr<ParentT, void, Args...>, MethodT>
-    static godot::MethodBind* method( pwm::string_view mname, MethodT&& fn, Args&&... args )
+    template<typename MethodT, GodotVariant... Args>
+    requires std::same_as<VoidMemFnPtr<ParentT, Args...>, MethodT>
+    static godot::MethodBind* method( pwm::string_view mname, MethodT fn, Args... args )
     {
-        return godot::ClassDB::bind_method( godot::D_METHOD( mname ), fn, std::forward( args )... );
+        return godot::ClassDB::bind_method( godot::D_METHOD( mname ), fn, args... );
     }
 
     template<typename PropT, typename GetFnT, typename SetFnT>
@@ -84,7 +96,7 @@ struct BindHelper
                 godot::PropertyInfo( get_godot_variant_t<PropT>(), name ), set.c_str(), get.c_str() );
     }
 
-    template<typename... Args, typename = std::enable_if_t<(std::is_convertible_v<Args, godot::PropertyInfo> && ...)>>
+    template<GodotPInfo... Args>
     static void signal( pwm::string_view signal_name, const Args&... args )
     {
         godot::ClassDB::add_signal( ParentT::get_class_static(), godot::MethodInfo{ signal_name, args...} );
