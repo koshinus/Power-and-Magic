@@ -2,7 +2,8 @@
 
 #include "../utils/world_generator_impl.hpp"
 #include "../utils/world_constants.hpp"
-#include "../utils/pwm_properties.hpp"
+#include "../utils/pwm_bindings.hpp"
+#include "../utils/pwm_constants.hpp"
 
 #include "local_map_impl.hpp"
 
@@ -11,11 +12,11 @@
 namespace pwm
 {
 
-constexpr auto PX_TILE_SIZE = pwm::string_view{ "px_tile_size" };
-constexpr auto LAYER_WIDTH = pwm::string_view{ "layer_width" };
-constexpr auto LAYER_HEIGHT = pwm::string_view{ "layer_height" };
+constinit auto GMAP_TILE_SIZE = pwm::string_view{ "px_tile_size" };
+constinit auto GMAP_LAYER_WIDTH = pwm::string_view{ "layer_width" };
+constinit auto GMAP_LAYER_HEIGHT = pwm::string_view{ "layer_height" };
 
-constexpr auto GLOBAL_MAP_SURFACE = pwm::string_view{ "GlobalMapSurface" };
+constinit auto GLOBAL_MAP_SURFACE = pwm::string_view{ "GlobalMapSurface" };
 
 GlobalMapImpl::GlobalMapImpl()
     : m_px_tile_size( GLOBAL_TILE_SIZE_IN_PIXELS )
@@ -30,15 +31,13 @@ GlobalMapImpl::~GlobalMapImpl()
 
 void GlobalMapImpl::_bind_methods()
 {
-    BindHelper<GlobalMapImpl>::property<int>( PX_TILE_SIZE,
-                                          &GlobalMapImpl::get_px_tile_size,
-                                          &GlobalMapImpl::set_px_tile_size );
-    BindHelper<GlobalMapImpl>::property<int>( LAYER_WIDTH,
-                                          &GlobalMapImpl::get_layer_width,
+    using bh = BindHelper<GlobalMapImpl>;
+    bh::property<int>( GMAP_TILE_SIZE, &GlobalMapImpl::get_px_tile_size,
+                                       &GlobalMapImpl::set_px_tile_size );
+    bh ::property<int>( GMAP_LAYER_WIDTH, &GlobalMapImpl::get_layer_width,
                                           &GlobalMapImpl::set_layer_width );
-    BindHelper<GlobalMapImpl>::property<int>( LAYER_HEIGHT,
-                                          &GlobalMapImpl::get_layer_height,
-                                          &GlobalMapImpl::set_layer_height );
+    bh ::property<int>( GMAP_LAYER_HEIGHT, &GlobalMapImpl::get_layer_height,
+                                           &GlobalMapImpl::set_layer_height );
 }
 
 godot::TileMapLayer* GlobalMapImpl::get_surface()
@@ -57,7 +56,7 @@ void GlobalMapImpl::set_based_on_generated( const WorldInfo& world_info )
         {
             auto grid_pos = godot::Vector2i( x, y );
             int scene_tile_id = loc_scenes.local_maps[ grid_pos ];
-            global_surface->set_cell( grid_pos, src_id, godot::Vector2i( 0, 0 ), scene_tile_id );
+            global_surface->set_cell( grid_pos, src_id, VEC_ZERO, scene_tile_id );
             auto loc_map_scene = dynamic_cast<godot::TileSetScenesCollectionSource*>(
                                     *global_surface->get_tile_set()->get_source( src_id ) )
                                                   ->get_scene_tile_scene( scene_tile_id );

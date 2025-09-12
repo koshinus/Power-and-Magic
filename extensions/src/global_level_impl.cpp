@@ -1,33 +1,29 @@
-#include "utils/pwm_properties.hpp"
+#include "utils/pwm_bindings.hpp"
 #include "utils/pwm_string_view.hpp"
+#include "utils/world_generator_impl.hpp"
+#include "utils/pwm_constants.hpp"
+#include "utils/pwm_signals.hpp"
 // #include "maps/local_level_impl.hpp"
 #include "global_interface_impl.hpp"
 #include "hero/hero_scene_impl.hpp"
 #include "maps/global_map_impl.hpp"
-#include "utils/world_generator_impl.hpp"
 
 #include "global_level_impl.hpp"
 
 namespace pwm
 {
 
-constexpr auto ON_HERO_SELECTED = pwm::string_view{ "on_hero_selected" };
-constexpr auto ON_VIEW_CHANGED = pwm::string_view{ "on_view_changed" };
+constinit auto ON_HERO_SELECTED = pwm::string_view{ "on_hero_selected" };
+constinit auto ON_VIEW_CHANGED = pwm::string_view{ "on_view_changed" };
 
-constexpr auto GLOBAL_INTERFACE = pwm::string_view{ "GlobalInterface" };
-constexpr auto GLOBAL_MAP = pwm::string_view{ "GlobalMap" };
-constexpr auto MILITARY_HERO = pwm::string_view{ "MilitaryHero" };
-constexpr auto ECONOMIC_HERO = pwm::string_view{ "EconomicHero" };
-
-namespace signals
-{
-constexpr auto HERO_SELECTED = pwm::string_view{ "hero_selected" };
-constexpr auto VIEW_CHANGED = pwm::string_view{ "view_changed" };
-}
+constinit auto GLOBAL_INTERFACE = pwm::string_view{ "GlobalInterface" };
+constinit auto GLOBAL_MAP = pwm::string_view{ "GlobalMap" };
+constinit auto MILITARY_HERO = pwm::string_view{ "MilitaryHero" };
+constinit auto ECONOMIC_HERO = pwm::string_view{ "EconomicHero" };
 
 
 GlobalLevelImpl::GlobalLevelImpl()
-    : m_grid_pos( godot::Vector2i( 0, 0 ) )
+    : m_grid_pos( VEC_ZERO )
 {
 }
 
@@ -67,7 +63,7 @@ void GlobalLevelImpl::_ready()
 
 void GlobalLevelImpl::on_hero_selected( std::optional<HeroInfo> info )
 {
-    m_grid_pos = godot::Vector2i( 0, 0 );
+    m_grid_pos = VEC_ZERO;
     if ( info.has_value() )
     {
         m_grid_pos = info->grid_pos;
@@ -78,7 +74,7 @@ void GlobalLevelImpl::on_hero_selected( std::optional<HeroInfo> info )
 
 void GlobalLevelImpl::on_view_changed()
 {
-    if ( m_grid_pos == godot::Vector2i( 0, 0 ) )
+    if ( m_grid_pos == VEC_ZERO )
         return;
 //     //lvl_window.
 //     //lvl_window.visible = not lvl_window.visible

@@ -8,7 +8,7 @@
 namespace pwm
 {
 
-constexpr auto LOCAL_MAP_SCENE_PATH = pwm::string_view{ "res://scenes/maps/local_map.tscn" };
+constinit auto LOCAL_MAP_SCENE_PATH = pwm::string_view{ "res://scenes/maps/local_map.tscn" };
 
 double WorldGenerator::normalize( double noise_val )
 {

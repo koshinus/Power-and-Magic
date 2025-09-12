@@ -2,12 +2,10 @@
 #include <godot_cpp/classes/button.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/margin_container.hpp>
-#include <godot_cpp/classes/resource_loader.hpp>
-#include <godot_cpp/classes/packed_scene.hpp>
 
 #include "utils/pwm_string_view.hpp"
-#include "utils/pwm_properties.hpp"
-// #include "test_node_impl.hpp"
+#include "utils/pwm_bindings.hpp"
+#include "test_node_impl.hpp"
 // #include "global_level_impl.hpp"
 
 #include "main_menu_impl.hpp"
@@ -15,21 +13,18 @@
 namespace pwm
 {
 
-constexpr auto GLOBAL_LVL_SCENE = pwm::string_view{ "res://scenes/global_level.tscn" };
-constexpr auto TEST_NODE_SCENE = pwm::string_view{ "res://scenes/test_node.tscn" };
+constinit auto GLOBAL_LVL_SCENE = pwm::string_view{ "res://scenes/global_level.tscn" };
+constinit auto TEST_NODE_SCENE = pwm::string_view{ "res://scenes/test_node.tscn" };
 
-constexpr auto ON_CONFIRMED = pwm::string_view{ "on_confirmed" };
-constexpr auto ON_CANCELED = pwm::string_view{ "on_canceled" };
-constexpr auto ON_PLAY = pwm::string_view{ "on_play_pressed" };
-constexpr auto ON_QUIT = pwm::string_view{ "on_quit_pressed" };
-constexpr auto PRESSED_SIGNAL = pwm::string_view{ "pressed" };
+constinit auto ON_CONFIRMED = pwm::string_view{ "on_confirmed" };
+constinit auto ON_CANCELED = pwm::string_view{ "on_canceled" };
+constinit auto ON_PLAY = pwm::string_view{ "on_play_pressed" };
+constinit auto ON_QUIT = pwm::string_view{ "on_quit_pressed" };
+constinit auto PRESSED_SIGNAL = pwm::string_view{ "pressed" };
 
-constexpr auto AMPLITUDE = pwm::string_view{ "amplitude" };
-
-constexpr auto MARGIN_CONTAINER = pwm::string_view{ "MarginContainer" };
+constinit auto MARGIN_CONTAINER = pwm::string_view{ "MarginContainer" };
 
 MainMenuImpl::MainMenuImpl()
-    : amplitude( 10 )
 {
 }
 
@@ -44,16 +39,13 @@ void MainMenuImpl::_bind_methods()
     bh::method( ON_QUIT, &MainMenuImpl::on_quit_pressed );
     bh::method( ON_CONFIRMED, &MainMenuImpl::on_confirmed );
     bh::method( ON_CANCELED, &MainMenuImpl::on_canceled );
-
-    bh::property<double>( AMPLITUDE, &MainMenuImpl::get_amplitude, &MainMenuImpl::set_amplitude );
 }
 
 void MainMenuImpl::test_pressed()
 {
-    //auto loaded_resource = godot::ResourceLoader::get_singleton()->load( TEST_NODE_SCENE );
-    //auto inst = dynamic_cast<TestNodeImpl*>( dynamic_cast<godot::PackedScene*>( loaded_resource.ptr() )->instantiate() );
-    // inst->init_by_params( 7, std::vector<int>{ 4, 5, 5, 6 } );
-    //get_tree()->get_root()->add_child( inst );
+    auto test = loadSceneAsNode<TestNodeImpl>( TEST_NODE_SCENE );
+    getRoot( this )->add_child( test );
+    get_node<godot::MarginContainer>( MARGIN_CONTAINER )->hide();
 }
 
 void MainMenuImpl::normal_pressed()
@@ -67,8 +59,8 @@ void MainMenuImpl::normal_pressed()
 
 void MainMenuImpl::on_play_pressed()
 {
-    // test_pressed();
-    normal_pressed();
+    test_pressed();
+    // normal_pressed();
 }
 
 godot::ConfirmationDialog* MainMenuImpl::form_quit_dialog()
@@ -86,7 +78,7 @@ godot::ConfirmationDialog* MainMenuImpl::form_quit_dialog()
 void MainMenuImpl::on_quit_pressed()
 {
     auto dialog = form_quit_dialog();
-    get_tree()->get_current_scene()->add_child( dialog );
+    add_child( dialog );
     dialog->popup_centered();
 }
 

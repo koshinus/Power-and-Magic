@@ -3,7 +3,7 @@
 #include <godot_cpp/classes/texture2d.hpp>
 #include <godot_cpp/classes/control.hpp>
 
-#include "utils/pwm_properties.hpp"
+#include "utils/pwm_bindings.hpp"
 
 namespace pwm
 {

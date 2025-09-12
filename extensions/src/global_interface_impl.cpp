@@ -2,22 +2,18 @@
 #include <godot_cpp/classes/h_box_container.hpp>
 #include <godot_cpp/classes/panel.hpp>
 
-#include "utils/pwm_properties.hpp"
+#include "utils/pwm_bindings.hpp"
 #include "utils/pwm_string_view.hpp"
+#include "utils/pwm_signals.hpp"
+
 #include "global_interface_impl.hpp"
 
 namespace pwm
 {
 
-constexpr auto HBOX_ARMY = pwm::string_view{ "HBoxArmy" };
-constexpr auto HERO_PANEL = pwm::string_view{ "HeroPanel" };
-constexpr auto HBOX_ADDITIONAL_BTNS = pwm::string_view{ "HBoxAdditionalButtons" };
-
-namespace signals
-{
-constexpr auto VIEW_CHANGED = pwm::string_view{ "view_changed" };
-constexpr auto MAGIC_BOOK_CLICKED = pwm::string_view{ "magic_book_clicked" };
-}
+constinit auto HBOX_ARMY = pwm::string_view{ "HBoxArmy" };
+constinit auto HERO_PANEL = pwm::string_view{ "HeroPanel" };
+constinit auto HBOX_ADDITIONAL_BTNS = pwm::string_view{ "HBoxAdditionalButtons" };
 
 void GlobalInterfaceImpl::_ready()
 {

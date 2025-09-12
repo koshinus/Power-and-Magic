@@ -1,28 +1,25 @@
 #include <godot_cpp/classes/texture_button.hpp>
 
 #include "../utils/pwm_string_view.hpp"
-#include "../utils/pwm_properties.hpp"
+#include "../utils/pwm_bindings.hpp"
+#include "../utils/pwm_signals.hpp"
+#include "../utils/pwm_constants.hpp"
 
 #include "skill_button_impl.hpp"
 
 namespace pwm
 {
 
-constexpr auto BTN = pwm::string_view{ "Btn" };
+constinit auto BTN = pwm::string_view{ "Btn" };
 
-constexpr auto TEXTURE = pwm::string_view{ "texture" };
-constexpr auto SKILL_NUM = pwm::string_view{ "skill_num" };
-constexpr auto SKILL_GROUP = pwm::string_view{ "skill_group" };
+constinit auto TEXTURE = pwm::string_view{ "texture" };
+constinit auto SKILL_NUM = pwm::string_view{ "skill_num" };
+constinit auto SKILL_GROUP = pwm::string_view{ "skill_group" };
 
-constexpr auto TOGGLED = pwm::string_view{ "toggled" };
-
-namespace signals
-{
-constexpr auto SKILL_ACTIVATED = pwm::string_view{ "skill_activated" };
-}
+constinit auto TOGGLED = pwm::string_view{ "toggled" };
 
 SkillButtonImpl::SkillButtonImpl()
-    : m_texture( godot::ImageTexture() )
+    : m_texture( nullptr )
     , m_skill_num( 0 )
     , m_skill_group( 0 )
 {
@@ -93,8 +90,7 @@ void SkillButtonImpl::setup_textures( const godot::Ref<godot::Texture2D>& txtr )
     btn->set_texture_normal( txtr );
     btn->set_texture_disabled( grayscaled_texture( txtr ) );
     btn->set_texture_pressed( circled_texture( btn->get_texture_disabled(),
-                                godot::Color( 1, 1, 0, 1 ), // Color.YELLOW
-                                txtr->get_width()/2, txtr->get_size()/2 ) );
+                                colors::YELLOW, txtr->get_width()/2, txtr->get_size()/2 ) );
 }
 
 void SkillButtonImpl::on_btn_toggled( bool toggled_on )

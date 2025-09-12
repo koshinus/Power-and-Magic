@@ -1,32 +1,21 @@
-//extends Control
-//class_name Selectable
-
 #include <godot_cpp/classes/button.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 
 #include "utils/pwm_string_view.hpp"
+#include "utils/pwm_signals.hpp"
+#include "utils/pwm_bindings.hpp"
 
 #include "selectable_impl.hpp"
 
 namespace pwm
 {
 
-constexpr auto EXCLUSIVE = pwm::string_view{ "exclusive" };
-constexpr auto GROUP_NAME = pwm::string_view{ "group_name" };
-constexpr auto BUTTON = pwm::string_view{ "Button" };
-constexpr auto SELECTED = pwm::string_view{ "selection_flag" };
+constinit auto BUTTON = pwm::string_view{ "Button" };
 
-namespace signals
-{
-constexpr auto SELECTED = pwm::string_view{ "selected" };
-}
+constinit auto EXCLUSIVE = pwm::string_view{ "exclusive" };
+constinit auto GROUP_NAME = pwm::string_view{ "group_name" };
+constinit auto SELECTED_FLAG = pwm::string_view{ "selection_flag" };
 
-//signal selected( selection_flag : bool )
-
-// @export var exclusive = true
-// @export var group_name : String
-
-// var is_selected : bool = false : set = set_selected;
 
 SelectableImpl::SelectableImpl()
     : m_group_name( "" )
@@ -47,7 +36,7 @@ void SelectableImpl::_bind_methods()
     bh::property<bool>( EXCLUSIVE, &SelectableImpl::get_exclusive,
                                    &SelectableImpl::set_exclusive );
 
-    bh::signal( signals::SELECTED, godot::PropertyInfo{ godot::Variant::BOOL, SELECTED } );
+    bh::signal( signals::SELECTED, godot::PropertyInfo{ godot::Variant::BOOL, SELECTED_FLAG } );
 }
 
 void SelectableImpl::set_selected( bool selection_flag )

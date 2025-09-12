@@ -2,8 +2,6 @@
 
 #include <godot_cpp/classes/control.hpp>
 
-#include "utils/pwm_properties.hpp"
-
 namespace pwm
 {
 

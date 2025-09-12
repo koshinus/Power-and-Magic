@@ -13,8 +13,8 @@
 namespace pwm
 {
 
-constexpr auto GRID_2D_NODE = pwm::string_view{ "Grid2DNode" };
-constexpr auto LOCAL_MAP_SURFACE = pwm::string_view{ "LocalMapSurface" };
+constinit auto GRID_2D_NODE = pwm::string_view{ "Grid2DNode" };
+constinit auto LOCAL_MAP_SURFACE = pwm::string_view{ "LocalMapSurface" };
 
 LocalMapImpl::LocalMapImpl()
 {

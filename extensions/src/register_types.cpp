@@ -2,9 +2,11 @@
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
-#include "utils/pwm_properties.hpp"
+#include "utils/pwm_bindings.hpp"
 
 #include "main_menu_impl.hpp"
+#include "test_node_impl.hpp"
+#include "skills/skill_button_impl.hpp"
 // #include "global_level_impl.hpp"
 // #include "combat_interface_impl.hpp"
 
@@ -34,7 +36,11 @@ void initialize_pwmlibs_module( godot::ModuleInitializationLevel p_level )
         return;
     }
 
-    pwm::registrate< pwm::MainMenuImpl >();
+    pwm::registrate<
+        pwm::MainMenuImpl
+        , pwm::TestNodeImpl
+        // , pwm::SkillButtonImpl
+        >();
 }
 
 void uninitialize_pwmlibs_module( godot::ModuleInitializationLevel p_level )

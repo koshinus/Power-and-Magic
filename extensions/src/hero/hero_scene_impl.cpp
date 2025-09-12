@@ -5,26 +5,22 @@
 
 #include "../utils/world_constants.hpp"
 #include "../utils/grid_movement_impl.hpp"
-#include "../utils/pwm_properties.hpp"
+#include "../utils/pwm_bindings.hpp"
+#include "../utils/pwm_constants.hpp"
+#include "../utils/pwm_signals.hpp"
 
 #include "hero_scene_impl.hpp"
 
 namespace pwm
 {
 
-const godot::Vector2 VECTOR_MINUS_ONE = godot::Vector2( -1,-1 );
-constexpr const double speed = 300.0;
-constexpr const int DISTANSE_TO_START_MOVE = 3;
+constinit const double speed = 300.0;
+constinit const int DISTANSE_TO_START_MOVE = 3;
 
-constexpr auto START_POS = pwm::string_view{ "start_pos" };
-constexpr auto HERO_INFO = pwm::string_view{ "info" };
-constexpr auto SELECTED = pwm::string_view{ "selection_flag" };
-constexpr auto HERO_CAM = pwm::string_view{ "HeroCam" };
-
-namespace signals
-{
-constexpr auto HERO_SELECTED = pwm::string_view{ "hero_selected" };
-}
+constinit auto START_POS = pwm::string_view{ "start_pos" };
+constinit auto HERO_INFO = pwm::string_view{ "info" };
+constinit auto SELECTED = pwm::string_view{ "selection_flag" };
+constinit auto HERO_CAM = pwm::string_view{ "HeroCam" };
 
 HeroSceneImpl::HeroSceneImpl()
     : m_start_pos( GLOBAL_TILE_SIZE_IN_PIXELS/2 )
@@ -59,7 +55,7 @@ void HeroSceneImpl::_physics_process( double delta )
     {
         return;
     }
-    auto target_pos = VECTOR_MINUS_ONE;
+    auto target_pos = VEC_MINUS_ONE;
     auto position = get_position();
     if ( m_astar_grid_2d == nullptr )
     {
@@ -68,7 +64,7 @@ void HeroSceneImpl::_physics_process( double delta )
     else
     {
         target_pos = process_astar( position );
-        if ( target_pos == VECTOR_MINUS_ONE )
+        if ( target_pos == VEC_MINUS_ONE )
         {
             return;
         }
@@ -95,10 +91,10 @@ godot::Vector2 HeroSceneImpl::process_row( godot::Vector2 cur_pos )
         click_grid = GridMovement::calculate_grid( m_click_pos, tsize );
         godot::print_line( "Click grid: ", click_grid, " pos grid: ", pos_grid);
         if ( click_grid == pos_grid )
-            return VECTOR_MINUS_ONE;
+            return VEC_MINUS_ONE;
     }
     if ( cur_pos.distance_to( m_click_pos ) <= DISTANSE_TO_START_MOVE )
-        return VECTOR_MINUS_ONE;
+        return VEC_MINUS_ONE;
     return ( godot::Vector2( m_click_pos ) - cur_pos ).normalized();
 }
 
@@ -114,26 +110,26 @@ godot::Vector2 HeroSceneImpl::process_astar( godot::Vector2 cur_pos )
             // ignoring left click while moving to the target position
             // TODO: in the future, there can be some more specific reaction
             // for example, stop current movement and recalculate path
-            return VECTOR_MINUS_ONE;
+            return VEC_MINUS_ONE;
         }
         m_click_pos = GridMovement::calculate_grid_coords( get_global_mouse_position(), tsize );
         auto click_grid = GridMovement::calculate_grid( m_click_pos, tsize );
         if ( click_grid == pos_grid )
         {
-            return VECTOR_MINUS_ONE;
+            return VEC_MINUS_ONE;
         }
         m_astar_path = GridMovement::get_grid_path( m_astar_grid_2d, pos_grid, click_grid );
         godot::print_line( "Result path: ", m_astar_path, " clicked grid ", click_grid );
     }
     if ( m_astar_path.is_empty() )
     {
-        return VECTOR_MINUS_ONE;
+        return VEC_MINUS_ONE;
     }
     auto next_grid_center = GridMovement::calculate_grid_coords( godot::Vector2i( m_astar_path.front() )*tsize, tsize );
     if ( cur_pos.distance_to( next_grid_center ) <= DISTANSE_TO_START_MOVE )
     {
         m_astar_path.pop_front();
-        return VECTOR_MINUS_ONE;
+        return VEC_MINUS_ONE;
     }
     return ( godot::Vector2( next_grid_center ) - cur_pos ).normalized();
 }

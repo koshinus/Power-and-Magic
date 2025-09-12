@@ -1,9 +1,6 @@
-#ifndef GDEXAMPLE_REGISTER_TYPES_H
-#define GDEXAMPLE_REGISTER_TYPES_H
+#pragma once
 
 #include <godot_cpp/core/class_db.hpp>
 
 void initialize_pwmlibs_module( godot::ModuleInitializationLevel p_level );
 void uninitialize_pwmlibs_module( godot::ModuleInitializationLevel p_level );
-
-#endif // GDEXAMPLE_REGISTER_TYPES_H

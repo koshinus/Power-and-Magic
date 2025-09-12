@@ -5,23 +5,20 @@
 #include <godot_cpp/classes/label.hpp>
 
 #include "utils/pwm_string_view.hpp"
+#include "utils/pwm_signals.hpp"
+
 #include "numbered_texture_impl.hpp"
 
 namespace pwm
 {
 
-constexpr auto BTN_WITH_TEXTURE = pwm::string_view{ "VBoxContainer/BtnWithTexture" };
-constexpr auto AMOUNT = pwm::string_view{ "VBoxContainer/Amount" };
+constinit auto BTN_WITH_TEXTURE = pwm::string_view{ "VBoxContainer/BtnWithTexture" };
+constinit auto AMOUNT = pwm::string_view{ "VBoxContainer/Amount" };
 
-constexpr auto BTN_IS_ACTIVE = pwm::string_view{ "button_is_active" };
-constexpr auto HIDE_ON_ZERO = pwm::string_view{ "hide_on_zero" };
-constexpr auto BTN_TEXTURE = pwm::string_view{ "button_texture" };
+constinit auto BTN_IS_ACTIVE = pwm::string_view{ "button_is_active" };
+constinit auto HIDE_ON_ZERO = pwm::string_view{ "hide_on_zero" };
+constinit auto BTN_TEXTURE = pwm::string_view{ "button_texture" };
 
-
-namespace signals
-{
-constexpr auto TEXTURE_ACTIVATED = pwm::string_view{ "texture_activated" };
-}
 
 NumberedTextureImpl::NumberedTextureImpl()
     : m_button_texture( godot::Texture2D() )

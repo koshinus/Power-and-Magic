@@ -3,7 +3,8 @@
 #include <format>
 #include <concepts>
 #include <godot_cpp/classes/node.hpp>
-#include <godot_cpp/godot.hpp>
+#include <godot_cpp/classes/resource_loader.hpp>
+#include <godot_cpp/classes/packed_scene.hpp>
 
 #include "pwm_string_view.hpp"
 
@@ -17,7 +18,7 @@ template<typename T>
 concept GodotVariant = std::convertible_to<T, godot::Variant>;
 
 template<typename T>
-concept GodotPInfo = std::convertible_to<T, godot::PropertyInfo>;
+concept GodotPropertyInfo = std::convertible_to<T, godot::PropertyInfo>;
 
 template<typename RetT, typename T>
 using SetPtrType = void(T::*)(const RetT);
@@ -44,7 +45,7 @@ template<typename T, typename RetT, typename... Args>
 concept VoidPropertyMethod = std::is_member_function_pointer_v<VoidMemFnPtr<T, Args>...>;
 
 template<typename T>
-constexpr godot::Variant::Type get_godot_variant_t()
+consteval godot::Variant::Type get_godot_variant_t()
 {
     if constexpr ( std::is_same_v<T, double> || std::is_same_v<T, float> )
     {
@@ -63,6 +64,19 @@ constexpr godot::Variant::Type get_godot_variant_t()
         return godot::Variant::COLOR;
     }
     return godot::Variant::NIL;
+}
+
+template<GodotNode T>
+T* loadSceneAsNode( pwm::string_view path_to_scene )
+{
+    auto loaded_resource = godot::ResourceLoader::get_singleton()->load( path_to_scene );
+    return static_cast<T*>( static_cast<godot::PackedScene*>( loaded_resource.ptr() )->instantiate() );
+}
+
+template<GodotNode T>
+godot::Window* getRoot( T* scene )
+{
+    return scene->get_tree()->get_root();
 }
 
 template<GodotNode ParentT>
@@ -96,7 +110,7 @@ struct BindHelper
                 godot::PropertyInfo( get_godot_variant_t<PropT>(), name ), set.c_str(), get.c_str() );
     }
 
-    template<GodotPInfo... Args>
+    template<GodotPropertyInfo... Args>
     static void signal( pwm::string_view signal_name, const Args&... args )
     {
         godot::ClassDB::add_signal( ParentT::get_class_static(), godot::MethodInfo{ signal_name, args...} );

@@ -19,8 +19,8 @@ public:
     void enable_button( bool enable );
     void setup_textures( const godot::Ref<godot::Texture2D>& txtr );
 
-    godot::ImageTexture get_texture() { return m_texture; }
-    void set_texture( const godot::ImageTexture val ) { /*TODO*/ }
+    godot::Ref<godot::ImageTexture> get_texture() { return m_texture; }
+    void set_texture( const godot::Ref<godot::ImageTexture> val ) { m_texture = val; }
     int get_skill_num() const { return m_skill_num; }
     void set_skill_num( const int val ) { m_skill_num = val; }
     int get_skill_group() const { return m_skill_group; }
@@ -28,7 +28,7 @@ public:
 protected:
     static void _bind_methods();
 private:
-    godot::ImageTexture m_texture;
+    godot::Ref<godot::ImageTexture> m_texture;
     int m_skill_num;
     int m_skill_group;
 

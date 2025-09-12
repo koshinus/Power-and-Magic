@@ -3,16 +3,23 @@
 namespace pwm
 {
 
-void TestNodeImpl::_bind_methods()
-{
-}
-
 TestNodeImpl::TestNodeImpl()
 {
+    godot::print_line( "TestNodeImpl" );
 }
 
 TestNodeImpl::~TestNodeImpl()
 {
+    godot::print_line( "~TestNodeImpl" );
+}
+
+void TestNodeImpl::_bind_methods()
+{
+}
+
+void TestNodeImpl::_ready()
+{
+    godot::print_line( "TestNodeImpl::_ready" );
 }
 
 }

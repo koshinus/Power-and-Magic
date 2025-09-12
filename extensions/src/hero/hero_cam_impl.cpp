@@ -1,14 +1,14 @@
 #include "../utils/world_constants.hpp"
-#include "../utils/pwm_properties.hpp"
+#include "../utils/pwm_bindings.hpp"
 
 #include "hero_cam_impl.hpp"
 
 namespace pwm
 {
 
-constexpr auto LAYER_WIDTH = pwm::string_view{ "layer_width" };
-constexpr auto LAYER_HEIGHT = pwm::string_view{ "layer_height" };
-constexpr auto PX_TILE_SIZE = pwm::string_view{ "tile_size" };
+constinit auto LAYER_WIDTH = pwm::string_view{ "layer_width" };
+constinit auto LAYER_HEIGHT = pwm::string_view{ "layer_height" };
+constinit auto LAYER_TILE_SIZE = pwm::string_view{ "tile_size" };
 
 HeroCameraImpl::HeroCameraImpl()
     : m_px_tile_size( GLOBAL_TILE_SIZE_IN_PIXELS )
@@ -24,15 +24,13 @@ HeroCameraImpl::~HeroCameraImpl()
 
 void HeroCameraImpl::_bind_methods()
 {
-    BindHelper<HeroCameraImpl>::property<int>( PX_TILE_SIZE,
-                                         &HeroCameraImpl::get_px_tile_size,
-                                         &HeroCameraImpl::set_px_tile_size );
-    BindHelper<HeroCameraImpl>::property<int>( LAYER_WIDTH,
-                                         &HeroCameraImpl::get_layer_width,
-                                         &HeroCameraImpl::set_layer_width );
-    BindHelper<HeroCameraImpl>::property<int>( LAYER_HEIGHT,
-                                         &HeroCameraImpl::get_layer_height,
-                                         &HeroCameraImpl::set_layer_height );
+    using bh = BindHelper<HeroCameraImpl>;
+    bh::property<int>( LAYER_TILE_SIZE, &HeroCameraImpl::get_px_tile_size,
+                                        &HeroCameraImpl::set_px_tile_size );
+    bh::property<int>( LAYER_WIDTH, &HeroCameraImpl::get_layer_width,
+                                    &HeroCameraImpl::set_layer_width );
+    bh::property<int>( LAYER_HEIGHT, &HeroCameraImpl::get_layer_height,
+                                     &HeroCameraImpl::set_layer_height );
 }
 
 // Called when the node enters the scene tree for the first time.

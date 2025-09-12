@@ -10,6 +10,13 @@ class ConfirmationDialog;
 namespace pwm
 {
 
+/*
+ * MainMenu
+ *  MarginContainer, type - MarginContainer
+ *      VBoxContainer, type - VBoxContainer
+ *          Play, type - Button
+ *          Quit, type - Button
+ */
 class MainMenuImpl: public godot::Control
 {
     GDCLASS( MainMenuImpl, godot::Control )
@@ -21,16 +28,12 @@ public:
     void on_canceled();
     void on_play_pressed();
 
-    double get_amplitude() const { return amplitude; }
-    void set_amplitude( const double p_amplitude ) { amplitude = p_amplitude; }
 protected:
     static void _bind_methods();
 private:
     godot::ConfirmationDialog* form_quit_dialog();
     void test_pressed();
     void normal_pressed();
-
-    double amplitude;
 };
 
 }

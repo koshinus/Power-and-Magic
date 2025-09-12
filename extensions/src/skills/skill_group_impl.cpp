@@ -1,18 +1,18 @@
 #include <algorithm>
 
-#include "../utils/pwm_properties.hpp"
+#include "../utils/pwm_bindings.hpp"
 
 #include "skill_group_impl.hpp"
 
 namespace pwm
 {
 
-constexpr auto GROUP_NUM = pwm::string_view{ "group_num" };
-constexpr auto ADVANCED_THRESHOLD = pwm::string_view{ "advanced_threshold" };
-constexpr auto EXPERT_THRESHOLD = pwm::string_view{ "expert_threshold" };
+constinit auto GROUP_NUM = pwm::string_view{ "group_num" };
+constinit auto ADVANCED_THRESHOLD = pwm::string_view{ "advanced_threshold" };
+constinit auto EXPERT_THRESHOLD = pwm::string_view{ "expert_threshold" };
 
-constexpr auto SKILL_ACTIVATED = pwm::string_view{ "skill_activated" };
-constexpr auto ON_SKILL_ACTIVATED = pwm::string_view{ "on_skill_activated" };
+constinit auto SKILL_ACTIVATED = pwm::string_view{ "skill_activated" };
+constinit auto ON_SKILL_ACTIVATED = pwm::string_view{ "on_skill_activated" };
 
 SkillGroupImpl::SkillGroupImpl()
     : m_group_num( 0 )
