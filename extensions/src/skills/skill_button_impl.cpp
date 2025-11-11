@@ -4,6 +4,7 @@
 #include "../utils/pwm_bindings.hpp"
 #include "../utils/pwm_signals.hpp"
 #include "../utils/pwm_constants.hpp"
+#include "../utils/pwm_funcs.hpp"
 
 #include "skill_button_impl.hpp"
 
@@ -19,7 +20,8 @@ constinit auto SKILL_GROUP = pwm::string_view{ "skill_group" };
 constinit auto TOGGLED = pwm::string_view{ "toggled" };
 
 SkillButtonImpl::SkillButtonImpl()
-    : m_texture( nullptr )
+    : godot::Button()
+    // : m_texture( nullptr )
     , m_skill_num( 0 )
     , m_skill_group( 0 )
 {
@@ -51,31 +53,23 @@ void SkillButtonImpl::_bind_methods()
 godot::Ref<godot::Texture2D> SkillButtonImpl::circled_texture( godot::Ref<godot::Texture2D> txtr, godot::Color color, int radius, godot::Vector2 center )
 {
     auto res_img = txtr->get_image();
-    godot::Vector2i size = txtr->get_size();
-    for ( int y = 0; y < size.y; y ++ )
-    {
-        for ( int x = 0; x < size.x; x++ )
+    for_each_2d( txtr->get_size(), [&res_img, color, radius, center]( godot::Vector2i v ) {
+        if ( ( godot::Vector2( v ) - center ).length() == radius )
         {
-            if ( ( godot::Vector2( x, y ) - center ).length() == radius )
-                res_img->set_pixel( x, y, color );
+            res_img->set_pixelv( v, color );
         }
-    }
+    } );
     return godot::ImageTexture::create_from_image( res_img );
 }
 
 godot::Ref<godot::Texture2D> SkillButtonImpl::grayscaled_texture( godot::Ref<godot::Texture2D> txtr )
 {
     auto res_img = txtr->get_image();
-    godot::Vector2i size = txtr->get_size();
-    for ( int y = 0; y < size.y; y++ )
-    {
-        for ( int x = 0; x < size.x; x++ )
-        {
-            godot::Color color = res_img->get_pixel( x, y );
-            //Most popular algo for grayscailng was choosed: I=0.299R+0.587G+0.114B
-            res_img->set_pixel( x, y, godot::Color( color.get_r8()*0.299, color.get_g8()*0.587, color.get_b8()*0.114 ) );
-        }
-    }
+    for_each_2d( txtr->get_size(), [&res_img]( godot::Vector2i v ) {
+        godot::Color color = res_img->get_pixelv( v );
+        auto grayed = ( color.r + color.g + color.b )/3;
+        res_img->set_pixelv( v, godot::Color( grayed, grayed, grayed ) );
+    } );
     return godot::ImageTexture::create_from_image( res_img );
 }
 
@@ -96,6 +90,7 @@ void SkillButtonImpl::setup_textures( const godot::Ref<godot::Texture2D>& txtr )
 void SkillButtonImpl::on_btn_toggled( bool toggled_on )
 {
     emit_signal( signals::SKILL_ACTIVATED, toggled_on, m_skill_num, m_skill_group );
+    emit_signal( signals::SKILL_ACTIVATED, toggled_on, 0, 0 );
 }
 
 }

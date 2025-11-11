@@ -5,7 +5,6 @@
 
 #include "utils/pwm_string_view.hpp"
 #include "utils/pwm_bindings.hpp"
-#include "test_node_impl.hpp"
 // #include "global_level_impl.hpp"
 
 #include "main_menu_impl.hpp"
@@ -14,7 +13,6 @@ namespace pwm
 {
 
 constinit auto GLOBAL_LVL_SCENE = pwm::string_view{ "res://scenes/global_level.tscn" };
-constinit auto TEST_NODE_SCENE = pwm::string_view{ "res://scenes/test_node.tscn" };
 
 constinit auto ON_CONFIRMED = pwm::string_view{ "on_confirmed" };
 constinit auto ON_CANCELED = pwm::string_view{ "on_canceled" };
@@ -25,6 +23,7 @@ constinit auto PRESSED_SIGNAL = pwm::string_view{ "pressed" };
 constinit auto MARGIN_CONTAINER = pwm::string_view{ "MarginContainer" };
 
 MainMenuImpl::MainMenuImpl()
+    : godot::Control()
 {
 }
 
@@ -41,26 +40,12 @@ void MainMenuImpl::_bind_methods()
     bh::method( ON_CANCELED, &MainMenuImpl::on_canceled );
 }
 
-void MainMenuImpl::test_pressed()
-{
-    auto test = loadSceneAsNode<TestNodeImpl>( TEST_NODE_SCENE );
-    getRoot( this )->add_child( test );
-    get_node<godot::MarginContainer>( MARGIN_CONTAINER )->hide();
-}
-
-void MainMenuImpl::normal_pressed()
-{
-    //auto loaded_resource = godot::ResourceLoader::get_singleton()->load( GLOBAL_LVL_SCENE );
-    //auto glob_lvl = dynamic_cast<GlobalLevelImpl*>( dynamic_cast<godot::PackedScene*>( loaded_resource.ptr() )->instantiate() );
-    //get_tree()->get_root()->add_child( glob_lvl );
-    // If left buttons in the main scene player could accidentally click on them
-    //get_node<godot::MarginContainer>( MARGIN_CONTAINER )->hide();
-}
-
 void MainMenuImpl::on_play_pressed()
 {
-    test_pressed();
-    // normal_pressed();
+    // auto glob_lvl = loadSceneAsNode<GlobalLevelImpl>( GLOBAL_LVL_SCENE );
+    // add_child( glob_lvl );
+    // If left buttons in the main scene player could accidentally click on them
+    // get_node<godot::MarginContainer>( MARGIN_CONTAINER )->hide();
 }
 
 godot::ConfirmationDialog* MainMenuImpl::form_quit_dialog()

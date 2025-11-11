@@ -55,34 +55,32 @@ void HeroSceneImpl::_physics_process( double delta )
     {
         return;
     }
-    auto target_pos = VEC_MINUS_ONE;
+    auto target_pos = -vec::ONE;
     auto position = get_position();
     if ( m_astar_grid_2d == nullptr )
     {
         target_pos = process_row( position );
+        return;
     }
-    else
+    target_pos = process_astar( position );
+    if ( target_pos == -vec::ONE )
     {
-        target_pos = process_astar( position );
-        if ( target_pos == VEC_MINUS_ONE )
-        {
-            return;
-        }
-        set_velocity( target_pos * speed );
-        move_and_slide();
+        return;
     }
+    set_velocity( target_pos * speed );
+    move_and_slide();
 }
 
 void HeroSceneImpl::set_tilemap_layer( godot::TileMapLayer* tml, const GlobalTypesMap& global_tiles_vals )
 {
     m_tml_ref = tml;
-    auto tsize = godot::Vector2i( 1, 1 ) * GLOBAL_TILE_SIZE_IN_PIXELS;
+    auto tsize = vec::ONE * GLOBAL_TILE_SIZE_IN_PIXELS;
     m_astar_grid_2d = GridMovement::create_astar( tml, global_tiles_vals, HeroInfo{}, tsize );
 }
 
 godot::Vector2 HeroSceneImpl::process_row( godot::Vector2 cur_pos )
 {
-    auto tsize = godot::Vector2i( 1, 1 ) * GLOBAL_TILE_SIZE_IN_PIXELS;
+    auto tsize = vec::ONE * GLOBAL_TILE_SIZE_IN_PIXELS;
     auto pos_grid = GridMovement::calculate_grid( cur_pos, tsize );
     auto click_grid = GridMovement::calculate_grid( m_click_pos, tsize );
     if ( godot::Input::get_singleton()->is_action_just_pressed( "left_click" ) )
@@ -91,16 +89,16 @@ godot::Vector2 HeroSceneImpl::process_row( godot::Vector2 cur_pos )
         click_grid = GridMovement::calculate_grid( m_click_pos, tsize );
         godot::print_line( "Click grid: ", click_grid, " pos grid: ", pos_grid);
         if ( click_grid == pos_grid )
-            return VEC_MINUS_ONE;
+            return -vec::ONE;
     }
     if ( cur_pos.distance_to( m_click_pos ) <= DISTANSE_TO_START_MOVE )
-        return VEC_MINUS_ONE;
+        return -vec::ONE;
     return ( godot::Vector2( m_click_pos ) - cur_pos ).normalized();
 }
 
 godot::Vector2 HeroSceneImpl::process_astar( godot::Vector2 cur_pos )
 {
-    auto tsize = godot::Vector2i(1, 1)*GLOBAL_TILE_SIZE_IN_PIXELS;
+    auto tsize = vec::ONE*GLOBAL_TILE_SIZE_IN_PIXELS;
     auto pos_grid = GridMovement::calculate_grid( cur_pos, tsize );
     bool is_left_click_pressed = godot::Input::get_singleton()->is_action_just_pressed( "left_click" );
     if ( is_left_click_pressed )
@@ -110,26 +108,26 @@ godot::Vector2 HeroSceneImpl::process_astar( godot::Vector2 cur_pos )
             // ignoring left click while moving to the target position
             // TODO: in the future, there can be some more specific reaction
             // for example, stop current movement and recalculate path
-            return VEC_MINUS_ONE;
+            return -vec::ONE;
         }
         m_click_pos = GridMovement::calculate_grid_coords( get_global_mouse_position(), tsize );
         auto click_grid = GridMovement::calculate_grid( m_click_pos, tsize );
         if ( click_grid == pos_grid )
         {
-            return VEC_MINUS_ONE;
+            return -vec::ONE;
         }
         m_astar_path = GridMovement::get_grid_path( m_astar_grid_2d, pos_grid, click_grid );
         godot::print_line( "Result path: ", m_astar_path, " clicked grid ", click_grid );
     }
     if ( m_astar_path.is_empty() )
     {
-        return VEC_MINUS_ONE;
+        return -vec::ONE;
     }
     auto next_grid_center = GridMovement::calculate_grid_coords( godot::Vector2i( m_astar_path.front() )*tsize, tsize );
     if ( cur_pos.distance_to( next_grid_center ) <= DISTANSE_TO_START_MOVE )
     {
         m_astar_path.pop_front();
-        return VEC_MINUS_ONE;
+        return -vec::ONE;
     }
     return ( godot::Vector2( next_grid_center ) - cur_pos ).normalized();
 }

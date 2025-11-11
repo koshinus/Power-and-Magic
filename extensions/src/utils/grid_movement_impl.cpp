@@ -5,6 +5,7 @@
 #include <godot_cpp/classes/a_star_grid2d.hpp>
 #include <godot_cpp/classes/tile_map_layer.hpp>
 
+#include "pwm_funcs.hpp"
 #include "world_constants.hpp"
 #include "grid_movement_impl.hpp"
 
@@ -56,28 +57,23 @@ void GridMovement::reset_tiles_passability( godot::AStarGrid2D* astar_grid, godo
                                             const GlobalTypesMap& glob_tiles_vals, HeroInfo hero_info )
 {
     godot::Rect2i used_rect = tml->get_used_rect();
-    for ( int y = 0; y < used_rect.size.y; y++ )
-    {
-        for ( int x = 0; x < used_rect.size.x; x++ )
+    for_each_2d( used_rect.size, [grid = astar_grid, tml, &glob_tiles_vals, rect = used_rect, &hero_info]( godot::Vector2i v ) {
+        auto tile_pos = v + rect.position;
+        godot::TileData* tdata = tml->get_cell_tile_data( tile_pos );
+        int glob_tile_val = -1;
+        if ( !glob_tiles_vals.empty() )
         {
-            // godot::Variant;
-            auto tile_pos = godot::Vector2i( x, y ) + used_rect.position;
-            godot::TileData* tdata = tml->get_cell_tile_data( tile_pos );
-            int glob_tile_val = -1;
-            if ( !glob_tiles_vals.empty() )
-            {
-                auto it = glob_tiles_vals.find( godot::Vector2i( x, y ) );
-                glob_tile_val = it != glob_tiles_vals.end() ? int( it->second ) : -1;
-            }
-            // TileData could be null if tile set source is not a TileSetAtlas,
-            // so we need additional check
-            if ( ( tdata == nullptr && !tile_set_source_is_scene_collection( tml ) ) ||
-                                       !is_passable( tdata, glob_tile_val, hero_info ) )
-            {
-                astar_grid->set_point_solid( tile_pos );
-            }
+            auto it = glob_tiles_vals.find( v );
+            glob_tile_val = it != glob_tiles_vals.end() ? int( it->second ) : -1;
         }
-    }
+        // TileData could be null if tile set source is not a TileSetAtlas,
+        // so we need additional check
+        if ( ( tdata == nullptr && !tile_set_source_is_scene_collection( tml ) ) ||
+                                   !is_passable( tdata, glob_tile_val, hero_info ) )
+        {
+            grid->set_point_solid( tile_pos );
+        }
+    } );
 }
 
 godot::TypedArray<godot::Vector2i> GridMovement::get_grid_path( godot::AStarGrid2D* astar_grid_2d, godot::Vector2i start_point, godot::Vector2i end_point )

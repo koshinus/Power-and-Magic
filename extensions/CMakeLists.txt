@@ -22,7 +22,11 @@ elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "riscv")
 elseif(UNIX AND NOT APPLE)
 	SET(TARGET "${PROJECT_NAME}.linux.template_${TARGET_BUILD_TYPE}.x86_${BITS}")
 elseif(WIN32)
-	SET(TARGET "${PROJECT_NAME}.windows.template_${TARGET_BUILD_TYPE}.x86_${BITS}")
+  if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+        SET(TARGET "lib${PROJECT_NAME}.windows.template_${TARGET_BUILD_TYPE}.x86_${BITS}")
+  else()
+        SET(TARGET "${PROJECT_NAME}.windows.template_${TARGET_BUILD_TYPE}.x86_${BITS}")
+  endif()
 else()
 	SET(TARGET "unknown" PARENT_SCOPE)
 endif()
@@ -30,15 +34,15 @@ endif()
 # Make it lower case.
 STRING(TOLOWER ${TARGET} TARGET)
 # Find all cpp files and put those in SOURCES variable.
-#FILE(GLOB_RECURSE SOURCES src/*.c** src/*.h**)
-FILE(GLOB_RECURSE SOURCES
-              src/utils/*
-              src/hero/hero_info_impl.hpp
-              # src/skills/skill_button_impl.cpp src/skills/skill_button_impl.hpp
-              src/test_node_impl.cpp src/test_node_impl.hpp
-              src/main_menu_impl.cpp src/main_menu_impl.hpp
-              src/register_types.cpp src/register_types.hpp
-)
+FILE(GLOB_RECURSE SOURCES src/*.c** src/*.h**)
+#FILE(GLOB_RECURSE SOURCES
+#              src/utils/*
+              #src/hero/hero_info_impl.hpp
+#              src/test_node_impl.cpp src/test_node_impl.hpp
+              #src/skills/skill_button_impl.cpp src/skills/skill_button_impl.hpp
+#              src/main_menu_impl.cpp src/main_menu_impl.hpp
+#              src/register_types.cpp src/register_types.hpp
+#)
 # Create build target from the name and sources we setup above.
 ADD_LIBRARY(${TARGET} SHARED ${SOURCES})
 # Add godot::cpp as private dependency.

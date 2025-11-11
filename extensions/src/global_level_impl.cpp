@@ -21,7 +21,6 @@ constinit auto GLOBAL_MAP = pwm::string_view{ "GlobalMap" };
 constinit auto MILITARY_HERO = pwm::string_view{ "MilitaryHero" };
 constinit auto ECONOMIC_HERO = pwm::string_view{ "EconomicHero" };
 
-
 GlobalLevelImpl::GlobalLevelImpl()
     : m_grid_pos( VEC_ZERO )
 {

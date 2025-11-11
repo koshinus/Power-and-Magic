@@ -79,6 +79,12 @@ godot::Window* getRoot( T* scene )
     return scene->get_tree()->get_root();
 }
 
+template<GodotNode T, GodotNode U>
+T* gnode_cast( U* u )
+{
+    return static_cast<T*>( u );
+}
+
 template<GodotNode ParentT>
 struct BindHelper
 {
@@ -101,9 +107,9 @@ struct BindHelper
              std::same_as<SetPtrType<PropT, ParentT>, SetFnT>
     static void property( pwm::string_view name, GetFnT get_fn, SetFnT set_fn )
     {
-        auto get = std::vformat( "get_{}", std::make_format_args( name.toStd() ) );
-        auto set = std::vformat( "set_{}", std::make_format_args( name.toStd() ) );
-        auto _var_name = std::vformat( "p_{}", std::make_format_args( name.toStd() ) );
+        auto get = std::format( "get_{}", name.toStd() );
+        auto set = std::format( "set_{}", name.toStd() );
+        auto _var_name = std::format( "p_{}", name.toStd() );
         godot::ClassDB::bind_method( godot::D_METHOD( get.c_str() ), get_fn );
         godot::ClassDB::bind_method( godot::D_METHOD( set.c_str(), _var_name.c_str() ), set_fn );
         godot::ClassDB::add_property( ParentT::get_class_static(),

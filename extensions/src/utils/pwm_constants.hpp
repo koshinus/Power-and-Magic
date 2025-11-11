@@ -7,8 +7,12 @@
 namespace pwm
 {
 
-const auto VEC_ZERO = godot::Vector2i( 0, 0 );
-const auto VEC_MINUS_ONE = godot::Vector2i( -1, -1 );
+namespace vec
+{
+const auto ZERO = godot::Vector2i( 0, 0 );
+const auto MINUS_ONE = godot::Vector2i( -1, -1 );
+const auto ONE = godot::Vector2i( 1, 1 );
+}
 
 namespace colors
 {

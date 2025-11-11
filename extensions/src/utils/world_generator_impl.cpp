@@ -2,7 +2,9 @@
 #include <godot_cpp/classes/fast_noise_lite.hpp>
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/classes/packed_scene.hpp>
+
 #include "pwm_string_view.hpp"
+#include "pwm_funcs.hpp"
 #include "world_generator_impl.hpp"
 
 namespace pwm
@@ -54,14 +56,10 @@ godot::FastNoiseLite* WorldGenerator::get_prepared_noise()
 GlobalTypesMap WorldGenerator::generate_global_tiles_types( godot::FastNoiseLite* noise )
 {
     auto tiles_types = std::unordered_map<godot::Vector2i, TYPES>{};
-    for ( int y = 0; y < GLOBAL_MAP_WIDTH; y++ )
-    {
-        for ( int x = 0; x < GLOBAL_MAP_HEIGHT; x++ )
-        {
-            tiles_types.insert( { godot::Vector2i( x, y ),
-                WorldGenerator::get_tile_type_from_noise( noise->get_noise_2d( x, y ) ) } );
-        }
-    }
+    for_each_2d( godot::Vector2i( GLOBAL_MAP_WIDTH, GLOBAL_MAP_HEIGHT ),
+    [noise, &tiles_types]( godot::Vector2i v ) {
+        tiles_types.insert( { v, WorldGenerator::get_tile_type_from_noise( noise->get_noise_2dv( v ) ) } );
+    } );
     return tiles_types;
 }
 
@@ -70,15 +68,11 @@ ScenesInfo WorldGenerator::generate_local_maps( const GlobalTypesMap& global_til
     auto tset_source = memnew( godot::TileSetScenesCollectionSource );
     ScenesInfo loc_scenes_info;
     auto loader = godot::ResourceLoader::get_singleton();
-    for ( int y = 0; y < GLOBAL_MAP_WIDTH; y++ )
-    {
-        for ( int x = 0; x < GLOBAL_MAP_HEIGHT; x++ )
-        {
-            auto loc_map_scene = loader->load( LOCAL_MAP_SCENE_PATH );
-            loc_scenes_info.local_maps.insert( { godot::Vector2i( x, y ),
-                                 tset_source->create_scene_tile( loc_map_scene ) } );
-        }
-    }
+    for_each_2d( godot::Vector2i( GLOBAL_MAP_WIDTH, GLOBAL_MAP_HEIGHT ),
+        [tset_source, loader, &loc_scenes_info]( godot::Vector2i v ) {
+        auto loc_map_scene = loader->load( LOCAL_MAP_SCENE_PATH );
+        loc_scenes_info.local_maps.insert( { v, tset_source->create_scene_tile( loc_map_scene ) } );
+    } );
     loc_scenes_info.global_tset_source = tset_source;
     return loc_scenes_info;
 }

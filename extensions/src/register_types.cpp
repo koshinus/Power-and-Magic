@@ -7,8 +7,22 @@
 #include "main_menu_impl.hpp"
 #include "test_node_impl.hpp"
 #include "skills/skill_button_impl.hpp"
-// #include "global_level_impl.hpp"
-// #include "combat_interface_impl.hpp"
+#include "global_level_impl.hpp"
+#include "combat_interface_impl.hpp"
+#include "selectable_impl.hpp"
+#include "resources_info_impl.hpp"
+#include "grid_2d_node_impl.hpp"
+#include "global_level_impl.hpp"
+#include "combat_interface_impl.hpp"
+#include "army_info_impl.hpp"
+#include "skills/skill_wheel_impl.hpp"
+#include "skills/military_skills_impl.hpp"
+#include "skills/economy_skills_impl.hpp"
+#include "skills/magic_skills_impl.hpp"
+#include "maps/map_limitations_impl.hpp"
+#include "maps/local_map_impl.hpp"
+#include "maps/combat_map_impl.hpp"
+
 
 #include "register_types.hpp"
 
@@ -39,7 +53,20 @@ void initialize_pwmlibs_module( godot::ModuleInitializationLevel p_level )
     pwm::registrate<
         pwm::MainMenuImpl
         , pwm::TestNodeImpl
-        // , pwm::SkillButtonImpl
+        , pwm::SkillButtonImpl
+        , pwm::GlobalLevelImpl
+        , pwm::CombatInterfaceImpl
+        , pwm::CombatMapImpl
+        , pwm::ArmyInfoImpl
+        , pwm::SelectableImpl
+        , pwm::ResourcesInfoImpl
+        , pwm::Grid2dNodeImpl
+        , pwm::MilitarySkillsImpl
+        , pwm::EconomySkillsImpl
+        , pwm::SkillWheelImpl
+        , pwm::MagicSkillsImpl
+        , pwm::MapLimitationsImpl
+        , pwm::LocalMapImpl
         >();
 }
 

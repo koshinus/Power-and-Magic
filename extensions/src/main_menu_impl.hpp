@@ -22,7 +22,7 @@ class MainMenuImpl: public godot::Control
     GDCLASS( MainMenuImpl, godot::Control )
 public:
     MainMenuImpl();
-    ~MainMenuImpl();
+    ~MainMenuImpl() override;
     void on_quit_pressed();
     void on_confirmed();
     void on_canceled();
@@ -32,8 +32,6 @@ protected:
     static void _bind_methods();
 private:
     godot::ConfirmationDialog* form_quit_dialog();
-    void test_pressed();
-    void normal_pressed();
 };
 
 }

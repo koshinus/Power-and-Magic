@@ -9,6 +9,7 @@
 #include "../grid_2d_node_impl.hpp"
 #include "../utils/pwm_string_view.hpp"
 #include "local_map_impl.hpp"
+#include "../utils/pwm_funcs.hpp"
 
 namespace pwm
 {
@@ -70,18 +71,13 @@ LOCAL_TILES LocalMapImpl::get_tile_offset_by_coords( int x, int y )
 
 void LocalMapImpl::init_by_params( int global_tile_type, const std::vector<int>& neighbours )
 {
-    int w = LOCAL_MAP_WIDTH;
-    int h = LOCAL_MAP_HEIGHT;
-    for ( int y = 0; y < h; y++ )
-    {
-        for ( int x = 0; x < w; x++ )
-        {
-            auto tile_x_offset = static_cast<int>( get_tile_offset_by_coords( x, y ) );
-            auto tile_y_offset = get_local_tile_type_by_neighbours( global_tile_type, neighbours );
+    for_each_2d( godot::Vector2i( LOCAL_MAP_WIDTH, LOCAL_MAP_HEIGHT ),
+        [this, &neighbours, gtype = global_tile_type]( godot::Vector2i v ) {
+            int tile_x_offset = static_cast<int>( get_tile_offset_by_coords( v.x, v.y ) );
+            int tile_y_offset = get_local_tile_type_by_neighbours( gtype, neighbours );
             auto tileset_offset = godot::Vector2i( tile_x_offset, tile_y_offset );
-            get_node<godot::TileMapLayer>( LOCAL_MAP_SURFACE )->set_cell( godot::Vector2i( x, y ), 0, tileset_offset );
-        }
-    }
+            get_node<godot::TileMapLayer>( LOCAL_MAP_SURFACE )->set_cell( v, 0, tileset_offset );
+        } );
 }
 
 std::vector<int> LocalMapImpl::get_neighbours( const GlobalTypesMap& glob_tiles_vals, int i, int j )
@@ -118,7 +114,7 @@ LocalMapImpl* LocalMapImpl::create_from_packed_scene( godot::PackedScene* loc_ma
                                        godot::Vector2i grid_pos, godot::Vector2 orig_size,
                                        bool show_grid )
 {
-    auto loc_map = dynamic_cast<LocalMapImpl*>( loc_map_scene->instantiate() );
+    auto loc_map = static_cast<LocalMapImpl*>( loc_map_scene->instantiate() );
     if ( !loc_map ) return nullptr;
     int x = grid_pos.x;
     int y = grid_pos.y;
