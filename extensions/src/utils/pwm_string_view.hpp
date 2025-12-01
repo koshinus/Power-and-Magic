@@ -2,6 +2,12 @@
 
 #include <string_view>
 
+/*
+ * IMPORTANT: there is a bug on godot-cpp-4.4 and it's forbidden
+ * to add string.hpp, string_name.hpp files to the header files more
+ * than once! Otherwise it causes crashes of the engine or making
+ * extension unable to use on Windows with Error 5: permission denied
+ */
 #include <godot_cpp/variant/string.hpp>
 #include <godot_cpp/variant/string_name.hpp>
 #include <godot_cpp/variant/node_path.hpp>

@@ -5,6 +5,7 @@
 
 #include "utils/pwm_string_view.hpp"
 #include "utils/pwm_bindings.hpp"
+#include "utils/pwm_signals.hpp"
 // #include "global_level_impl.hpp"
 
 #include "main_menu_impl.hpp"
@@ -18,7 +19,6 @@ constinit auto ON_CONFIRMED = pwm::string_view{ "on_confirmed" };
 constinit auto ON_CANCELED = pwm::string_view{ "on_canceled" };
 constinit auto ON_PLAY = pwm::string_view{ "on_play_pressed" };
 constinit auto ON_QUIT = pwm::string_view{ "on_quit_pressed" };
-constinit auto PRESSED_SIGNAL = pwm::string_view{ "pressed" };
 
 constinit auto MARGIN_CONTAINER = pwm::string_view{ "MarginContainer" };
 
@@ -54,8 +54,8 @@ godot::ConfirmationDialog* MainMenuImpl::form_quit_dialog()
     d->set_title( "" );
     d->set_text( "Are you really want to quit?" );
 
-    d->get_ok_button()->connect( PRESSED_SIGNAL, godot::Callable{ this, ON_CONFIRMED } );
-    d->get_cancel_button()->connect( PRESSED_SIGNAL, godot::Callable{ this, ON_CANCELED } );
+    d->get_ok_button()->connect( signals::PRESSED, godot::Callable{ this, ON_CONFIRMED } );
+    d->get_cancel_button()->connect( signals::PRESSED, godot::Callable{ this, ON_CANCELED } );
 
     return d;
 }

@@ -52,7 +52,7 @@ void GlobalMapImpl::set_based_on_generated( const WorldInfo& world_info )
     int32_t src_id = global_surface->get_tile_set()->add_source( world_info.loc_scenes_info.global_tset_source );
     for_each_2d( world_info.loc_scenes_info.local_maps, godot::Vector2i( m_layer_width, m_layer_height ),
         [this, &gtiles = world_info.global_tiles_values, surf = global_surface, src_id]( godot::Vector2i grid_pos, int scene_tile_id ) {
-        surf->set_cell( grid_pos, src_id, VEC_ZERO, scene_tile_id );
+        surf->set_cell( grid_pos, src_id, vec::ZERO, scene_tile_id );
         auto loc_map_scene = static_cast<godot::TileSetScenesCollectionSource*>(
                 *surf->get_tile_set()->get_source( src_id ) )->get_scene_tile_scene( scene_tile_id );
         add_child( LocalMapImpl::create_from_packed_scene( loc_map_scene.ptr(), gtiles, grid_pos,

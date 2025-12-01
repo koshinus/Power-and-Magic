@@ -22,7 +22,7 @@ constinit auto MILITARY_HERO = pwm::string_view{ "MilitaryHero" };
 constinit auto ECONOMIC_HERO = pwm::string_view{ "EconomicHero" };
 
 GlobalLevelImpl::GlobalLevelImpl()
-    : m_grid_pos( VEC_ZERO )
+    : m_grid_pos( vec::ZERO )
 {
 }
 
@@ -62,7 +62,7 @@ void GlobalLevelImpl::_ready()
 
 void GlobalLevelImpl::on_hero_selected( std::optional<HeroInfo> info )
 {
-    m_grid_pos = VEC_ZERO;
+    m_grid_pos = vec::ZERO;
     if ( info.has_value() )
     {
         m_grid_pos = info->grid_pos;
@@ -73,7 +73,7 @@ void GlobalLevelImpl::on_hero_selected( std::optional<HeroInfo> info )
 
 void GlobalLevelImpl::on_view_changed()
 {
-    if ( m_grid_pos == VEC_ZERO )
+    if ( m_grid_pos == vec::ZERO )
         return;
 //     //lvl_window.
 //     //lvl_window.visible = not lvl_window.visible
