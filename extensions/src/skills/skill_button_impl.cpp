@@ -20,7 +20,7 @@ constinit auto SKILL_GROUP = pwm::string_view{ "skill_group" };
 constinit auto TOGGLED = pwm::string_view{ "toggled" };
 
 SkillButtonImpl::SkillButtonImpl()
-    : godot::Button()
+    : godot::Control()
     // : m_texture( nullptr )
     , m_skill_num( 0 )
     , m_skill_group( 0 )

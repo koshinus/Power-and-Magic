@@ -15,6 +15,15 @@ constinit auto HBOX_ARMY = pwm::string_view{ "HBoxArmy" };
 constinit auto HERO_PANEL = pwm::string_view{ "HeroPanel" };
 constinit auto HBOX_ADDITIONAL_BTNS = pwm::string_view{ "HBoxAdditionalButtons" };
 
+GlobalInterfaceImpl::GlobalInterfaceImpl()
+    : godot::CanvasLayer()
+{
+}
+
+GlobalInterfaceImpl::~GlobalInterfaceImpl()
+{
+}
+
 void GlobalInterfaceImpl::_ready()
 {
     get_node<godot::HBoxContainer>( HBOX_ARMY )->hide();

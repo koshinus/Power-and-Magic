@@ -10,7 +10,7 @@ class Grid2dNodeImpl: public godot::Node2D
     GDCLASS( Grid2dNodeImpl, godot::Node2D )
 public:
     Grid2dNodeImpl();
-    ~Grid2dNodeImpl();
+    ~Grid2dNodeImpl() override;
 
     void _ready() override;
     void _process( double p_delta ) override;

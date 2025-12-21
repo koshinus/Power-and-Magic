@@ -3,15 +3,16 @@
 namespace pwm
 {
 
-void MagicSkillsImpl::_bind_methods()
-{
-}
-
 MagicSkillsImpl::MagicSkillsImpl()
+  : godot::Control()
 {
 }
 
 MagicSkillsImpl::~MagicSkillsImpl()
+{
+}
+
+void MagicSkillsImpl::_bind_methods()
 {
 }
 

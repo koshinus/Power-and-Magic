@@ -13,7 +13,7 @@ protected:
     static void _bind_methods();
 public:
     MilitarySkillsImpl();
-    ~MilitarySkillsImpl();
+    ~MilitarySkillsImpl() override;
 };
 
 }

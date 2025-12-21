@@ -3,15 +3,16 @@
 namespace pwm
 {
 
-void CombatMapImpl::_bind_methods()
-{
-}
-
 CombatMapImpl::CombatMapImpl()
+  : godot::Node2D()
 {
 }
 
 CombatMapImpl::~CombatMapImpl()
+{
+}
+
+void CombatMapImpl::_bind_methods()
 {
 }
 

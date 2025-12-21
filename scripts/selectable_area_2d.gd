@@ -13,18 +13,18 @@ const GROUP_SELECTED : String = "selected";
 var selected : bool = false : set = set_selected
 
 func set_selected( selection_flag : bool ):
-    if selection_flag:
-        _make_exclusive()
-        add_to_group( GROUP_SELECTED )
-    else:
-        remove_from_group( GROUP_SELECTED )
-    selected = selection_flag
-    selection_toggled.emit( selected )
+	if selection_flag:
+		_make_exclusive()
+		add_to_group( GROUP_SELECTED )
+	else:
+		remove_from_group( GROUP_SELECTED )
+	selected = selection_flag
+	selection_toggled.emit( selected )
 
 func _make_exclusive():
-    if exclusive:
-        get_tree().call_group( GROUP_SELECTED, "set_selected", false )
+	if exclusive:
+		get_tree().call_group( GROUP_SELECTED, "set_selected", false )
 
 func _input_event( viewport: Viewport, event: InputEvent, shape_idx: int ) -> void:
-    if event.is_action_pressed( selection_action ):
-        set_selected( not selected )
+	if event.is_action_pressed( selection_action ):
+		set_selected( not selected )

@@ -27,7 +27,7 @@ class SkillGroupImpl: public godot::Node
     GDCLASS( SkillGroupImpl, godot::Node )
 public:
     SkillGroupImpl();
-    ~SkillGroupImpl();
+    ~SkillGroupImpl() override;
     void on_skill_activated( godot::Variant toggled, godot::Variant num, godot::Variant group );
     void setup_group( SkillLevel* beginer, SkillLevel* advanced, SkillLevel* expert,
                      const std::map<int, bool>& skills_dict );

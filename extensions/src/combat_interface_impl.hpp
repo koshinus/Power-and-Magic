@@ -1,19 +1,19 @@
 #pragma once
 
-#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/control.hpp>
 
 namespace pwm
 {
 
-class CombatInterfaceImpl: public godot::Node
+class CombatInterfaceImpl: public godot::Control
 {
-    GDCLASS( CombatInterfaceImpl, godot::Node )
+    GDCLASS( CombatInterfaceImpl, godot::Control )
 private:
 protected:
     static void _bind_methods();
 public:
     CombatInterfaceImpl();
-    ~CombatInterfaceImpl();
+    ~CombatInterfaceImpl() override;
 };
 
 }

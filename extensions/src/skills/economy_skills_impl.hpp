@@ -1,19 +1,19 @@
 #pragma once
 
-#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/control.hpp>
 
 namespace pwm
 {
 
-class EconomySkillsImpl: public godot::Node
+class EconomySkillsImpl: public godot::Control
 {
-    GDCLASS( EconomySkillsImpl, godot::Node )
+    GDCLASS( EconomySkillsImpl, godot::Control )
 private:
 protected:
     static void _bind_methods();
 public:
     EconomySkillsImpl();
-    ~EconomySkillsImpl();
+    ~EconomySkillsImpl() override;
 };
 
 }

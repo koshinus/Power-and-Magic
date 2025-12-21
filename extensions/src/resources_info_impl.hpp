@@ -1,19 +1,19 @@
 #pragma once
 
-#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/control.hpp>
 
 namespace pwm
 {
 
-class ResourcesInfoImpl: public godot::Node
+class ResourcesInfoImpl: public godot::Control
 {
-    GDCLASS( ResourcesInfoImpl, godot::Node )
-private:
-protected:
-    static void _bind_methods();
+    GDCLASS( ResourcesInfoImpl, godot::Control )
 public:
     ResourcesInfoImpl();
-    ~ResourcesInfoImpl();
+    ~ResourcesInfoImpl() override;
+protected:
+    static void _bind_methods();
+private:
 };
 
 }

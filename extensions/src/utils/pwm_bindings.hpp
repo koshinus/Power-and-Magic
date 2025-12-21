@@ -87,7 +87,7 @@ T* gnode_cast( U* u )
 
 template<GodotNode ParentT>
 struct BindHelper
-{
+{    
     template<typename RetT, typename MethodT, GodotVariant... Args>
     requires std::same_as<MemFnPtr<ParentT, RetT, Args...>, MethodT>
     static godot::MethodBind* method( pwm::string_view mname, MethodT fn, Args... args )
@@ -101,7 +101,35 @@ struct BindHelper
     {
         return godot::ClassDB::bind_method( godot::D_METHOD( mname ), fn, args... );
     }
+    
+    template<typename RetT, typename MethodT, GodotVariant... Args>
+    requires std::same_as<MemFnPtr<ParentT, RetT, Args...>, MethodT>
+    static godot::MethodBind* method( const godot::MethodDefinition& method, MethodT fn, Args... args )
+    {
+        return godot::ClassDB::bind_method( method, fn, args... );
+    }
 
+    template<typename MethodT, GodotVariant... Args>
+    requires std::same_as<VoidMemFnPtr<ParentT, Args...>, MethodT>
+    static godot::MethodBind* method( const godot::MethodDefinition& method, MethodT fn, Args... args )
+    {
+        return godot::ClassDB::bind_method( method, fn, args... );
+    }
+
+    template<typename RetT, typename MethodT, GodotVariant... Args>
+    requires std::same_as<MemFnPtr<ParentT, RetT, Args...>, MethodT>
+    static godot::MethodBind* method( pwm::string_view mname, pwm::string_view argname, MethodT fn, Args... args )
+    {
+        return godot::ClassDB::bind_method( godot::D_METHOD( mname, argname ), fn, args... );
+    }
+
+    template<typename MethodT, GodotVariant... Args>
+    requires std::same_as<VoidMemFnPtr<ParentT, Args...>, MethodT>
+    static godot::MethodBind* method( pwm::string_view mname, pwm::string_view argname, MethodT fn, Args... args )
+    {
+        return godot::ClassDB::bind_method( godot::D_METHOD( mname, argname ), fn, args... );
+    }
+    
     template<typename PropT, typename GetFnT, typename SetFnT>
     requires std::same_as<GetPtrType<PropT, ParentT>, GetFnT> &&
              std::same_as<SetPtrType<PropT, ParentT>, SetFnT>

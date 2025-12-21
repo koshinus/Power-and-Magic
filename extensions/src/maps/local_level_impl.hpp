@@ -1,19 +1,19 @@
 #pragma once
 
-#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/window.hpp>
 
 namespace pwm
 {
 
-class LocalLevelImpl: public godot::Node
+class LocalLevelImpl: public godot::Window
 {
-    GDCLASS( LocalLevelImpl, godot::Node )
-private:
-protected:
-    static void _bind_methods() {}
+    GDCLASS( LocalLevelImpl, godot::Window )
 public:
-    LocalLevelImpl() {}
-    ~LocalLevelImpl() {}
+    LocalLevelImpl();
+    ~LocalLevelImpl() override;
+protected:
+    static void _bind_methods();
+private:
 };
 
 }

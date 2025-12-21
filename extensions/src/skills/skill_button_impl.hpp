@@ -9,9 +9,9 @@
 namespace pwm
 {
 
-class SkillButtonImpl: public godot::Button
+class SkillButtonImpl: public godot::Control
 {
-    GDCLASS( SkillButtonImpl, godot::Button )
+    GDCLASS( SkillButtonImpl, godot::Control )
 public:
     SkillButtonImpl();
     ~SkillButtonImpl() override;

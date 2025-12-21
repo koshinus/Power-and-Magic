@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpq76y4adnipb"]
 
-[ext_resource type="Script" uid="uid://b0rty3nky7raw" path="res://scripts/skills/economy_skills.gd" id="1_eb1i4"]
-[ext_resource type="Texture2D" uid="uid://7ctbf7ncftbn" path="res://resources/skillwheel/merch_1_900.png" id="2_dalmi"]
+[ext_resource type="Script" uid="uid://c1eghpa0scha5" path="res://scripts/skills/economy_skills.gd" id="1_eb1i4"]
+[ext_resource type="Texture2D" uid="uid://f2mj32lhc5v3" path="res://resources/skillwheel/merch_1_900.png" id="2_dalmi"]
 
 [node name="EconomySkills" type="Control"]
 custom_minimum_size = Vector2(900, 900)

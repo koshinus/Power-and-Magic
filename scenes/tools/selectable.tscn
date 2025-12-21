@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://draxspvitqxqx"]
 
-[ext_resource type="Script" uid="uid://uno1vdqynp8r" path="res://scripts/selectable.gd" id="1_g7gtk"]
+[ext_resource type="Script" uid="uid://c6q70dfxb00l8" path="res://scripts/selectable.gd" id="1_g7gtk"]
 
 [node name="Selectable" type="Control"]
 layout_mode = 3

@@ -16,7 +16,7 @@ class GlobalMapImpl: public godot::Node2D
     GDCLASS( GlobalMapImpl, godot::Node2D )
 public:
     GlobalMapImpl();
-    ~GlobalMapImpl();
+    ~GlobalMapImpl() override;
 
     int get_px_tile_size() const { return m_px_tile_size; }
     void set_px_tile_size( const int val ) { m_px_tile_size = val; }

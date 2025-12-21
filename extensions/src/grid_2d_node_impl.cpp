@@ -17,7 +17,8 @@ constinit auto GRID_TILE_SIZE = pwm::string_view{ "grid_tile_size" };
 constinit auto GRID_COLOR = pwm::string_view{ "grid_color" };
 
 Grid2dNodeImpl::Grid2dNodeImpl()
-    : m_grid_size( godot::Vector2i( 32, 32 ) )
+    : godot::Node2D()
+    , m_grid_size( godot::Vector2i( 32, 32 ) )
     , m_grid_tile_size( godot::Vector2i( 32, 32 ) )
     , m_grid_color( colors::WHITE )
 {

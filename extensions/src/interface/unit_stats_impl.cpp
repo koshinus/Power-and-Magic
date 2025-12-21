@@ -3,15 +3,16 @@
 namespace pwm
 {
 
-void UnitStatsImpl::_bind_methods()
-{
-}
-
 UnitStatsImpl::UnitStatsImpl()
+  : godot::Control()
 {
 }
 
 UnitStatsImpl::~UnitStatsImpl()
+{
+}
+
+void UnitStatsImpl::_bind_methods()
 {
 }
 

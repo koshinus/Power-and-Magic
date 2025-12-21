@@ -1,11 +1,19 @@
-// extends Window
-// class_name LocalLevel
+#include "local_level_impl.hpp"
 
-// # Called when the node enters the scene tree for the first time.
-// func _ready() -> void:
-//     pass # Replace with function body.
+namespace pwm
+{
 
+LocalLevelImpl::LocalLevelImpl()
+  : godot::Window()
+{
+}
 
-// # Called every frame. 'delta' is the elapsed time since the previous frame.
-// func _process(delta: float) -> void:
-//     pass
+LocalLevelImpl::~LocalLevelImpl()
+{
+}
+
+void LocalLevelImpl::_bind_methods()
+{
+}
+
+}

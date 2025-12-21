@@ -20,7 +20,8 @@ constinit auto MAP_SIZE = pwm::string_view{ "map_size" };
 constinit auto PX_TILE_SIZE = pwm::string_view{ "tile_size" };
 
 MapLimitationsImpl::MapLimitationsImpl()
-    : m_tile_size( vec::ZERO )
+    : godot::StaticBody2D()
+    , m_tile_size( vec::ZERO )
     , m_map_size( vec::ZERO )
 {
 }

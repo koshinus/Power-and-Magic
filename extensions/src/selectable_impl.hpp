@@ -10,7 +10,7 @@ class SelectableImpl: public godot::Control
     GDCLASS( SelectableImpl, godot::Control )
 public:
     SelectableImpl();
-    ~SelectableImpl();
+    ~SelectableImpl() override;
 
     void on_button_pressed();
     void set_selected( bool selection_flag );

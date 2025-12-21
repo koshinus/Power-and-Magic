@@ -20,7 +20,8 @@ constinit auto HIDE_ON_ZERO = pwm::string_view{ "hide_on_zero" };
 constinit auto BTN_TEXTURE = pwm::string_view{ "button_texture" };
 
 NumberedTextureImpl::NumberedTextureImpl()
-    : m_button_texture( godot::Texture2D() )
+    : godot::Control()
+    , m_button_texture( godot::Texture2D() )
     , m_hide_on_zero( false )
     , m_button_is_active( true )
 {

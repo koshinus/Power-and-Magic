@@ -3,15 +3,16 @@
 namespace pwm
 {
 
-void EconomySkillsImpl::_bind_methods()
-{
-}
-
 EconomySkillsImpl::EconomySkillsImpl()
+  : godot::Control()
 {
 }
 
 EconomySkillsImpl::~EconomySkillsImpl()
+{
+}
+
+void EconomySkillsImpl::_bind_methods()
 {
 }
 

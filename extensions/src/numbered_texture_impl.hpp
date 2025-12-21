@@ -13,7 +13,7 @@ class NumberedTextureImpl: public godot::Control
     GDCLASS( NumberedTextureImpl, godot::Control )
 public:
     NumberedTextureImpl();
-    ~NumberedTextureImpl();
+    ~NumberedTextureImpl() override;
     void _ready() override;
     void set_amount( int new_amount );
 

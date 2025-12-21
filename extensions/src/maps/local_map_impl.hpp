@@ -16,7 +16,7 @@ class LocalMapImpl: public godot::Node2D
     GDCLASS( LocalMapImpl, godot::Node2D )
 public:
     LocalMapImpl();
-    ~LocalMapImpl();
+    ~LocalMapImpl() override;
     static LocalMapImpl* create_from_packed_scene( godot::PackedScene* loc_map_scene,
                                                   const GlobalTypesMap& glob_tiles_vals,
                                                   godot::Vector2i grid_pos, godot::Vector2 orig_size,

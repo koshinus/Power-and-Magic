@@ -53,10 +53,13 @@ TARGET_LINK_LIBRARIES(${TARGET} PRIVATE expected)
 IF("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   # Enable C++20 support.
   TARGET_COMPILE_OPTIONS(${TARGET} PRIVATE /std:c++20)
+  #TARGET_COMPILE_OPTIONS(${TARGET} PRIVATE /std:c++20 /GR-)
   IF(CMAKE_BUILD_TYPE MATCHES DEBUG)
     # If target is debug build, setup proper runtime library (mainly to match godot-cpp one).
     SET(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
   ENDIF(CMAKE_BUILD_TYPE MATCHES DEBUG)
+ELSE()
+  #TARGET_COMPILE_OPTIONS(${TARGET} PRIVATE -std=c++20 -fno-rtti)
 ENDIF()
 # Create a proper GDExtension configuration filename.
 STRING(TOLOWER "${PROJECT_NAME}.gdextension" GDEXTENSION_CONFIGURATION_FILE)

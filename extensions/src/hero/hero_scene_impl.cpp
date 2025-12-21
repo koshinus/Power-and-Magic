@@ -23,7 +23,8 @@ constinit auto SELECTED = pwm::string_view{ "selection_flag" };
 constinit auto HERO_CAM = pwm::string_view{ "HeroCam" };
 
 HeroSceneImpl::HeroSceneImpl()
-    : m_start_pos( GLOBAL_TILE_SIZE_IN_PIXELS/2 )
+    : godot::CharacterBody2D()
+    , m_start_pos( GLOBAL_TILE_SIZE_IN_PIXELS/2 )
     , m_is_selected( false )
     , m_astar_grid_2d( nullptr )
     , m_astar_path( godot::TypedArray<godot::Vector2i>() )

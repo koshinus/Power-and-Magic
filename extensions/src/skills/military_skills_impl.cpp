@@ -10,8 +10,17 @@
 namespace pwm
 {
 
-MilitarySkillsImpl::MilitarySkillsImpl(){}
-MilitarySkillsImpl::~MilitarySkillsImpl(){}
-void MilitarySkillsImpl::_bind_methods(){}
+MilitarySkillsImpl::MilitarySkillsImpl()
+  : godot::Control()
+{
+}
+
+MilitarySkillsImpl::~MilitarySkillsImpl()
+{
+}
+
+void MilitarySkillsImpl::_bind_methods()
+{
+}
 
 }

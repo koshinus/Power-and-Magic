@@ -16,7 +16,7 @@ protected:
     static void _bind_methods();
 public:
     GlobalInterfaceImpl();
-    ~GlobalInterfaceImpl();
+    ~GlobalInterfaceImpl() override;
     void on_btn_change_view_pressed();
     void on_btn_magic_book_pressed();
     void show_hero_depending_parts( std::optional<HeroInfo> info );

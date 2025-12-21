@@ -22,7 +22,8 @@ constinit auto MILITARY_HERO = pwm::string_view{ "MilitaryHero" };
 constinit auto ECONOMIC_HERO = pwm::string_view{ "EconomicHero" };
 
 GlobalLevelImpl::GlobalLevelImpl()
-    : m_grid_pos( vec::ZERO )
+    : godot::Node()
+    , m_grid_pos( vec::ZERO )
 {
 }
 

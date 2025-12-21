@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dj5dgdfuq8wvq"]
 
-[ext_resource type="Script" uid="uid://chbt3wascqshx" path="res://scripts/maps/global_map.gd" id="1_h63jr"]
+[ext_resource type="Script" uid="uid://ber8ocl0s8a3s" path="res://scripts/maps/global_map.gd" id="1_h63jr"]
 [ext_resource type="PackedScene" uid="uid://32r8bk3412j5" path="res://scenes/maps/map_limitations.tscn" id="4_oinbj"]
-[ext_resource type="Script" uid="uid://k1jj3rod1uk6" path="res://scripts/grid_2d_node.gd" id="5_agj6e"]
+[ext_resource type="Script" uid="uid://mcqydsu85x48" path="res://scripts/grid_2d_node.gd" id="5_agj6e"]
 
 [sub_resource type="TileSet" id="TileSet_iitxv"]
 tile_size = Vector2i(64, 64)

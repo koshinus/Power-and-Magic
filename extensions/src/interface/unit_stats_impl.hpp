@@ -1,19 +1,19 @@
 #pragma once
 
-#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/control.hpp>
 
 namespace pwm
 {
 
-class UnitStatsImpl: public godot::Node
+class UnitStatsImpl: public godot::Control
 {
-    GDCLASS( UnitStatsImpl, godot::Node )
-private:
-protected:
-    static void _bind_methods();
+    GDCLASS( UnitStatsImpl, godot::Control )
 public:
     UnitStatsImpl();
-    ~UnitStatsImpl();
+    ~UnitStatsImpl() override;
+protected:
+    static void _bind_methods();
+private:
 };
 
 }

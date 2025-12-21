@@ -4,6 +4,7 @@ namespace pwm
 {
 
 ResourcesInfoImpl::ResourcesInfoImpl()
+  : godot::Control()
 {
 }
 

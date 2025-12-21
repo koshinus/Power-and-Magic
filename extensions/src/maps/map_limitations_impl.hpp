@@ -14,7 +14,7 @@ class MapLimitationsImpl: public godot::StaticBody2D
     GDCLASS( MapLimitationsImpl, godot::StaticBody2D )
 public:
     MapLimitationsImpl();
-    ~MapLimitationsImpl();
+    ~MapLimitationsImpl() override;
     void _ready() override;
 
     godot::Vector2i get_map_size() const { return m_map_size; }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bcorx80shdxuy"]
 
-[ext_resource type="Texture2D" uid="uid://c5qeqlbvrxyka" path="res://resources/skillwheel/hero_puppet_shorted.png" id="1_qwjrt"]
+[ext_resource type="Texture2D" uid="uid://hkjmhe5ynvi5" path="res://resources/skillwheel/hero_puppet_shorted.png" id="1_qwjrt"]
 
 [node name="HeroItems" type="Control"]
 custom_minimum_size = Vector2(900, 900)

@@ -17,7 +17,8 @@ constinit auto GROUP_NAME = pwm::string_view{ "group_name" };
 constinit auto SELECTED_FLAG = pwm::string_view{ "selection_flag" };
 
 SelectableImpl::SelectableImpl()
-    : m_group_name( "" )
+    : godot::Control()
+    , m_group_name( "" )
     , m_exclusive( true )
 {
 }

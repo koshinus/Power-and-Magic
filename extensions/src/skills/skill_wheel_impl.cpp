@@ -3,15 +3,16 @@
 namespace pwm
 {
 
-void SkillWheelImpl::_bind_methods()
-{
-}
-
 SkillWheelImpl::SkillWheelImpl()
+  : godot::Control()
 {
 }
 
 SkillWheelImpl::~SkillWheelImpl()
+{
+}
+
+void SkillWheelImpl::_bind_methods()
 {
 }
 

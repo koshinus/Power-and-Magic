@@ -1,19 +1,19 @@
 #pragma once
 
-#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/control.hpp>
 
 namespace pwm
 {
 
-class SkillWheelImpl: public godot::Node
+class SkillWheelImpl: public godot::Control
 {
-    GDCLASS( SkillWheelImpl, godot::Node )
-private:
-protected:
-    static void _bind_methods();
+    GDCLASS( SkillWheelImpl, godot::Control )
 public:
     SkillWheelImpl();
-    ~SkillWheelImpl();
+    ~SkillWheelImpl() override;
+protected:
+    static void _bind_methods();
+private:
 };
 
 }

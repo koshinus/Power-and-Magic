@@ -3,15 +3,16 @@
 namespace pwm
 {
 
-void HeroItemsImpl::_bind_methods()
-{
-}
-
 HeroItemsImpl::HeroItemsImpl()
+  : godot::Control()
 {
 }
 
 HeroItemsImpl::~HeroItemsImpl()
+{
+}
+
+void HeroItemsImpl::_bind_methods()
 {
 }
 

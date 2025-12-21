@@ -1,19 +1,19 @@
 #pragma once
 
-#include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/classes/node2d.hpp>
 
 namespace pwm
 {
 
-class CombatMapImpl: public godot::Node
+class CombatMapImpl: public godot::Node2D
 {
-    GDCLASS( CombatMapImpl, godot::Node )
-private:
-protected:
-    static void _bind_methods();
+    GDCLASS( CombatMapImpl, godot::Node2D )
 public:
     CombatMapImpl();
-    ~CombatMapImpl();
+    ~CombatMapImpl() override;
+protected:
+    static void _bind_methods();
+private:
 };
 
 }

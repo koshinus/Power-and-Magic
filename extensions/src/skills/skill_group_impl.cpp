@@ -15,7 +15,8 @@ constinit auto SKILL_ACTIVATED = pwm::string_view{ "skill_activated" };
 constinit auto ON_SKILL_ACTIVATED = pwm::string_view{ "on_skill_activated" };
 
 SkillGroupImpl::SkillGroupImpl()
-    : m_group_num( 0 )
+    : godot::Node()
+    , m_group_num( 0 )
     , m_advanced_threshold( 2 )
     , m_expert_threshold( 4 )
 {

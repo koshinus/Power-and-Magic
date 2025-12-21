@@ -19,7 +19,7 @@ class HeroSceneImpl: public godot::CharacterBody2D
     GDCLASS( HeroSceneImpl, godot::CharacterBody2D )
 public:
     HeroSceneImpl();
-    ~HeroSceneImpl();
+    ~HeroSceneImpl() override;
 
     void _ready() override;
     void _physics_process( double delta ) override;

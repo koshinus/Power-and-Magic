@@ -8,6 +8,7 @@ void ArmyInfoImpl::_bind_methods()
 }
 
 ArmyInfoImpl::ArmyInfoImpl()
+    : godot::Control()
 {
 }
 

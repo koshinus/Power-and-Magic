@@ -3,15 +3,16 @@
 namespace pwm
 {
 
-void CombatInterfaceImpl::_bind_methods()
-{
-}
-
 CombatInterfaceImpl::CombatInterfaceImpl()
+  : godot::Control()
 {
 }
 
 CombatInterfaceImpl::~CombatInterfaceImpl()
+{
+}
+
+void CombatInterfaceImpl::_bind_methods()
 {
 }
 

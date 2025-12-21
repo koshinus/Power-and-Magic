@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dapn0704c4n2m"]
 
-[ext_resource type="Script" uid="uid://ccodr182kp7um" path="res://scripts/combat_interface.gd" id="1_w237p"]
+[ext_resource type="Script" uid="uid://5kbnt5dp3hda" path="res://scripts/combat_interface.gd" id="1_w237p"]
 
 [node name="CombatInterface" type="Control"]
 layout_mode = 3
