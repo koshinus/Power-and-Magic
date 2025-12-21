@@ -16,6 +16,8 @@ namespace pwm
 constinit auto ON_HERO_SELECTED = pwm::string_view{ "on_hero_selected" };
 constinit auto ON_VIEW_CHANGED = pwm::string_view{ "on_view_changed" };
 
+constinit auto HERO_INFO_ = pwm::string_view{ "hero_info" };
+
 constinit auto GLOBAL_INTERFACE = pwm::string_view{ "GlobalInterface" };
 constinit auto GLOBAL_MAP = pwm::string_view{ "GlobalMap" };
 constinit auto MILITARY_HERO = pwm::string_view{ "MilitaryHero" };
@@ -35,8 +37,7 @@ void GlobalLevelImpl::_bind_methods()
 {
     using bh = BindHelper<GlobalLevelImpl>;
 
-    // TODO: find a way to add custom types to godot variant types
-    // godot::ClassDB::bind_method( godot::D_METHOD( ON_HERO_SELECTED ), &GlobalLevelImpl::on_hero_selected );
+    godot::ClassDB::bind_method( godot::D_METHOD( ON_HERO_SELECTED, HERO_INFO_ ), &GlobalLevelImpl::on_hero_selected );
     bh::method( ON_VIEW_CHANGED, &GlobalLevelImpl::on_view_changed );
 }
 
@@ -55,14 +56,19 @@ void GlobalLevelImpl::_ready()
     global_map->set_based_on_generated( world_info );
     military_hero->set_tilemap_layer( global_map->get_surface(), world_info.global_tiles_values );
     economic_hero->set_tilemap_layer( global_map->get_surface(), world_info.global_tiles_values );
-    // TODO: find a way to connect custom types to godot variant types
-    // military_hero->connect( signals::HERO_SELECTED, godot::Callable{ this, ON_HERO_SELECTED } );
-    // economic_hero->connect( signals::HERO_SELECTED, godot::Callable{ this, ON_HERO_SELECTED } );
+    military_hero->connect( signals::HERO_SELECTED, godot::Callable{ this, ON_HERO_SELECTED } );
+    economic_hero->connect( signals::HERO_SELECTED, godot::Callable{ this, ON_HERO_SELECTED } );
     get_node<GlobalInterfaceImpl>( GLOBAL_INTERFACE )->connect( signals::VIEW_CHANGED, godot::Callable{ this, ON_VIEW_CHANGED } );
 }
 
-void GlobalLevelImpl::on_hero_selected( std::optional<HeroInfo> info )
+void GlobalLevelImpl::on_hero_selected( ObjectWrapper<std::optional<HeroInfo>>* winfo )
 {
+    if ( !winfo )
+    {
+        godot::print_line( "Get nullptr instead of normal object!" );
+        return;
+    }
+    auto info = winfo->val;
     m_grid_pos = vec::ZERO;
     if ( info.has_value() )
     {

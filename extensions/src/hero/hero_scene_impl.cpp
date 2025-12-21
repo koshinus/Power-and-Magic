@@ -1,3 +1,5 @@
+#include <optional>
+
 #include <godot_cpp/classes/a_star_grid2d.hpp>
 #include <godot_cpp/classes/tile_map_layer.hpp>
 #include <godot_cpp/classes/input.hpp>
@@ -8,6 +10,7 @@
 #include "../utils/pwm_bindings.hpp"
 #include "../utils/pwm_constants.hpp"
 #include "../utils/pwm_signals.hpp"
+#include "../utils/pwm_object_wrapper.hpp"
 
 #include "hero_scene_impl.hpp"
 
@@ -140,11 +143,10 @@ void HeroSceneImpl::on_hero_selected( bool selection_flag )
     if ( !m_is_selected )
     {
         m_click_pos = get_position();
-        // TODO: it should be null actually!
-        // emit_signal( signals::HERO_SELECTED, HeroInfo{} );
+        emit_signal( signals::HERO_SELECTED, memnew( ObjectWrapper<std::optional<HeroInfo>>{ std::nullopt } ) );
         return;
     }
-    // emit_signal( signals::HERO_SELECTED, HeroInfo{} );
+    emit_signal( signals::HERO_SELECTED, memnew( ObjectWrapper<std::optional<HeroInfo>>{ HeroInfo{} } ) );
 }
 
 }

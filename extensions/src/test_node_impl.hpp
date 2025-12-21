@@ -25,7 +25,7 @@ public:
 
     void on_change_state();
     void on_btn_pressed();
-    void on_obj_received( TestObjInfo* obj_info );
+    void on_obj_received( ObjectWrapper<std::string>* obj_info );
 protected:
     static void _bind_methods();
 private:

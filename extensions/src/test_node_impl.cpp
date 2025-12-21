@@ -69,19 +69,19 @@ void TestNodeImpl::on_btn_pressed()
     godot::print_line( "button pressed, trying emit new signal" );
     auto rand_generator = memnew( godot::RandomNumberGenerator );
     auto some_str = std::string{ "sadasdasd" } + std::to_string( rand_generator->randi_range( 0, 100 ) );
-    emit_signal( signals::SEND_OBJECT, memnew(TestObjInfo{some_str}) );
+    emit_signal( signals::SEND_OBJECT, memnew(ObjectWrapper<std::string>{some_str}) );
 }
 
-void TestNodeImpl::on_obj_received( TestObjInfo* obj_info )
+void TestNodeImpl::on_obj_received( ObjectWrapper<std::string>* obj_info )
 {
     if( obj_info )
     {
-        godot::print_line( "get correct object!", obj_info->m_line.c_str() );
+        godot::print_line( "get correct object!", obj_info->val.c_str() );
     }
     if ( m_lbl )
     {
         godot::print_line( "get an object from signal!" );
-        //m_lbl->set_text( godot::String{ obj_info->m_line.c_str() } );
+        //m_lbl->set_text( godot::String{ obj_info->val.c_str() } );
     }
     else
     {
